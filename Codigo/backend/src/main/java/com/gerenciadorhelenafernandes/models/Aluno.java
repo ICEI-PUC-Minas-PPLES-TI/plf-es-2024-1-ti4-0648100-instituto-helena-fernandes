@@ -1,15 +1,11 @@
 package com.gerenciadorhelenafernandes.models;
 
-
-import java.time.LocalDate;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,47 +24,48 @@ public class Aluno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true)
-    private Long id; 
+    @Column(name = "idAluno", unique = true)
+    private Long idAluno; 
 
-   @Column(name = "nome", length = 100, nullable = false)
+   @Column(name = "cpf_aluno", length = 100, nullable = false)
+   @Size(min = 2, max = 100)
+      private String cpf_aluno;
 
+   @Column(name = "data_nascimento", length = 100, nullable = false)
+      private String data_nascimento;
+
+  @Column(name = "alergia", nullable = true)
+      private String alergia;
+
+    @Column(name = "cidade", length = 100, nullable = false)
     @Size(min = 2, max = 100)
-   private String nome;
+    private String cidade;
 
-   @Column(name = "cpf", length = 100, nullable = false)
-   @Size(min = 2, max = 100)
-      private String cpf;
+    @Column(name = "bairro", length = 100, nullable = false)
+    @Size(min = 2, max = 100)
+    private String bairro;
 
-   @Column(name = "nascimento", length = 100, nullable = false)
-   @Size(min = 2, max = 100)
-      private LocalDate nascimento;
+    @Column(name = "rua", length = 100, nullable = false)
+    @Size(min = 2, max = 100)
+    private String rua;
 
-    @Column(name = "endereco", length = 100, nullable = false)
-      @Size(min = 2, max = 100)
-    private String endereco;
+    @Column(name = "numero_casa", length = 100, nullable = false)
+    @Size(min = 1, max = 100)
+    private String numero_casa;
 
-    @Column(name = "alergia")
-    private String alergia;
+    @Column(name = "mais_informacoes", length = 100, nullable = true)
+    @Size(min = 0, max = 300)
+    private String mais_informacoes;
 
-    @Column(name = "emailParente", nullable = false)
-    @Email
-    private String emailParente;
+    @Column(name = "nome_responsavel", nullable = false)
+    private String nome_responsavel;
 
-    @Column(name = "nomeParente", nullable = false)
-    private String nomeParente;
+    @Column(name = "cpf_responsavel", length = 100, nullable = false)
+    @Size(min = 2, max = 100)
+       private String cpf_responsavel;
 
-    @Column(name = "telefoneParente", nullable = false)
-    private String telefoneParente;
-
-    @Column(name = "grauParentesco", nullable = false)
-    private String grauParentesco;
-
-    @Column(name = "username", unique = true, nullable = false)
-    private String username;
-
-    @Column(name = "password", nullable = false)
-    private String password;
+    @Column(name = "telefone_responsavel", nullable = false)
+    private String telefone_responsavel;
 
     @Column(name = "aceito", nullable = false)
     private boolean aceito;
