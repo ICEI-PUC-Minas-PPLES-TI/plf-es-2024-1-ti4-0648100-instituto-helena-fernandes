@@ -1,6 +1,7 @@
 package com.gerenciadorhelenafernandes.controllers;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,35 +22,40 @@ import com.gerenciadorhelenafernandes.services.AlunoServices;
 @CrossOrigin("*")
 @RequestMapping("/aluno")
 public class AlunoController {
-    
+
     @Autowired
     private AlunoServices alunoService;
-    
-    @GetMapping(path = {"/id"})
-    public ResponseEntity<?> findById(@PathVariable Long idAluno){
-     return ResponseEntity.ok().body(alunoService.findById(idAluno));
+
+    @GetMapping("/{idAluno}")
+    public ResponseEntity<?> findById(@PathVariable("idAluno") Long idAluno) {
+        return ResponseEntity.ok().body(alunoService.findById(idAluno));
     }
 
     @PostMapping
     public ResponseEntity<Aluno> create(@RequestBody Aluno aluno) {
-    aluno = alunoService.create(aluno);
-    URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-            .buildAndExpand(aluno.getIdAluno()).toUri();
-    return ResponseEntity.ok().body(aluno);
+        aluno = alunoService.create(aluno);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{idAluno}")
+                .buildAndExpand(aluno.getIdAluno()).toUri();
+        return ResponseEntity.ok().body(aluno);
     }
 
-     @PutMapping("/aluno/{idAluno}")
-    public ResponseEntity<Aluno> update(@RequestBody Aluno aluno, @PathVariable Long idAluno){
+    @PutMapping("/aluno/{idAluno}")
+    public ResponseEntity<Aluno> update(@RequestBody Aluno aluno, @PathVariable Long idAluno) {
         aluno = alunoService.update(aluno, idAluno);
         return ResponseEntity.noContent().build();
     }
-    
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long idAluno){
+
+    @DeleteMapping("/{idAluno}")
+    public ResponseEntity<?> delete(@PathVariable Long idAluno) {
         alunoService.delete(idAluno);
         return ResponseEntity.noContent().build();
     }
 
-
+    @GetMapping
+    public ResponseEntity<List<Aluno>> findAll() {
+        List<Aluno> list = alunoService.findAll();
+        return ResponseEntity.ok().body(list);
+    }
+    
 
 }

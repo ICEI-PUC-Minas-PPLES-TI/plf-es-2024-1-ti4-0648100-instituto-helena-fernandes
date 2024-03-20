@@ -1,7 +1,7 @@
 package com.gerenciadorhelenafernandes.services;
 
+import java.util.List;
 import java.util.Optional;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,36 +13,51 @@ import jakarta.transaction.Transactional;
 
 @Service
 public class AlunoServices {
-    
+
     @Autowired
     private AlunoRepository alunoRepository;
 
-    public Aluno findById(Long id){
+    public Aluno findById(Long id) {
         Optional<Aluno> obj = this.alunoRepository.findById(id);
-        return obj.orElseThrow(()-> new RuntimeException(
-            "Aluno não encontrado! Id: " + id + ", Tipo: " + Aluno.class.getName()
-        ));
+        return obj.orElseThrow(() -> new RuntimeException(
+                "Aluno não encontrado! Id: " + id + ", Tipo: " + Aluno.class.getName()));
     }
 
-    //Salvar no Banco de Dados 
+    // Salvar no Banco de Dados
     @Transactional
-    public Aluno create(Aluno obj){
+    public Aluno create(Aluno obj) {
         obj.setIdAluno(null);
         return this.alunoRepository.save(obj);
-
     }
 
-    public Aluno update(Aluno obj, Long idAluno){
-        obj.setIdAluno(idAluno);
-        return alunoRepository.save(obj);
+    public Aluno update(Aluno obj, Long id) {
+        Aluno aluno = findById(obj.getIdAluno());
+        aluno.setNome_aluno(obj.getNome_aluno());
+        aluno.setData_nascimento(obj.getData_nascimento());
+        aluno.setAlergia(obj.getAlergia());
+        aluno.setCidade(obj.getCidade());
+        aluno.setRua(obj.getRua());
+        aluno.setNumero_casa(obj.getNumero_casa());
+        aluno.setMais_informacoes(obj.getMais_informacoes());
+        aluno.setNome_responsavel(obj.getNome_responsavel());
+        aluno.setCpf_responsavel(obj.getCpf_responsavel());
+       
+        return alunoRepository.save(aluno);
     }
 
-    public void delete(Long idAluno){
-    Aluno aluno = findById(idAluno);
-    try {
-        this.alunoRepository.delete(aluno);
-    } catch (Exception e) {
-        throw new RuntimeException("Não foi possível excluir pois há entidades relacionadas!");
+    public void delete(Long idAluno) {
+        Aluno aluno = findById(idAluno);
+        try {
+            this.alunoRepository.delete(aluno);
+        } catch (Exception e) {
+            throw new RuntimeException("Não foi possível excluir pois há entidades relacionadas!");
+        }
     }
-    }
+
+    
+public List<Aluno> findAll() {
+    return alunoRepository.findAll();
+}
+
+
 }
