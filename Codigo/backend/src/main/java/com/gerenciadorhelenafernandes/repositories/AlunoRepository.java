@@ -7,5 +7,6 @@ import com.gerenciadorhelenafernandes.models.Aluno;
 
 @Repository
 public interface AlunoRepository extends JpaRepository<Aluno, Long>{
+
     
 }

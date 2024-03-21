@@ -1,9 +1,9 @@
 package com.gerenciadorhelenafernandes.controllers;
 
-import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.gerenciadorhelenafernandes.models.Aluno;
 import com.gerenciadorhelenafernandes.services.AlunoServices;
+
 
 @RestController
 @CrossOrigin("*")
@@ -34,8 +34,6 @@ public class AlunoController {
     @PostMapping
     public ResponseEntity<Aluno> create(@RequestBody Aluno aluno) {
         aluno = alunoService.create(aluno);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{idAluno}")
-                .buildAndExpand(aluno.getIdAluno()).toUri();
         return ResponseEntity.ok().body(aluno);
     }
 
@@ -56,6 +54,14 @@ public class AlunoController {
         List<Aluno> list = alunoService.findAll();
         return ResponseEntity.ok().body(list);
     }
-    
+
+    @PostMapping("/login")
+    public ResponseEntity<Aluno> validation(@RequestBody Aluno aluno) {
+        Boolean valid = alunoService.validation(aluno);
+        if (!valid) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        return ResponseEntity.status(200).build();
+    }
 
 }

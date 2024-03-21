@@ -56,10 +56,6 @@ body {
     align-items: center;
 }
 
-.formulario .box input {
-    margin: 10px 0;
-}
-
 .button1 {
     margin-top: 20px;
     
@@ -75,13 +71,15 @@ body {
   }
   
   .formulario .box input {
-    background-color: white; 
-    border-radius: 5px; 
-    border: 1px solid #A9ABD2; /* Define a cor da borda e sua espessura */
-    padding: 10px; /* Adiciona um pouco de espaço interno para que o texto não fique muito próximo das bordas */
-    margin: 10px 0; /* Mantém o espaçamento vertical entre os inputs */
-    width: calc(100% - 24px); /* Ajusta a largura para considerar o padding e a borda. Pode precisar de ajustes */
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #A9ABD2;
+    padding: 10px;
+    padding-left: 50px; /* Ajustado para evitar sobreposição */
+    margin: 10px 0;
+    width: 60%;
   }
+  
   .button1 button {
     background-color: #ED3239; /* Define a cor de fundo do botão */
     border: none; /* Remove a borda padrão do botão */

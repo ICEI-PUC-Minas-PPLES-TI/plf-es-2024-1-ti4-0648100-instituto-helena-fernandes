@@ -34,7 +34,7 @@ public class Aluno {
    private String email_aluno;
 
    @Column(name = "senha_aluno", length = 100, nullable = true)
-   @Size(min = 5, max = 20)
+   @Size(min = 5, max = 200)
    private String senha_aluno;
 
    @Column(name = "cpf_aluno", length = 100, nullable = true)
@@ -71,6 +71,4 @@ public class Aluno {
    @Column(name = "telefone_responsavel", nullable = true)
    private String telefone_responsavel;
 
-
-   
 }
