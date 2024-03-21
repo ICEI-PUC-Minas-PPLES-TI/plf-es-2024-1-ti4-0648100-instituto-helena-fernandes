@@ -6,8 +6,7 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('../images/BG\ -Cadastro.png');
-    position: relative;
+    flex-direction: column; /* Organiza os filhos em uma coluna */
 }
 
 .logo-container {
@@ -28,6 +27,7 @@ body {
     position: relative; /* Faz o corpo ser um ponto de referência para posicionamento absoluto */
 }
 
+/* Adiciona um contêiner para a logo no topo da página */
 
 
 .logo img {
@@ -39,24 +39,27 @@ body {
 .conteiner1 {
     width: 60%;
     min-height: 60vh; /* Exemplo de altura mínima */
-   
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Estilização do formulário */
 .formulario {
-    width: 100%;
+    width: 60%; /* Ou a largura desejada */
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    text-align: center; /* Centraliza o conteúdo horizontalmente */
-    margin-right: 25%;
+    align-items: center;
+    margin-top: -25%;
 }
 
+.formulario .box input {
+    margin: 10px 0;
+}
 
-
-.button1 button {
+.button1 {
     margin-top: 20px;
+    
 }
 
 .criarConta {
@@ -113,7 +116,7 @@ body {
   a:hover{
     color: #7f7f7f;
   }
-  .email_aluno, .senha_aluno, .nome_aluno{
+  .email_aluno, .senha_aluno, .nome{
     background-size: 30px 30px;
   }
 

@@ -1,0 +1,108 @@
+/* Reset básico para garantir consistência */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../images/BACKGROUND.png'); /* Ajuste o caminho conforme necessário */
+    position: relative;
+    background-size: cover; /* Certifica que o fundo cubra toda a página */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%; /* Ajusta conforme necessário para sua página */
+    max-width: 1200px; /* Limita a largura máxima */
+}
+
+.logo-container1 {
+    margin-top: 0%; /* Espaço no topo. Ajuste conforme necessário, 0% foi mudado para um valor específico para visibilidade */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+.logo-container1 img{
+   
+}
+
+/* Container para dispor a imagem e o formulário lado a lado */
+.content-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between; /* Espaça igualmente */
+    align-items: center;
+    margin-top: 20px; /* Adiciona espaço entre a logo e o conteúdo abaixo */
+    position: relative; /* Adicionado para controle de posicionamento absoluto dos filhos */
+}
+
+
+.form-container {
+    flex: 1; /* Ocupam espaço igual */
+    display: flex;
+    justify-content: center; /* Centraliza conteúdo horizontalmente */
+    align-items: center; /* Centraliza conteúdo verticalmente */
+    background-color: white; /* Fundo branco para ambos os contêineres */
+    padding: 20px; /* Espaçamento interno */
+    position: absolute;
+    top:23%;
+    right:13%;
+    width: 150%;
+    height: 123%;
+
+}
+
+.imagemEsquerda {
+    position: absolute;
+    left: 20%; /* Alinha ao lado esquerdo do contêiner */
+    top:20%;
+    bottom: 0; /* Move para baixo dentro do contêiner */
+    padding: 20px; /* Fornece algum espaço interno */
+}
+
+.imagemEsquerda img {
+    max-width: 100%; /* Garante responsividade da imagem */
+    height: auto;
+}
+.form-container {
+    max-width: 500px; 
+    border-radius:10px; /* Limita a largura do formulário para não ocupar todo o espaço quando for muito largo */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 30px; /* Espaço entre os campos do formulário */
+}
+
+input {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Bordas arredondadas */
+    padding: 10px;
+    background-color: white; /* Fundo branco */
+}
+
+.buttonPC button {
+    width: 100%;
+    background-color: red; /* Botão vermelho */
+    color: white; /* Texto branco */
+    border-radius: 5px; /* Bordas arredondadas */
+    padding: 10px;
+    border: none; /* Sem borda */
+    cursor: pointer; /* Cursor de clique */
+}
+
+.buttonPC button:hover {
+    background-color: #e04327; /* Um tom mais escuro de vermelho para o estado hover */
+}
