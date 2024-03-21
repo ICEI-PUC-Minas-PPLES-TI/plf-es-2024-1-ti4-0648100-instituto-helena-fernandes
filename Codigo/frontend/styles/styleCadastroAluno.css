@@ -6,7 +6,8 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; /* Organiza os filhos em uma coluna */
+    background-image: url('../images/BG\ -Cadastro.png');
+    position: relative;
 }
 
 .logo-container {
@@ -27,7 +28,6 @@ body {
     position: relative; /* Faz o corpo ser um ponto de referência para posicionamento absoluto */
 }
 
-/* Adiciona um contêiner para a logo no topo da página */
 
 
 .logo img {
@@ -39,27 +39,24 @@ body {
 .conteiner1 {
     width: 60%;
     min-height: 60vh; /* Exemplo de altura mínima */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+   
 }
 
 /* Estilização do formulário */
 .formulario {
-    width: 60%; /* Ou a largura desejada */
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    margin-top: -25%;
+    flex-direction: column;
+    text-align: center; /* Centraliza o conteúdo horizontalmente */
+    margin-right: 25%;
 }
 
-.formulario .box input {
-    margin: 10px 0;
-}
 
-.button1 {
+
+.button1 button {
     margin-top: 20px;
-    
 }
 
 .criarConta {
