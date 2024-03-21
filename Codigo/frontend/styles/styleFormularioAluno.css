@@ -13,26 +13,24 @@ body, html {
     align-items: center;
     background-image: url('../images/BACKGROUND.png'); /* Ajuste o caminho conforme necessário */
     position: relative;
-    background-size: cover; /* Certifica que o fundo cubra toda a página */
+    background-size: cover;
+   
 }
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 90%; /* Ajusta conforme necessário para sua página */
-    max-width: 1200px; /* Limita a largura máxima */
+    width: 100%; /* Ajusta conforme necessário para sua página */
+    top: 0;
 }
 
 .logo-container1 {
-    margin-top: 0%; /* Espaço no topo. Ajuste conforme necessário, 0% foi mudado para um valor específico para visibilidade */
+    margin-top: 0 !important; /* Espaço no topo. Ajuste conforme necessário, 0% foi mudado para um valor específico para visibilidade */
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50%;
-}
-.logo-container1 img{
-   
+    
 }
 
 /* Container para dispor a imagem e o formulário lado a lado */
