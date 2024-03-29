@@ -3,6 +3,7 @@ package com.gerenciadorhelenafernandes.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.gerenciadorhelenafernandes.models.Aluno;
-import com.gerenciadorhelenafernandes.repositories.AlunoRepository;
 import com.gerenciadorhelenafernandes.services.AlunoServices;
 
 
@@ -43,6 +43,15 @@ public class AlunoController {
         return ResponseEntity.status(201).body(aluno);
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<Aluno> validation(@RequestBody Aluno aluno) {
+        Boolean valid = alunoService.validation(aluno);
+        if (!valid) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        return ResponseEntity.status(200).build();
+    }
+
     @PutMapping("/{id_aluno}")
     public ResponseEntity<Aluno> update(@RequestBody Aluno aluno, @PathVariable Long id_aluno) {
         aluno = alunoService.update(aluno, id_aluno);
@@ -53,13 +62,5 @@ public class AlunoController {
     public ResponseEntity<?> delete(@PathVariable Long id_aluno) {
         alunoService.delete(id_aluno);
         return ResponseEntity.status(204).build();
-    }
-
-        @Autowired
-    private AlunoRepository alunoRepository;
-
-    @GetMapping
-    public List<Aluno> listarTodos() {
-        return alunoRepository.findAll();
     }
 }

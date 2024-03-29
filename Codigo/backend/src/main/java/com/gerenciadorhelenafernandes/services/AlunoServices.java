@@ -67,4 +67,15 @@ public class AlunoServices {
             throw new RuntimeException("Aluno não encontrado para exclusão!");
         }
     }
+
+    public Boolean validation(Aluno obj) {
+        Aluno aluno = findById(obj.getId_aluno());
+        if (aluno != null) {
+            String senha = aluno.getSenha_aluno();
+            Boolean valid = senha.matches(aluno.getSenha_aluno());
+            return valid;
+        } else {
+            throw new RuntimeException("Aluno não encontrado para validação!");
+        }
+    }
 }
