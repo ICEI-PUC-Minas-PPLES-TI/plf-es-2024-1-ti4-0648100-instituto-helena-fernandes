@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Aluno</title>
     <link rel="stylesheet" href="../styles/styleLoginAluno.css">
-    <script src="../scripts/LoginAluno.js" defer></script>
 </head>
 <body>
     <div class="conteiner1">
@@ -18,10 +17,10 @@
    <div class="formulario">
     <div class="box">
         <form action="">
-        <input type="text" class="email" name= "email" placeholder="         Email: ">
-        <input type="password" class="senha" name= "senha" placeholder="         Senha: ">
+        <input type="text" id="email" class="email" name= "email" placeholder="         Email: ">
+        <input type="password" id="senha" class="senha" name= "senha" placeholder="         Senha: ">
     <div class="button1">
-        <button>Entrar</button>
+        <button onclick="login()">Entrar</button>
     </div>
     
 </div>
@@ -35,5 +34,6 @@
     <img src="../images/fotos.png" alt="Fotos">
     </div>
 </div>
+<script src="../scripts/LoginAluno.js"></script>
 </body>
 </html>

@@ -3,7 +3,6 @@ package com.gerenciadorhelenafernandes.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,42 +25,33 @@ public class AlunoController {
     @Autowired
     private AlunoServices alunoService;
 
-    @GetMapping("/{idAluno}")
-    public ResponseEntity<?> findById(@PathVariable("idAluno") Long idAluno) {
-        return ResponseEntity.ok().body(alunoService.findById(idAluno));
-    }
-
-    @PostMapping
-    public ResponseEntity<Aluno> create(@RequestBody Aluno aluno) {
-        aluno = alunoService.create(aluno);
-        return ResponseEntity.ok().body(aluno);
-    }
-
-    @PutMapping("/aluno/{idAluno}")
-    public ResponseEntity<Aluno> update(@RequestBody Aluno aluno, @PathVariable Long idAluno) {
-        aluno = alunoService.update(aluno, idAluno);
-        return ResponseEntity.noContent().build();
-    }
-
-    @DeleteMapping("/{idAluno}")
-    public ResponseEntity<?> delete(@PathVariable Long idAluno) {
-        alunoService.delete(idAluno);
-        return ResponseEntity.noContent().build();
+    @GetMapping("/{id_aluno}")
+    public ResponseEntity<?> findById(@PathVariable("id_aluno") Long id_aluno) {
+        return ResponseEntity.status(200).body(alunoService.findById(id_aluno));
     }
 
     @GetMapping
     public ResponseEntity<List<Aluno>> findAll() {
         List<Aluno> list = alunoService.findAll();
-        return ResponseEntity.ok().body(list);
+        return ResponseEntity.status(200).body(list);
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<Aluno> validation(@RequestBody Aluno aluno) {
-        Boolean valid = alunoService.validation(aluno);
-        if (!valid) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-        return ResponseEntity.status(200).build();
+    @PostMapping
+    public ResponseEntity<Aluno> create(@RequestBody Aluno aluno) {
+        aluno = alunoService.create(aluno);
+        return ResponseEntity.status(201).body(aluno);
+    }
+
+    @PutMapping("/{id_aluno}")
+    public ResponseEntity<Aluno> update(@RequestBody Aluno aluno, @PathVariable Long id_aluno) {
+        aluno = alunoService.update(aluno, id_aluno);
+        return ResponseEntity.status(201).body(aluno);
+    }
+
+    @DeleteMapping("/{id_aluno}")
+    public ResponseEntity<?> delete(@PathVariable Long id_aluno) {
+        alunoService.delete(id_aluno);
+        return ResponseEntity.status(204).build();
     }
 
 }

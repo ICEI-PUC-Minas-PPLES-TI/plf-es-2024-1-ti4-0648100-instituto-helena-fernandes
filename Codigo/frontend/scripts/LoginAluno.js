@@ -1,9 +1,10 @@
-const formulario = document.querySelector("form");
+async function login() {
 
-const Iemail = document.querySelector(".email");
-const Isenha = document.querySelector(".senha");
+    let email = document.getElementById('email').value;
+    let senha = document.getElementById('senha').value;
+        
+    console.log("Email: " + email + " Senha: " + senha); 
 
-function login() {
     fetch("http://localhost:8080/aluno/login", {
         method: "POST",
         headers: {
@@ -11,8 +12,8 @@ function login() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            email: Iemail.value,
-            senha: Isenha.value,
+            email: email,
+            senha: senha
         })
     })
     .then(response => {
@@ -26,15 +27,16 @@ function login() {
         console.error('Erro ao fazer login:', error);
         alert("Ocorreu um erro ao fazer login. Por favor, tente novamente mais tarde.");
     });
+
 }
 
 function limpar() {
-    Iemail.value = "";
-    Isenha.value = "";
+    email.value = "";
+    senha.value = "";
 }
 
-formulario.addEventListener('submit', function(event) {
-    event.preventDefault();
-    login();
-    limpar();
-});
+// formulario.addEventListener('submit', function(event) {
+//     event.preventDefault();
+//     login();
+//     limpar();
+// });
