@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.gerenciadorhelenafernandes.models.Aluno;
+import com.gerenciadorhelenafernandes.repositories.AlunoRepository;
 import com.gerenciadorhelenafernandes.services.AlunoServices;
 
 
@@ -64,4 +65,11 @@ public class AlunoController {
         return ResponseEntity.status(200).build();
     }
 
+        @Autowired
+    private AlunoRepository alunoRepository;
+
+    @GetMapping
+    public List<Aluno> listarTodos() {
+        return alunoRepository.findAll();
+    }
 }

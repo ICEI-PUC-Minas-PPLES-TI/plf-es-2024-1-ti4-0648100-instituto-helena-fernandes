@@ -82,4 +82,9 @@ public class AlunoServices {
             throw new RuntimeException("Aluno não encontrado para validação!");
         }
     }
+
+    //Listar Usuários
+    public List<Aluno> listAlunos(){
+        return alunoRepository.findAll();
+    }
 }
