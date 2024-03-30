@@ -1,4 +1,4 @@
-fetch('http://localhost:8080/api/alunos')
+fetch('http://localhost:8080/aluno')
 .then(response => response.json())
 .then(alunos => {
     const lista = document.getElementById('lista-alunos');
