@@ -91,7 +91,7 @@ body {
   .button1 button:hover {
     background-color: #C52620; /* Muda a cor de fundo do botão quando passa o mouse, ajuste conforme desejado */
   }
-  .email_aluno {
+  .emailAluno {
     background-image: url('../images/group_email.png'); /* Caminho para o ícone */
     background-repeat: no-repeat; /* Impede que a imagem se repita */
     background-position: 7px center; /* Posiciona a imagem a 10px da esquerda e centraliza verticalmente */

@@ -1,7 +1,7 @@
 const formulario = document.querySelector("form");
 
 const Inome = document.querySelector(".nome_aluno");
-const Iemail = document.querySelector(".email_aluno");
+const Iemail = document.querySelector(".emailAluno");
 const Isenha = document.querySelector(".senha_aluno");
 
 function cadastrar() {
@@ -13,7 +13,7 @@ function cadastrar() {
         method: "POST",
         body: JSON.stringify({
             nome_aluno: Inome.value,
-            email_aluno: Iemail.value,
+            emailAluno: Iemail.value,
             senha_aluno: Isenha.value
         })
     })

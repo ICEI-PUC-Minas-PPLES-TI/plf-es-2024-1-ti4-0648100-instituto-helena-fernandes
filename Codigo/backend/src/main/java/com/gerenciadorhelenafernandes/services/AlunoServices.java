@@ -38,7 +38,7 @@ public class AlunoServices {
     @Transactional
     public Aluno update(Aluno obj, Long id) {
         Aluno aluno = findById(obj.getId_aluno());
-        aluno.setEmail_aluno(obj.getEmail_aluno());
+        aluno.setEmailAluno(obj.getEmailAluno());
         aluno.setSenha_aluno(obj.getSenha_aluno());
         aluno.setNome_aluno(obj.getNome_aluno());
         aluno.setCpf_aluno(obj.getCpf_aluno());
@@ -67,15 +67,16 @@ public class AlunoServices {
             throw new RuntimeException("Aluno não encontrado para exclusão!");
         }
     }
-
-    public Boolean validation(Aluno obj) {
-        Aluno aluno = findById(obj.getId_aluno());
-        if (aluno != null) {
-            String senha = aluno.getSenha_aluno();
-            Boolean valid = senha.matches(aluno.getSenha_aluno());
-            return valid;
+  
+    
+    public Boolean validateLogin(String email , String senha) {
+        Optional<Aluno> alunoOptional = alunoRepository.findByEmailAluno(email);
+        if (alunoOptional.isPresent()) {
+            Aluno aluno = alunoOptional.get();
+            return senha.equals(aluno.getSenha_aluno());
         } else {
-            throw new RuntimeException("Aluno não encontrado para validação!");
+            throw new RuntimeException("Aluno não encontrado com o email fornecido.");
         }
     }
+        
 }

@@ -30,9 +30,9 @@ public class Aluno {
    @NotBlank
    private String nome_aluno;
 
-   @Column(name = "email_aluno", length = 100, nullable = false)
+   @Column(name = "emailAluno", length = 100, nullable = false)
    @NotBlank
-   private String email_aluno;
+   private String emailAluno;
 
    @Column(name = "senha_aluno", length = 100, nullable = false)
    @NotBlank

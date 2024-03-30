@@ -44,13 +44,19 @@ public class AlunoController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Aluno> validation(@RequestBody Aluno aluno) {
-        Boolean valid = alunoService.validation(aluno);
-        if (!valid) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+public ResponseEntity<String> validation(@RequestBody Aluno aluno) {
+    try {
+        Boolean valid = alunoService.validateLogin(aluno.getEmailAluno(), aluno.getSenha_aluno());
+        if (valid) {
+            return ResponseEntity.ok("Login bem-sucedido!");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas.");
         }
-        return ResponseEntity.status(200).build();
+    } catch (RuntimeException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
+}
+
 
     @PutMapping("/{id_aluno}")
     public ResponseEntity<Aluno> update(@RequestBody Aluno aluno, @PathVariable Long id_aluno) {
