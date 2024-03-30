@@ -55,6 +55,7 @@ public class AlunoServices {
 
         return alunoRepository.save(aluno);
     }
+
     public void delete(Long id_aluno) {
         Aluno aluno = findById(id_aluno);
         if (aluno != null) {
@@ -66,8 +67,7 @@ public class AlunoServices {
         } else {
             throw new RuntimeException("Aluno não encontrado para exclusão!");
         }
-    }
-  
+    }  
     
     public Boolean validateLogin(String email , String senha) {
         Optional<Aluno> alunoOptional = alunoRepository.findByEmailAluno(email);
@@ -78,5 +78,13 @@ public class AlunoServices {
             throw new RuntimeException("Aluno não encontrado com o email fornecido.");
         }
     }
-        
+
+    public Long findIdByEmail(String email) {
+        Optional<Aluno> alunoOptional = alunoRepository.findByEmailAluno(email);
+        if (alunoOptional.isPresent()) {
+            return alunoOptional.get().getId_aluno();
+        } else {
+            throw new RuntimeException("Aluno não encontrado com o email fornecido.");
+        }
+    }        
 }

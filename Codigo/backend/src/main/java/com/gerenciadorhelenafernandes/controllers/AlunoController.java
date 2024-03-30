@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gerenciadorhelenafernandes.models.Aluno;
 import com.gerenciadorhelenafernandes.services.AlunoServices;
 
-
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/aluno")
@@ -44,19 +43,20 @@ public class AlunoController {
     }
 
     @PostMapping("/login")
-public ResponseEntity<String> validation(@RequestBody Aluno aluno) {
-    try {
-        Boolean valid = alunoService.validateLogin(aluno.getEmailAluno(), aluno.getSenha_aluno());
-        if (valid) {
-            return ResponseEntity.ok("Login bem-sucedido!");
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas.");
+    public ResponseEntity<Long> validation(@RequestBody Aluno aluno) {
+        try {
+            Boolean valid = alunoService.validateLogin(aluno.getEmailAluno(), aluno.getSenha_aluno());
+            if (valid) {
+                Long idAluno = alunoService.findIdByEmail(aluno.getEmailAluno());
+                return ResponseEntity.ok(idAluno);
+            } else {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(-1L); // Retorna -1 para indicar login inválido
+            }
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(-1L); // Retorna -1 para indicar erro
         }
-    } catch (RuntimeException e) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
-}
-
+    
 
     @PutMapping("/{id_aluno}")
     public ResponseEntity<Aluno> update(@RequestBody Aluno aluno, @PathVariable Long id_aluno) {
