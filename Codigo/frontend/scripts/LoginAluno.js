@@ -18,6 +18,7 @@ let senhaAluno = document.getElementById('senha_aluno').value;
     .then(response => {
         if (response.ok) {
             alert("Conta bem-sucedida!");
+            window.location.href = '../views/FormularioAluno.html';
             // Aqui você pode adicionar outras ações em caso de sucesso, como redirecionar para outra página.
         } else {
             alert("Credenciais inválidas. Por favor, tente novamente.");

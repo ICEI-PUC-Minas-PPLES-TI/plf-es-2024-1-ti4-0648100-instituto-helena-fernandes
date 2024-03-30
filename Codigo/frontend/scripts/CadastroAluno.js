@@ -20,7 +20,7 @@ function cadastrar() {
     .then(function (response) {
         if (response.ok) {
             // Redirecionamento após sucesso
-            window.location.href = "../views/ConfirmacaoAluno.html";
+            window.location.href = "../views/LoginAluno.html";
         } else {
             // Tratar caso não seja possível cadastrar o aluno
             console.error('Erro ao cadastrar aluno:', response.statusText);
