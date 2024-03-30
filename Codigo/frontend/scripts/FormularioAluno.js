@@ -30,7 +30,6 @@ function atualizar() {
             cidade: cidade,
             bairro: bairro,
             rua: rua,
-            cpf_aluno: cpf_aluno,
             numero_casa: numero_casa,
             mais_informacoes: mais_informacoes,
             nome_responsavel: nome_responsavel,
@@ -40,9 +39,6 @@ function atualizar() {
     })
     .then(response => {
         if (response.ok) {
-            // Aqui você pode decidir o que fazer após o sucesso da atualização
-            alert('Aluno atualizado com sucesso!');
-            // Por exemplo, redirecionar para outra página
             window.location.href = '../views/ConfirmacaoAluno.html';
         } else {
             console.error('Erro ao atualizar aluno:', response.statusText);
@@ -50,7 +46,6 @@ function atualizar() {
     })
     .catch(error => {
         console.error('Erro:', error);
-        // Trate o erro de acordo com sua necessidade
         alert('Ocorreu um erro ao atualizar o aluno. Por favor, tente novamente.');
     });
 }

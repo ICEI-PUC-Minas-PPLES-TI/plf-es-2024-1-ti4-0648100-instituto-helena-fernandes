@@ -37,10 +37,7 @@ public class AlunoServices {
 
     @Transactional
     public Aluno update(Aluno obj, Long id) {
-        Aluno aluno = findById(obj.getId_aluno());
-        aluno.setEmailAluno(obj.getEmailAluno());
-        aluno.setSenha_aluno(obj.getSenha_aluno());
-        aluno.setNome_aluno(obj.getNome_aluno());
+        Aluno aluno = findById(id);
         aluno.setCpf_aluno(obj.getCpf_aluno());
         aluno.setData_nascimento(obj.getData_nascimento());
         aluno.setAlergia(obj.getAlergia());
@@ -67,9 +64,9 @@ public class AlunoServices {
         } else {
             throw new RuntimeException("Aluno não encontrado para exclusão!");
         }
-    }  
-    
-    public Boolean validateLogin(String email , String senha) {
+    }
+
+    public Boolean validateLogin(String email, String senha) {
         Optional<Aluno> alunoOptional = alunoRepository.findByEmailAluno(email);
         if (alunoOptional.isPresent()) {
             Aluno aluno = alunoOptional.get();
@@ -86,5 +83,5 @@ public class AlunoServices {
         } else {
             throw new RuntimeException("Aluno não encontrado com o email fornecido.");
         }
-    }        
+    }
 }

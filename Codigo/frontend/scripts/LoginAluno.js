@@ -22,7 +22,6 @@ function login() {
     })
     .then(data => {
         if (data !== -1) { // Verifica se o ID do aluno é diferente de -1 (indicando um login inválido)
-            alert("Conta bem-sucedida!");
             window.location.href = `../views/FormularioAluno.html?idAluno=${data}`;
         } else {
             alert("Credenciais inválidas. Por favor, tente novamente.");
