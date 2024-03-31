@@ -73,5 +73,8 @@ public class Aluno {
    @Column(name = "telefone_responsavel", nullable = true)
    private String telefone_responsavel;
 
+   @Column(name = "status_aluno", length = 1, nullable = true)
+   private String status_aluno; //Null - Dados Faltando, 0 - Em análise, 1 - Aprovado, 2 - Reprovado
+
 
 }

@@ -29,12 +29,13 @@ public class AlunoServices {
     }
 
     // Salvar no Banco de Dados
+    
     @Transactional
     public Aluno create(Aluno obj) {
         obj.setId_aluno(null);
         return this.alunoRepository.save(obj);
     }
-
+    
     @Transactional
     public Aluno update(Aluno obj, Long id) {
         Aluno aluno = findById(id);
@@ -49,6 +50,7 @@ public class AlunoServices {
         aluno.setNome_responsavel(obj.getNome_responsavel());
         aluno.setCpf_responsavel(obj.getCpf_responsavel());
         aluno.setTelefone_responsavel(obj.getTelefone_responsavel());
+        aluno.setStatus_aluno(obj.getStatus_aluno());
 
         return alunoRepository.save(aluno);
     }

@@ -16,6 +16,7 @@ function atualizar() {
     let nome_responsavel = document.getElementById('nome_responsavel').value;
     let cpf_responsavel = document.getElementById('cpf_responsavel').value;
     let telefone_responsavel = document.getElementById('telefone_responsavel').value;
+    let status = 0; // Define o status como 0 (Em análise)
 
     // Faz a requisição PUT para a rota de atualização no backend
     fetch(`http://localhost:8080/aluno/${idAluno}`, {
@@ -34,7 +35,9 @@ function atualizar() {
             mais_informacoes: mais_informacoes,
             nome_responsavel: nome_responsavel,
             cpf_responsavel: cpf_responsavel,
-            telefone_responsavel: telefone_responsavel
+            telefone_responsavel: telefone_responsavel,
+            status_aluno: status
+
           }),
     })
     .then(response => {
