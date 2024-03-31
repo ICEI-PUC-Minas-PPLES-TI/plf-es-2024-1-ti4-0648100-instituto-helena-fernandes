@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.gerenciadorhelenafernandes.models.Aluno;
 import com.gerenciadorhelenafernandes.services.AlunoServices;
@@ -30,11 +31,22 @@ public class AlunoController {
         return ResponseEntity.status(200).body(alunoService.findById(id_aluno));
     }
 
-    @GetMapping
+    /*@GetMapping
     public ResponseEntity<List<Aluno>> findAll() {
         List<Aluno> list = alunoService.findAll();
         return ResponseEntity.status(200).body(list);
+    }*/
+    @GetMapping
+public ResponseEntity<List<Aluno>> findAll(@RequestParam(value = "status_aluno", required = false) String status_aluno) {
+    List<Aluno> list;
+    if (status_aluno != null) {
+        list = alunoService.findByStatus(status_aluno);
+    } else {
+        list = alunoService.findAll();
     }
+    return ResponseEntity.status(200).body(list);
+}
+
 
     @PostMapping
     public ResponseEntity<Aluno> create(@RequestBody Aluno aluno) {

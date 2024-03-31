@@ -28,6 +28,10 @@ public class AlunoServices {
         return alunoRepository.findAll();
     }
 
+    public List<Aluno> findByStatus(String status) {
+        return alunoRepository.findByStatusAluno(status);
+    }
+
     // Salvar no Banco de Dados
     
     @Transactional

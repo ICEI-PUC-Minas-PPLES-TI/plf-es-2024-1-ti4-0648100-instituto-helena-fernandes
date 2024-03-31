@@ -1,8 +1,6 @@
-// Configura o clique no botão para mostrar/esconder os detalhes
-
-fetch('http://localhost:8080/aluno')
-.then(response => response.json())
-.then(alunos => {
+fetch('http://localhost:8080/aluno?status_aluno=0') //Null - Dados Faltando, 0 - Em análise, 1 - Aprovado, 2 - Reprovado
+  .then(response => response.json())
+  .then(alunos => {
     const lista = document.getElementById('lista-alunos');
     alunos.forEach(aluno => {
         const item = document.createElement('li');
