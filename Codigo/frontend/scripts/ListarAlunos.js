@@ -1,46 +1,78 @@
-fetch('http://localhost:8080/aluno?status_aluno=0') //Null - Dados Faltando, 0 - Em análise, 1 - Aprovado, 2 - Reprovado
-  .then(response => response.json())
-  .then(alunos => {
-    const lista = document.getElementById('lista-alunos');
-    alunos.forEach(aluno => {
-        const item = document.createElement('li');
-        item.textContent = aluno.nome_aluno; // Corrigindo para nome_aluno
+fetch('http://localhost:8080/aluno?status_aluno=0')
+    .then(response => response.json())
+    .then(alunos => {
+        const lista = document.getElementById('lista-alunos');
+        alunos.forEach(aluno => {
+            const item = document.createElement('li');
+            item.textContent = aluno.nome_aluno;
 
-        // Criar botão de detalhes
-        const botaoDetalhes = document.createElement('button');
-        botaoDetalhes.textContent = 'Detalhes';
-        
-        // Criar um div para detalhes do aluno
-        const detalhesDiv = document.createElement('div');
-        detalhesDiv.style.display = 'none'; // Esconde por padrão
-        detalhesDiv.innerHTML = `
+            // Criar botão de detalhes
+            const botaoDetalhes = document.createElement('button');
+            botaoDetalhes.textContent = 'Detalhes';
+
+            // Criar um div para detalhes do aluno
+            const detalhesDiv = document.createElement('div');
+            detalhesDiv.style.display = 'none'; // Esconde por padrão
+            detalhesDiv.innerHTML = `
+                <strong><p>Email:</strong> ${aluno.emailAluno}</p>
+                <strong><p>CPF:</strong> ${aluno.cpf_aluno || 'Não informado'}</p>
+                <strong><p>Data de Nascimento:</strong> ${aluno.data_nascimento || 'Não informado'}</p>
+                <strong><p>Alergia:</strong> ${aluno.alergia || 'Não informado'}</p>
+                <strong><p>Cidade:</strong> ${aluno.cidade || 'Não informado'}</p>
+                <strong><p>Bairro:</strong> ${aluno.bairro || 'Não informado'}</p>
+                <strong><p>Rua:</strong> ${aluno.rua || 'Não informado'}</p>
+                <strong><p>Número da Casa:</strong> ${aluno.numero_casa || 'Não informado'}</p>
+                <strong><p>Mais Informações:</strong> ${aluno.mais_informacoes || 'Não informado'}</p>
+                <strong><p>Nome do Responsável:</strong> ${aluno.nome_responsavel || 'Não informado'}</p>
+                <strong><p>CPF do Responsável:</strong> ${aluno.cpf_responsavel || 'Não informado'}</p>
+                <strong><p>Telefone do Responsável:</strong> ${aluno.telefone_responsavel || 'Não informado'}</p>
+                <button class="botao_aprovar" data-id_aluno="${aluno.id}">Aprovar</button>
+                <button class="botao_reprovar" data-id_aluno="${aluno.id}">Reprovar</button>
+            `;
             
-           <strong> <p>Email:  </strong>${aluno.emailAluno}</p>
-           <strong> <p>CPF:</strong> ${aluno.cpf_aluno || 'Não informado'}</p>
-           <strong> <p>Data de Nascimento:</strong> ${aluno.data_nascimento || 'Não informado'}</p>
-           <strong>  <p>Alergia:</strong> ${aluno.alergia || 'Não informado'}</p>
-           <strong> <p>Cidade:</strong> ${aluno.cidade || 'Não informado'}</p>
-           <strong> <p>Bairro:</strong> ${aluno.bairro || 'Não informado'}</p>
-           <strong> <p>Rua: </strong>${aluno.rua || 'Não informado'}</p>
-           <strong>  <p>Número da Casa:</strong> ${aluno.numero_casa || 'Não informado'}</p>
-           <strong> <p>Mais Informações: </strong>${aluno.mais_informacoes || 'Não informado'}</p>
-           <strong> <p>Nome do Responsável: </strong>${aluno.nome_responsavel || 'Não informado'}</p>
-           <strong> <p>CPF do Responsável:</strong> ${aluno.cpf_responsavel || 'Não informado'}</p>
-           <strong>  <p>Telefone do Responsável:</strong> ${aluno.telefone_responsavel || 'Não informado'}</p>
-            <button id="botao_aprovar">Aprovar</button>
-            <button id="botao_reprovar">Reprovar</button>
-        `;
-        // Configura o clique no botão para mostrar/esconder os detalhes
-        botaoDetalhes.onclick = function() {
-            detalhesDiv.style.display = detalhesDiv.style.display === 'none' ? 'block' : 'none';
-        };
+            console.log('Botão de aprovar criado com data-id_aluno:', aluno.id);
 
-        // Adiciona o texto, botão e detalhes ao item da lista
-        item.appendChild(botaoDetalhes);
-        item.appendChild(detalhesDiv);
+            // Configurar o clique no botão para mostrar/esconder os detalhes
+            botaoDetalhes.onclick = function() {
+                detalhesDiv.style.display = detalhesDiv.style.display === 'none' ? 'block' : 'none';
+            };
 
-        // Adiciona o item da lista ao DOM
-        lista.appendChild(item);
-    });
-})
-.catch(error => console.error('Falha ao buscar dados dos alunos:', error));
+            // Adicionar texto, botão de detalhes e detalhes ao item da lista
+            item.appendChild(botaoDetalhes);
+            item.appendChild(detalhesDiv);
+
+            // Adicionar o item da lista ao DOM
+            lista.appendChild(item);
+        });
+
+        // Adicionar eventos de clique aos botões de aprovar e reprovar
+        document.querySelectorAll('.botao_aprovar').forEach(button => {
+            button.addEventListener('click', function() {
+                const idAluno = this.getAttribute('data-id_aluno');
+                console.log('Botão associado ao id:', idAluno );//Console.log para ver qual id ele pega ao clicar o botão no momento tá sendo sempre undefined -- Arthur
+                if (idAluno) {
+                    atualizarStatusAluno(idAluno, 1);
+                } else {
+                    console.error('ID do aluno não encontrado.');
+                }
+            });
+        });
+
+        document.querySelectorAll('.botao_reprovar').forEach(button => {
+            button.addEventListener('click', function() {
+                const idAluno = this.getAttribute('data-id_aluno');
+                if (idAluno) {
+                    atualizarStatusAluno(idAluno, 2);
+                } else {
+                    console.error('ID do aluno não encontrado.');
+                }
+            });
+        });
+    })
+    .catch(error => console.error('Falha ao buscar dados dos alunos:', error));
+
+// Função para atualizar o status do aluno
+function atualizarStatusAluno(idAluno, novoStatus) {
+    // Falta a lógica de atualizar no banco de dados mas eu ainda n consigo pegar o id corretamente então n mexi nisso ainda --Arthur
+    console.log(`Atualizando status do aluno ${idAluno} para ${novoStatus}`);
+}
