@@ -1,122 +1,103 @@
 body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column; /* Organiza os filhos em uma coluna */
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../images/BG\ -Cadastro.png');
+  background-size: cover; /* Certifica que o fundo cubra toda a página */
+}
+
+/* Remove as configurações específicas que podem interferir no alinhamento */
+.conteiner1 {
+  display: none; /* Considerando remover ou ajustar este contêiner se não for necessário */
 }
 
 .logo-container {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 20px 0;
+  position: relative; /* Muda de 'absolute' para 'relative' */
+  margin-bottom: 2rem; /* Adiciona espaço abaixo do logo, se necessário */
 }
 
-/* Ajustes adicionais podem ser necessários aqui, dependendo do layout exato desejado */
-
-body {
-    background-image: url('../images/BG\ -Cadastro.png');
-    position: relative; /* Faz o corpo ser um ponto de referência para posicionamento absoluto */
-}
-
-/* Adiciona um contêiner para a logo no topo da página */
-
-
-.logo img {
-    max-width: 100px;
-    height: auto;
-}
-
-/* Restante do CSS... */
-.conteiner1 {
-    width: 60%;
-    min-height: 60vh; /* Exemplo de altura mínima */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Estilização do formulário */
+/* Certifica-se de que o formulário esteja centralizado */
 .formulario {
-    width: 60%; /* Ou a largura desejada */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: -25%;
+  width: 80%; /* Ajuste conforme necessário */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background: #FFFFFF; /* Adiciona um fundo branco para o formulário */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona sombra ao formulário para destaque */
+  border-radius: 8px; /* Borda arredondada */
 }
 
+/* Ajustes para inputs */
 .formulario .box input {
-    margin: 10px 0;
+  width: 80%; /* Define uma largura fixa para os inputs */
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .button1 {
-    margin-top: 20px;
-    
+  margin-top: 20px;
+  display: flex;
+  justify-content: center; /* Centraliza o botão no contêiner */
 }
 
-.criarConta {
-    margin-top: 20px;
+.button1 button {
+  padding: 10px 20px;
+  background-color: #ED3239;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-  
-.formulario .box input {
-    background-color: white;
-    border-radius: 5px;
-    border: 1px solid #A9ABD2;
-    padding: 10px;
-    padding-left: 60px; /* Ajustado para evitar sobreposição */
-    margin: 10px 0;
-    width: 60%;
-  }
-  
-  .button1 button {
-    background-color: #ED3239; /* Define a cor de fundo do botão */
-    border: none; /* Remove a borda padrão do botão */
-    color: white; /* Define a cor do texto para branco */
-    padding: 10px 20px; /* Adiciona espaço interno ao redor do texto */
-    border-radius: 5px; /* Adiciona bordas arredondadas ao botão */
-    cursor: pointer; /* Muda o cursor para indicar que o botão é clicável */
-    font-size: 16px; /* Ajusta o tamanho da fonte, se necessário */
-    transition: background-color 0.3s; /* Adiciona uma transição suave na cor de fundo */
-  }
-  
-  .button1 button:hover {
-    background-color: #C52620; /* Muda a cor de fundo do botão quando passa o mouse, ajuste conforme desejado */
-  }
-  .emailAluno {
-    background-image: url('../images/group_email.png'); /* Caminho para o ícone */
-    background-repeat: no-repeat; /* Impede que a imagem se repita */
-    background-position: 7px center; /* Posiciona a imagem a 10px da esquerda e centraliza verticalmente */
-    padding-left: 10px; /* Adiciona espaço à esquerda do texto para não sobrepor o ícone */
-  }
-  .senha_aluno {
-    background-image: url('../images/senha.png'); /* Caminho para o ícone */
-    background-repeat: no-repeat; /* Impede que a imagem se repita */
-    background-position: 7px center; /* Posiciona a imagem a 10px da esquerda e centraliza verticalmente */
-    padding-left: 10px; /* Adiciona espaço à esquerda do texto para não sobrepor o ícone */
-  }
-  .nome_aluno{
-    background-image: url('../images/Group\ 12.png'); /* Caminho para o ícone */
-    background-repeat: no-repeat; /* Impede que a imagem se repita */
-    background-position: 7px center; /* Posiciona a imagem a 10px da esquerda e centraliza verticalmente */
-    padding-left: 10px; 
-  }
-  a {
-    color: black; /* Define a cor do texto do link para preto (ou qualquer cor que desejar) */
-    text-decoration: none; /* Remove o sublinhado do link */
-  }
-  a:hover{
-    color: #7f7f7f;
-  }
-  .email_aluno, .senha_aluno, .nome{
-    background-size: 30px 30px;
-  }
+.button1 button:hover {
+  background-color: #C52620;
+}
+.emailAluno {
+  background-image: url('../images/group_email.png'); /* Caminho para o ícone */
+  background-repeat: no-repeat; /* Impede que a imagem se repita */
+  background-position: 7px center; /* Posiciona a imagem a 10px da esquerda e centraliza verticalmente */
 
+}
+.senha_aluno {
+  background-image: url('../images/senha.png'); /* Caminho para o ícone */
+  background-repeat: no-repeat; /* Impede que a imagem se repita */
+  background-position: 7px center; /* Posiciona a imagem a 10px da esquerda e centraliza verticalmente */
+
+}
+.nome_aluno{
+  background-image: url('../images/Group\ 12.png'); 
+  background-repeat: no-repeat; 
+  background-position: 7px center; 
+
+}
+.emailAluno, .senha_aluno, .nome_aluno {
+  background-size: 30px 30px; 
+  background-repeat: no-repeat; /* Impede que a imagem se repita */
+  background-position: 10px center; /* Ajusta a posição da imagem para a esquerda e centraliza verticalmente */
+  padding-left: 50px !important; /* Aumenta o padding-left para evitar sobreposição do texto com a imagem */
+  width: 100%; /* Ajusta a largura dos inputs para preencher o espaço disponível */
+  border: 1px solid #ccc; /* Define a cor da borda */
+  border-radius: 5px; /* Arredonda as bordas do input */
+  margin: 10px 0; /* Define a margem superior e inferior */
+  padding: 20px; /* Define o padding interno para o topo, direita e baixo */
+}
+
+/* Ajusta a configuração específica de padding para cada input, caso necessário */
+.nome_aluno {
+  padding-left: 50px; /* Exemplo: ajusta especificamente para este input, se necessário */
+}
+
+.emailAluno {
+  padding-left: 50px; /* Exemplo: ajusta especificamente para este input, se necessário */
+}
+
+.senha_aluno {
+  padding-left: 50px; /* Exemplo: ajusta especificamente para este input, se necessário */
+}
