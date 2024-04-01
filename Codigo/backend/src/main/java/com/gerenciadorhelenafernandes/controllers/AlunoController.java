@@ -31,22 +31,24 @@ public class AlunoController {
         return ResponseEntity.status(200).body(alunoService.findById(id_aluno));
     }
 
-    /*@GetMapping
-    public ResponseEntity<List<Aluno>> findAll() {
-        List<Aluno> list = alunoService.findAll();
-        return ResponseEntity.status(200).body(list);
-    }*/
+    /*
+     * @GetMapping
+     * public ResponseEntity<List<Aluno>> findAll() {
+     * List<Aluno> list = alunoService.findAll();
+     * return ResponseEntity.status(200).body(list);
+     * }
+     */
     @GetMapping
-public ResponseEntity<List<Aluno>> findAll(@RequestParam(value = "status_aluno", required = false) String status_aluno) {
-    List<Aluno> list;
-    if (status_aluno != null) {
-        list = alunoService.findByStatus(status_aluno);
-    } else {
-        list = alunoService.findAll();
+    public ResponseEntity<List<Aluno>> findAll(
+            @RequestParam(value = "status_aluno", required = false) String status_aluno) {
+        List<Aluno> list;
+        if (status_aluno != null) {
+            list = alunoService.findByStatus(status_aluno);
+        } else {
+            list = alunoService.findAll();
+        }
+        return ResponseEntity.status(200).body(list);
     }
-    return ResponseEntity.status(200).body(list);
-}
-
 
     @PostMapping
     public ResponseEntity<Aluno> create(@RequestBody Aluno aluno) {
@@ -62,13 +64,13 @@ public ResponseEntity<List<Aluno>> findAll(@RequestParam(value = "status_aluno",
                 Long idAluno = alunoService.findIdByEmail(aluno.getEmailAluno());
                 return ResponseEntity.ok(idAluno);
             } else {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(-1L); // Retorna -1 para indicar login inválido
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(-1L); // Retorna -1 para indicar login
+                                                                                 // inválido
             }
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(-1L); // Retorna -1 para indicar erro
         }
     }
-    
 
     @PutMapping("/{id_aluno}")
     public ResponseEntity<Aluno> update(@RequestBody Aluno aluno, @PathVariable Long id_aluno) {

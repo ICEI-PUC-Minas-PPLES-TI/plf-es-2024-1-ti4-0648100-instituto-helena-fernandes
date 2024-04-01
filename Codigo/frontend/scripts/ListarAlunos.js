@@ -26,8 +26,8 @@ fetch('http://localhost:8080/aluno?status_aluno=0')
                 <strong><p>Nome do Responsável:</strong> ${aluno.nome_responsavel || 'Não informado'}</p>
                 <strong><p>CPF do Responsável:</strong> ${aluno.cpf_responsavel || 'Não informado'}</p>
                 <strong><p>Telefone do Responsável:</strong> ${aluno.telefone_responsavel || 'Não informado'}</p>
-                <button class="botao_aprovar" data-id_aluno="${aluno.id}">Aprovar</button>
-                <button class="botao_reprovar" data-id_aluno="${aluno.id}">Reprovar</button>
+                <button class="botao_aprovar" data-id_aluno="${aluno.id_aluno}">Aprovar</button>
+                <button class="botao_reprovar" data-id_aluno="${aluno.id_aluno}">Reprovar</button>
             `;
             
             console.log('Botão de aprovar criado com data-id_aluno:', aluno.id);
@@ -49,30 +49,62 @@ fetch('http://localhost:8080/aluno?status_aluno=0')
         document.querySelectorAll('.botao_aprovar').forEach(button => {
             button.addEventListener('click', function() {
                 const idAluno = this.getAttribute('data-id_aluno');
-                console.log('Botão associado ao id:', idAluno );//Console.log para ver qual id ele pega ao clicar o botão no momento tá sendo sempre undefined -- Arthur
+                console.log('Botão associado ao id:', idAluno);
                 if (idAluno) {
-                    atualizarStatusAluno(idAluno, 1);
+                    // Confirmar a ação do cliente
+                    const confirmacao = confirm('Tem certeza que deseja aprovar este aluno?');
+                    if (confirmacao) {
+                        atualizarStatusAluno(idAluno, 1);
+                    } else {
+                        console.log('Ação cancelada pelo cliente.');
+                    }
                 } else {
                     console.error('ID do aluno não encontrado.');
                 }
             });
-        });
+
+        });        
 
         document.querySelectorAll('.botao_reprovar').forEach(button => {
             button.addEventListener('click', function() {
                 const idAluno = this.getAttribute('data-id_aluno');
                 if (idAluno) {
-                    atualizarStatusAluno(idAluno, 2);
+                    const confirmacao = confirm('Tem certeza que deseja reprovar este aluno?');
+                    if (confirmacao) {
+                        atualizarStatusAluno(idAluno, 2);                        
+                    } else {
+                        console.log('Ação cancelada pelo cliente.');
+                    }
                 } else {
                     console.error('ID do aluno não encontrado.');
                 }
             });
         });
     })
-    .catch(error => console.error('Falha ao buscar dados dos alunos:', error));
 
 // Função para atualizar o status do aluno
 function atualizarStatusAluno(idAluno, novoStatus) {
     // Falta a lógica de atualizar no banco de dados mas eu ainda n consigo pegar o id corretamente então n mexi nisso ainda --Arthur
+    fetch(`http://localhost:8080/aluno/${idAluno}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            status_aluno: novoStatus,
+        }),
+    })
+    .then(response => {
+        if (response.ok) {
+            alert('Situação do aluno alterada com sucesso!');
+            window.location.reload();
+        } else {
+            console.error('Erro ao atualizar aluno:', response.statusText);
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        alert('Ocorreu um erro ao atualizar o aluno. Por favor, tente novamente.');
+    });
     console.log(`Atualizando status do aluno ${idAluno} para ${novoStatus}`);
 }
