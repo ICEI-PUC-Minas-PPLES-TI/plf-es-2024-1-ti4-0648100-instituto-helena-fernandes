@@ -59,19 +59,13 @@ public class AlunoController {
     @PostMapping("/login")
     public ResponseEntity<Long> validation(@RequestBody Aluno aluno) {
         try {
-            Boolean valid = alunoService.validateLogin(aluno.getEmailAluno(), aluno.getSenha_aluno());
-            if (valid) {
-                Long idAluno = alunoService.findIdByEmail(aluno.getEmailAluno());
-                return ResponseEntity.ok(idAluno);
-            } else {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(-1L); // Retorna -1 para indicar login
-                                                                                 // inválido
-            }
+            Long idAluno = alunoService.validateLogin(aluno.getEmailAluno(), aluno.getSenha_aluno());
+            return ResponseEntity.ok(idAluno);
         } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(-1L); // Retorna -1 para indicar erro
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(-1L); // Indica erro
         }
     }
-
+    
     @PutMapping("/{id_aluno}")
     public ResponseEntity<Aluno> update(@RequestBody Aluno aluno, @PathVariable Long id_aluno) {
         aluno = alunoService.update(aluno, id_aluno);

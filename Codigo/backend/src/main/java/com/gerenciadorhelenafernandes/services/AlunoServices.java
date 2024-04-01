@@ -72,15 +72,23 @@ public class AlunoServices {
         }
     }
 
-    public Boolean validateLogin(String email, String senha) {
+    public Long validateLogin(String email, String senha) {
         Optional<Aluno> alunoOptional = alunoRepository.findByEmailAluno(email);
         if (alunoOptional.isPresent()) {
             Aluno aluno = alunoOptional.get();
-            return senha.equals(aluno.getSenha_aluno());
-        } else {
-            throw new RuntimeException("Aluno não encontrado com o email fornecido.");
+            if(senha.equals(aluno.getSenha_aluno())) {
+                // Login bem-sucedido
+                if ("1".equals(aluno.getStatus_aluno())) {
+                    return -aluno.getId_aluno(); // ID negativo para status 1
+                } else if ("2".equals(aluno.getStatus_aluno())) {
+                    return aluno.getId_aluno(); // ID positivo para status 2, mas com lógica especial no frontend
+                }
+                return aluno.getId_aluno(); // ID positivo normal para outros casos
+            }
         }
+        throw new RuntimeException("Aluno não encontrado ou senha inválida.");
     }
+    
 
     public Long findIdByEmail(String email) {
         Optional<Aluno> alunoOptional = alunoRepository.findByEmailAluno(email);
