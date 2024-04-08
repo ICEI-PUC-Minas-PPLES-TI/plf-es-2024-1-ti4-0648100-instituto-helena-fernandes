@@ -7,6 +7,7 @@ function atualizar() {
 
     let cpf_aluno = document.getElementById('cpf_aluno').value;
     let data_nascimento = document.getElementById('data_nascimento').value;
+    let serie = document.getElementById('serie').value;
     let alergia = document.getElementById('alergia').value;
     let cidade = document.getElementById('cidade').value;
     let bairro =  document.getElementById('bairro').value;
@@ -26,7 +27,8 @@ function atualizar() {
         },
         body: JSON.stringify({
             cpf_aluno: cpf_aluno,
-            data_nascimento: data_nascimento,                
+            data_nascimento: data_nascimento,   
+            serie: serie,             
             alergia: alergia,
             cidade: cidade,
             bairro: bairro,

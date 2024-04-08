@@ -45,6 +45,7 @@ public class AlunoServices {
         Aluno aluno = findById(id);
         aluno.setCpf_aluno(obj.getCpf_aluno());
         aluno.setData_nascimento(obj.getData_nascimento());
+        aluno.setSerie(obj.getSerie());
         aluno.setAlergia(obj.getAlergia());
         aluno.setCidade(obj.getCidade());
         aluno.setBairro(obj.getBairro());

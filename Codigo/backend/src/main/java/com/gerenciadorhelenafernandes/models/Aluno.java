@@ -46,6 +46,9 @@ public class Aluno {
    @Column(name = "data_nascimento", length = 100, nullable = true)
    private String data_nascimento;
 
+   @Column(name = "serie", length = 50, nullable = true)
+   private String serie;
+
    @Column(name = "alergia", nullable = true)
    private String alergia;
 
