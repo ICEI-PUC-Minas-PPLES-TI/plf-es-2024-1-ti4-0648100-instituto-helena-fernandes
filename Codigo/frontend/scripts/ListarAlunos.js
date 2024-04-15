@@ -17,6 +17,7 @@ fetch('http://localhost:8080/aluno?status_aluno=0')
                 <strong><p>Email:</strong> ${aluno.emailAluno}</p>
                 <strong><p>CPF:</strong> ${aluno.cpf_aluno || 'Não informado'}</p>
                 <strong><p>Data de Nascimento:</strong> ${aluno.data_nascimento || 'Não informado'}</p>
+                <strong><p>Série do aluno:</strong> ${aluno.serie || 'Não informado'}</p>
                 <strong><p>Alergia:</strong> ${aluno.alergia || 'Não informado'}</p>
                 <strong><p>Cidade:</strong> ${aluno.cidade || 'Não informado'}</p>
                 <strong><p>Bairro:</strong> ${aluno.bairro || 'Não informado'}</p>
