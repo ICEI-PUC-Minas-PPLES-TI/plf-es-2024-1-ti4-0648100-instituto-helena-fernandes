@@ -45,7 +45,7 @@ fetch('http://localhost:8080/aluno?status_aluno=0')
             lista.appendChild(item);
         });
 
-        // Adicionar eventos de clique aos botões de aprovar e reprovar
+        // Botões de aprovar e reprovar aluno
         document.querySelectorAll('.botao_aprovar').forEach(button => {
             button.addEventListener('click', function() {
                 const idAluno = this.getAttribute('data-id_aluno');
@@ -84,7 +84,7 @@ fetch('http://localhost:8080/aluno?status_aluno=0')
 
 // Função para atualizar o status do aluno
 function atualizarStatusAluno(idAluno, novoStatus) {
-    // Falta a lógica de atualizar no banco de dados mas eu ainda n consigo pegar o id corretamente então n mexi nisso ainda --Arthur
+    
     fetch(`http://localhost:8080/aluno/${idAluno}`, {
         method: 'PUT',
         headers: {
