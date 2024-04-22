@@ -34,5 +34,5 @@ public class Disciplina {
     @NotBlank(message = "A carga horária é obrigatória.")
     private Integer cargaHoraria;
 
-    // Outros atributos e métodos podem ser adicionados aqui conforme necessário.
+    
 }
