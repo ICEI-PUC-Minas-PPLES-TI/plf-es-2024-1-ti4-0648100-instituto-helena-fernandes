@@ -1,0 +1,103 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    background-image: url('../images/BGGerenciarProfessores.jpg');
+    background-size: cover; /* A imagem cobrirá totalmente o fundo */
+    background-position: center center; /* A imagem será centralizada no fundo */
+    background-attachment: fixed; /* A imagem de fundo será fixa durante a rolagem */
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    background-repeat: no-repeat;
+}
+
+
+.container {
+    width: 100%;
+    max-width: none; 
+}
+
+.logoHeader {
+    text-align: center;
+    padding: 30px;
+}
+
+.logoHeader img {
+    width: 60px; 
+}
+
+.parte1 {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10%;
+    width: 100%;
+}
+
+.text h1 {
+    font-size: 2em; 
+    color: #000; 
+}
+
+.imagemFrame img {
+    max-width: 90%; 
+    height: auto;
+    margin-top: -12%;
+}
+
+.parte2 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px; /* Fixed gap between cards */
+    width: 100%;
+    padding: 0 5%; /* Padding on the sides, adjust as necessary */
+    box-sizing: border-box;
+}
+
+.card1, .card2, .card3, .card4 {
+    background: #fff;
+    border: 1px solid #ED3239;
+    border-radius: 10px;
+    margin: 10px 5px; 
+    padding: 40px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box; 
+    
+}
+
+/* If there is a chance of cards wrapping on smaller screens,
+   you may want to add a media query to ensure they look good on all devices */
+@media (max-width: 768px) {
+    .card1, .card2, .card3, .card4{
+        width: calc(50% - 22px); /* Adjust width to fit 2 cards in a row on smaller screens */
+        margin: 10px 5px;
+    }
+}
+
+/* For even smaller screens, you might want them to take the full width */
+@media (max-width: 480px) {
+    .card1, .card2, .card3, .card4, .card5 {
+        width: calc(100% - 22px); /* Adjust width to fit 1 card per row */
+    }
+}
+.bt button {
+    background-color: #E63946;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em; 
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+}
+
+.bt button:hover {
+    background-color: #a83232; 
+}
