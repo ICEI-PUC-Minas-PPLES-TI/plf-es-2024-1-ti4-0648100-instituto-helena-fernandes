@@ -1,0 +1,48 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/BGGerenciarProfessores.jpg'); /* Certifique-se de ajustar o caminho conforme necessário */
+    background-size: cover; /* Assegura que a imagem de fundo cubra toda a tela */
+    background-position: center; /* Centraliza a imagem de fundo na tela */
+    background-repeat: no-repeat;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.logo-container {
+    width: 50px; /* Defina a largura desejada */
+    height: auto; /* Isso permite que a altura seja ajustada automaticamente para manter a proporção */
+    margin-top: 3%;
+  }
+  
+  .logo-container img {
+    width: 100%; /* Garante que a imagem ocupe toda a largura do contêiner */
+    height: auto; /* Isso permite que a altura seja ajustada automaticamente para manter a proporção */
+  }
+  
+  .container1 {
+    text-align: center;
+}
+
+.text-center {
+    margin-top: 50px; /* Espaçamento entre o texto e o botão, ajuste conforme necessário */
+}
+
+.add-button {
+    background-color: #09F112;
+    color: white;
+    padding: 10px 70px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
