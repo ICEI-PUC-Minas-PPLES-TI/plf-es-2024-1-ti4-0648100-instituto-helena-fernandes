@@ -16,18 +16,19 @@
                 <h1>Nova Disciplina</h1>
             </div>
             <div class="box">
-                <form action="">
-                <p class="box-name">Nome da Disciplina:</p>
-                <input type="text" class="nome_disciplina" name= "nome_disciplina" placeholder="Matemática: ">
-                <p class="box-name">Carga Horária da Disciplina:</p>
-                <input type="text" class="carga_horaria" name= "carga_horaria" placeholder="XX horas: ">
-                <div class="button1">
-                    <button class="add-button">Registrar</button>
-                </div>
+                <form id="form-disciplina" action="">
+                    <p class="box-name">Nome da Disciplina:</p>
+                    <input type="text" id="nome_disciplina" class="nome_disciplina" name= "nome_disciplina" placeholder="Matemática">
+                    <p class="box-name">Carga Horária da Disciplina:</p>
+                    <input type="text" id="carga_horaria"  class="carga_horaria" name= "carga_horaria" placeholder="XX horas">
+                    <div class="button1">
+                        <button type="submit" class="add-button">Registrar</button>
+                    </div>
+                </form>
                 <a href="GerenciarDisciplina.html">Voltar para a página anterior</a>
+            </div>
         </div>
-
-        <ul id="lista-alunos"></ul>
     </div>
+    <script src="../scripts/CadastroDisciplina.js"></script>
 </body>
 </html>

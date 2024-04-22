@@ -31,8 +31,7 @@ public class Disciplina {
     private String nomeDisciplina;
 
     @Column(name = "carga_horaria", nullable = false)
-    @NotBlank(message = "A carga horária é obrigatória.")
-    private Integer cargaHoraria;
+    private Long cargaHoraria;
 
     
 }
