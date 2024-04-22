@@ -1,0 +1,62 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/BGGerenciarProfessores.jpg'); /* Certifique-se de ajustar o caminho conforme necessário */
+    background-size: cover; /* Assegura que a imagem de fundo cubra toda a tela */
+    background-position: center; /* Centraliza a imagem de fundo na tela */
+    background-repeat: no-repeat;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  
+  
+  .logo-container {
+      width: 50px; /* Defina a largura desejada */
+      height: auto; /* Isso permite que a altura seja ajustada automaticamente para manter a proporção */
+      margin-top: 3%;
+    }
+    
+    .logo-container img {
+    width: 100%; /* Garante que a imagem ocupe toda a largura do contêiner */
+    height: auto; /* Isso permite que a altura seja ajustada automaticamente para manter a proporção */
+      }
+
+      .form-container {
+    flex: 1; /* Ocupam espaço igual */
+    display: flex;
+    justify-content: center; /* Centraliza conteúdo horizontalmente */
+    align-items: center; /* Centraliza conteúdo verticalmente */
+    background-color: white; /* Fundo branco para ambos os contêineres */
+    padding: 20px; /* Espaçamento interno */
+    position: absolute;
+    top:10%;
+    right: 31%;
+    width: 100%;
+    height: 100%;
+    max-width: 500px; 
+    border-radius:10px; /* Limita a largura do formulário para não ocupar todo o espaço quando for muito largo */
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 30px; /* Espaço entre os campos do formulário */
+    }
+    
+    input {
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 5px; /* Bordas arredondadas */
+        padding: 10px;
+        background-color: white; /* Fundo branco */
+    }
