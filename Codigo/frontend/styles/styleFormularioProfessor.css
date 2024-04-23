@@ -8,6 +8,7 @@ body, html {
     background-position: center; /* Centraliza a imagem de fundo na tela */
     background-repeat: no-repeat;
     font-family: 'Roboto', sans-serif;
+    overflow: hidden; /* Impede o scroll na página */
   }
 
   .container {
@@ -30,35 +31,87 @@ body, html {
     height: auto; /* Isso permite que a altura seja ajustada automaticamente para manter a proporção */
       }
 
-      .form-container {
-    flex: 1; /* Ocupam espaço igual */
-    display: flex;
-    justify-content: center; /* Centraliza conteúdo horizontalmente */
-    align-items: center; /* Centraliza conteúdo verticalmente */
-    background-color: white; /* Fundo branco para ambos os contêineres */
-    padding: 20px; /* Espaçamento interno */
-    position: absolute;
-    top:10%;
-    right: 31%;
-    width: 100%;
-    height: 100%;
-    max-width: 500px; 
-    border-radius:10px; /* Limita a largura do formulário para não ocupar todo o espaço quando for muito largo */
-    }
+    /* Estilo para o contêiner do formulário */
+.form-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; /* Alinha os itens no início do eixo transversal */
+  background-color: white;
+  padding: 20px;
+  position: absolute;
+  top: 5%;
+  right: 31%;
+  width: 100%;
+  height: 100%;
+  max-width: 500px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0);
+}
 
     form {
         display: flex;
         flex-direction: column;
         width: 100%;
-        gap: 30px; /* Espaço entre os campos do formulário */
+        gap: 10px; /* Espaço entre os campos do formulário */
     }
     
-    input[type="text"],
+    label {
+      margin-bottom: 0px;
+      vertical-align: top;
+      font-weight: bold; /* Adiciona negrito */
+    }
+    
+
+/* Estilo para os inputs */
+input[type="text"],
 input[type="email"],
 input[type="date"] {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 12px; /* Aumenta o padding para dar mais espaço */
-    font-size: 15px; /* Tamanho da fonte dos inputs */
-    margin-bottom: 10px; /* Espaço entre os inputs */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 12px;
+  font-size: 15px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+/* Estilo para o container do botão */
+.buttonPC {
+  display: flex;
+  flex-direction: column; /* Altera a direção do flex container para coluna */
+  align-items: center; /* Centraliza os itens horizontalmente */
+  margin-top: 20px;
+}
+
+
+/* Estilo para o botão */
+.buttonPC button {
+  background-color: green; /* Define a cor de fundo como verde */
+  color: white; /* Define a cor do texto como branco */
+  border: none; /* Remove a borda */
+  padding: 10px 80px; /* Adiciona um espaçamento interno ao botão */
+  border-radius: 5px; /* Adiciona bordas arredondadas */
+  cursor: pointer; /* Altera o cursor ao passar sobre o botão */
+  font-size: 16px; /* Define o tamanho da fonte */
+  align-self: center; /* Alinha o botão verticalmente no centro do container */
+}
+
+/* Estilo para o botão quando passa o mouse sobre ele */
+.buttonPC button:hover {
+  background-color: darkgreen; /* Altera a cor de fundo para uma tonalidade mais escura de verde */
+}
+
+/* Estilo para o link "Voltar para a página anterior" */
+.linkVoltar {
+  margin-top: 10px; /* Adiciona um espaço entre o botão e o link */
+  font-size: 12px; /* Define o tamanho da fonte como pequeno */
+  color: blue; /* Define a cor do texto como azul */
+  text-decoration: underline; /* Sublinha o texto */
+  cursor: pointer; /* Altera o cursor ao passar sobre o link */
+}
+
+/* Estilo para o link quando passa o mouse sobre ele */
+.linkVoltar:hover {
+  color: darkblue; /* Altera a cor do texto quando passa o mouse sobre o link */
 }
