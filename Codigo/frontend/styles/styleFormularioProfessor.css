@@ -76,6 +76,18 @@ input[type="date"] {
   margin-bottom: 0px;
 }
 
+/* Estilo para o campo de disciplina */
+.inputField {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 12px;
+  font-size: 15px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+
+
 /* Estilo para o container do botão */
 .buttonPC {
   display: flex;
@@ -115,3 +127,4 @@ input[type="date"] {
 .linkVoltar:hover {
   color: darkblue; /* Altera a cor do texto quando passa o mouse sobre o link */
 }
+
