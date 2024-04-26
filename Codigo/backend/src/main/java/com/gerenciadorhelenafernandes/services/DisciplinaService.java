@@ -29,14 +29,14 @@ public class DisciplinaService {
     @Transactional
     public Disciplina create(Disciplina disciplina) {
         // Garante que o ID seja nulo para evitar conflitos de atualização
-        disciplina.setId_disciplina(null);
+        disciplina.setIdDisciplina(null);
         return disciplinaRepository.save(disciplina);
     }
 
     @Transactional
     public Disciplina update(Disciplina disciplina) {
         // Verifica se a disciplina já existe no banco de dados
-        Optional<Disciplina> disciplinaOptional = disciplinaRepository.findById(disciplina.getId_disciplina());
+        Optional<Disciplina> disciplinaOptional = disciplinaRepository.findById(disciplina.getIdDisciplina());
         if (disciplinaOptional.isPresent()) {
             return disciplinaRepository.save(disciplina); // Atualiza a disciplina existente
         } else {

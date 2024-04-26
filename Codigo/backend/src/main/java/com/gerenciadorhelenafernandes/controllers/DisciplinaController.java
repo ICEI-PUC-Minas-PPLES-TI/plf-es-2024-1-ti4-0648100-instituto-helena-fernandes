@@ -51,7 +51,7 @@ public class DisciplinaController {
 
     @PutMapping("/{id_disciplina}")
     public ResponseEntity<Disciplina> update(@RequestBody Disciplina disciplina, @PathVariable Long id_disciplina) {
-        disciplina.setId_disciplina(id_disciplina); // Garante que o ID seja o mesmo informado na URL
+        disciplina.setIdDisciplina(id_disciplina); // Garante que o ID seja o mesmo informado na URL
         disciplina = disciplinaService.update(disciplina);
         return ResponseEntity.status(200).body(disciplina);
     }

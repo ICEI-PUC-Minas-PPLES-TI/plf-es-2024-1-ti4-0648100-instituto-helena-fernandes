@@ -14,9 +14,9 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = Disciplina.TABLE_NAME)
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 public class Disciplina {
 
     public static final String TABLE_NAME = "disciplina";
@@ -24,7 +24,7 @@ public class Disciplina {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_disciplina", unique = true)
-    private Long id_disciplina;
+    private Long idDisciplina;
 
     @Column(name = "nome_disciplina", length = 100, nullable = false)
     @NotBlank(message = "O nome da disciplina é obrigatório.")
