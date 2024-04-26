@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -24,7 +26,7 @@ public class Professor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_professor", unique = true)
-    private Long id_Professor;
+    private Long id_professor;
 
     @Column(name = "nome_professor", length = 100, nullable = false)
     @NotBlank
@@ -40,8 +42,9 @@ public class Professor {
     @Column(name = "formacao_professor", length = 100, nullable = true)
     private String formacao_professor;
 
-    @Column(name = "disciplina_professor", length = 100, nullable = true)
-    private String disciplina_professor;
+    @ManyToOne
+    @JoinColumn(name = "id_disciplina")
+    private Disciplina disciplina;
 
     @Column(name = "email_professor", length = 100, nullable = false)
     @NotBlank

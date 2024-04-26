@@ -16,7 +16,7 @@
         </div>
         <div class="container2">
             <div class="form-container">
-                <form action="">
+                <form id="formProfessor" action="">
                     <label for="nome_professor">Nome do Professor:</label>
                     <input type="text" class="nome_professor" name="nome_professor" id="nome_professor" placeholder="Nome do Professor">
                     <label for="cpf_professor">CPF:</label>
@@ -25,14 +25,15 @@
                     <input type="text" name="data_nascimento" id="data_nascimento" placeholder="Data de Nascimento">
                     <label for="formacao_professor">Formação:</label>
                     <input type="text" name="formacao_professor" id="formacao_professor" placeholder="Formação do Professor">
-                    <label for="disciplina_professor">Disciplina:</label>
-                    <select name="disciplina_professor" id="disciplina_professor" class="inputField">
+                    <label for="disciplinas">Disciplina:</label>
+                    <select name="disciplinas" id="disciplinas" class="inputField">
+                        <option value="" disabled selected>Selecionar Disciplina</option>
                         <!-- Opções de disciplina serão inseridas aqui via JavaScript -->
                     </select>
                     <label for="email_professor">Email do Professor:</label>
                     <input type="text" name="email_professor" id="email_professor" placeholder="Email do Professor">
                     <div class="buttonPC">
-                        <button type="submit">Registrar</button>
+                        <button action="cadastrar()" type="submit">Registrar</button>
                         <p class="linkVoltar">Voltar para a página anterior</p>
                     </div>
                 </form>

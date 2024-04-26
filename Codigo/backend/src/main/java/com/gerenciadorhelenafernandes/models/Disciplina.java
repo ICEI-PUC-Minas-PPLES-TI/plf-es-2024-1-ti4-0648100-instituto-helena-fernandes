@@ -24,7 +24,7 @@ public class Disciplina {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_disciplina", unique = true)
-    private Long idDisciplina;
+    private Long id_disciplina;
 
     @Column(name = "nome_disciplina", length = 100, nullable = false)
     @NotBlank(message = "O nome da disciplina é obrigatório.")
@@ -32,6 +32,4 @@ public class Disciplina {
 
     @Column(name = "carga_horaria", nullable = false)
     private Long cargaHoraria;
-
-    
 }

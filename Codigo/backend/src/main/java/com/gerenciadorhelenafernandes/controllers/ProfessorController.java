@@ -1,60 +1,58 @@
 package com.gerenciadorhelenafernandes.controllers;
 
-import com.gerenciadorhelenafernandes.models.Professor;
-import com.gerenciadorhelenafernandes.services.ProfessorService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import com.gerenciadorhelenafernandes.models.Disciplina;
+import com.gerenciadorhelenafernandes.models.Professor;
+import com.gerenciadorhelenafernandes.services.ProfessorService;
+import com.gerenciadorhelenafernandes.services.DisciplinaService;
 
 @RestController
-@RequestMapping("/api/professores")
-@CrossOrigin(origins = "*") // Permite requisições CORS deste origin específico
+@CrossOrigin("*")
+@RequestMapping("/professor")
 public class ProfessorController {
 
     @Autowired
     private ProfessorService professorService;
+    private DisciplinaService disciplinaService;
+
+    @GetMapping("/{idProfessor}")
+    public ResponseEntity<?> findById(@PathVariable("idProfessor") Long idProfessor) {
+        return ResponseEntity.ok().body(professorService.findById(idProfessor));
+    }
 
     @GetMapping
-    public List<Professor> getAllProfessores() {
-        return professorService.findAll();
+    public ResponseEntity<List<Professor>> findAll() {
+        List<Professor> professores = professorService.findAll();
+        return ResponseEntity.ok().body(professores);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Professor> getProfessorById(@PathVariable Long id) {
-        return professorService.findById(id)
-                .map(professor -> ResponseEntity.ok().body(professor))
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    @GetMapping("/disciplinas")
+    public ResponseEntity<List<Disciplina>> findAllDisciplinas() {
+        List<Disciplina> disciplinas = disciplinaService.findAll();
+        return ResponseEntity.ok().body(disciplinas);
     }
+
     @PostMapping
-    public Professor createProfessor(@RequestBody Professor professor) {
-        return professorService.save(professor);
-    }
-    
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Professor> updateProfessor(@PathVariable Long id, @RequestBody Professor professorDetails) {
-        return professorService.findById(id)
-                .map(existingProfessor -> {
-                    existingProfessor.setNome_professor(professorDetails.getNome_professor());
-                    existingProfessor.setCpf_professor(professorDetails.getCpf_professor());
-                    existingProfessor.setData_nascimento(professorDetails.getData_nascimento());
-                    existingProfessor.setFormacao_professor(professorDetails.getFormacao_professor());
-                    existingProfessor.setDisciplina_professor(professorDetails.getDisciplina_professor());
-                    existingProfessor.setEmail_professor(professorDetails.getEmail_professor());
-                    Professor updatedProfessor = professorService.save(existingProfessor);
-                    return ResponseEntity.ok().body(updatedProfessor);
-                }).orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<Professor> create(@RequestBody Professor professor) {
+        Professor novoProfessor = professorService.create(professor);
+        return ResponseEntity.status(201).body(novoProfessor);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProfessor(@PathVariable Long id) {
-        return professorService.findById(id)
-                .map(professor -> {
-                    professorService.deleteById(id);
-                    return ResponseEntity.ok().<Void>build();
-                }).orElseGet(() -> ResponseEntity.notFound().build());
+    @PutMapping("/{idProfessor}")
+    public ResponseEntity<Professor> update(@RequestBody Professor professor, @PathVariable Long idProfessor) {
+        professor.setId_professor(idProfessor); // Garante que o ID seja o mesmo informado na URL
+        Professor professorAtualizado = professorService.update(professor);
+        return ResponseEntity.ok().body(professorAtualizado);
     }
-    
+
+    @DeleteMapping("/{idProfessor}")
+    public ResponseEntity<?> delete(@PathVariable Long idProfessor) {
+        professorService.delete(idProfessor);
+        return ResponseEntity.noContent().build();
+    }
 }

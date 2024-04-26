@@ -18,7 +18,8 @@ public class DisciplinaService {
 
     public Disciplina findById(Long idDisciplina) {
         Optional<Disciplina> disciplinaOptional = disciplinaRepository.findById(idDisciplina);
-        return disciplinaOptional.orElseThrow(() -> new RuntimeException("Disciplina não encontrada! ID: " + idDisciplina));
+        return disciplinaOptional
+                .orElseThrow(() -> new RuntimeException("Disciplina não encontrada! ID: " + idDisciplina));
     }
 
     public List<Disciplina> findAll() {
@@ -28,14 +29,14 @@ public class DisciplinaService {
     @Transactional
     public Disciplina create(Disciplina disciplina) {
         // Garante que o ID seja nulo para evitar conflitos de atualização
-        disciplina.setIdDisciplina(null);
+        disciplina.setId_disciplina(null);
         return disciplinaRepository.save(disciplina);
     }
 
     @Transactional
     public Disciplina update(Disciplina disciplina) {
         // Verifica se a disciplina já existe no banco de dados
-        Optional<Disciplina> disciplinaOptional = disciplinaRepository.findById(disciplina.getIdDisciplina());
+        Optional<Disciplina> disciplinaOptional = disciplinaRepository.findById(disciplina.getId_disciplina());
         if (disciplinaOptional.isPresent()) {
             return disciplinaRepository.save(disciplina); // Atualiza a disciplina existente
         } else {
