@@ -84,12 +84,11 @@ function carregarDisciplinas() {
             });
         });
 }
-
 function registrarTurma() {
     const nomeTurma = document.getElementById('nome_turma').value;
-    const alunosSelecionados = Array.from(document.querySelectorAll('input[name="alunos"]:checked')).map(el => el.value);
-    const professoresSelecionados = Array.from(document.querySelectorAll('input[name="professores"]:checked')).map(el => el.value);
-    const disciplinasSelecionadas = Array.from(document.querySelectorAll('input[name="disciplinas"]:checked')).map(el => el.value);
+    const alunosSelecionados = Array.from(document.querySelectorAll('input[name="alunos"]:checked')).map(el => ({id_aluno: parseInt(el.value)}));
+    const professoresSelecionados = Array.from(document.querySelectorAll('input[name="professores"]:checked')).map(el => ({id_professor: parseInt(el.value)}));
+    const disciplinasSelecionadas = Array.from(document.querySelectorAll('input[name="disciplinas"]:checked')).map(el => ({idDisciplina: parseInt(el.value)}));
 
     const turmaData = {
         nome_turma: nomeTurma,

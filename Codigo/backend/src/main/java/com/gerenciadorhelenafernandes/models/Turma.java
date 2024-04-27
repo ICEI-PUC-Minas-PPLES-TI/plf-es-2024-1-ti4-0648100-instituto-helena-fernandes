@@ -1,12 +1,15 @@
 package com.gerenciadorhelenafernandes.models;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -30,15 +33,27 @@ public class Turma {
     @Column(name = "nome_turma")
     private String nome_turma;
 
-    @ManyToOne
-    @JoinColumn(name = "id_aluno")
-    private Aluno aluno;
+    @ManyToMany
+    @JoinTable(
+        name = "turma_aluno",
+        joinColumns = @JoinColumn(name = "id_turma"),
+        inverseJoinColumns = @JoinColumn(name = "id_aluno")
+    )
+    private List<Aluno> alunos;
 
-    @ManyToOne
-    @JoinColumn(name = "id_disciplina")
-    private Disciplina disciplina;
+    @ManyToMany
+    @JoinTable(
+        name = "turma_disciplina",
+        joinColumns = @JoinColumn(name = "id_turma"),
+        inverseJoinColumns = @JoinColumn(name = "id_disciplina")
+    )
+    private List<Disciplina> disciplinas;
 
-    @ManyToOne
-    @JoinColumn(name = "id_professor")
-    private Professor professor;
+    @ManyToMany
+    @JoinTable(
+        name = "turma_professor",
+        joinColumns = @JoinColumn(name = "id_turma"),
+        inverseJoinColumns = @JoinColumn(name = "id_professor")
+    )
+    private List<Professor> professores;
 }
