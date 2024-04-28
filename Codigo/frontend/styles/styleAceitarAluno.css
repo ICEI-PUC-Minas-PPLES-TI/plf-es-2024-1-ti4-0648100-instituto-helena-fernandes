@@ -6,7 +6,7 @@ body, html {
     background-image: url('../images/BGAceitarAluno.jpg'); /* Certifique-se de ajustar o caminho conforme necessário */
     background-size: cover; /* Assegura que a imagem de fundo cubra toda a tela */
     background-position: center; /* Centraliza a imagem de fundo na tela */
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
   
   .container {

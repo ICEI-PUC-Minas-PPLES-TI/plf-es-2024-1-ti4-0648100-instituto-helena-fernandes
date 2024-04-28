@@ -5,7 +5,7 @@ body, html {
     background-size: cover; /* A imagem cobrirá totalmente o fundo */
     background-position: center center; /* A imagem será centralizada no fundo */
     background-attachment: fixed; /* A imagem de fundo será fixa durante a rolagem */
-    font-family: 'Arial', sans-serif;
+    font-family: 'Poppins', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
