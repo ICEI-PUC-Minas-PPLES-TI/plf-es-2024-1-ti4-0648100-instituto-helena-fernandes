@@ -6,7 +6,8 @@ body, html {
   justify-content: center;
   align-items: center;
   background-image: url('../images/BG\ -Cadastro.png');
-  background-size: cover; /* Certifica que o fundo cubra toda a página */
+  background-size: cover;
+  background-repeat:no-repeat;
 }
 
 /* Remove as configurações específicas que podem interferir no alinhamento */
@@ -35,7 +36,7 @@ body, html {
 .formulario .box input {
   width: 80%; /* Define uma largura fixa para os inputs */
   padding: 10px;
-  margin: 10px 0;
+  margin: 10px 0px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
@@ -49,6 +50,7 @@ body, html {
 .button1 button {
   padding: 10px 20px;
   background-color: #ED3239;
+  box-shadow: 2px 3px 0px 0px #900005;
   color: white;
   border: none;
   border-radius: 5px;
@@ -58,6 +60,8 @@ body, html {
 
 .button1 button:hover {
   background-color: #C52620;
+  scale: 1.1;
+  transition: .3s;
 }
 .emailAluno {
   background-image: url('../images/group_email.png'); /* Caminho para o ícone */
@@ -79,25 +83,12 @@ body, html {
 }
 .emailAluno, .senha_aluno, .nome_aluno {
   background-size: 30px 30px; 
+  box-shadow: 0px 0px 8px 0px rgba(124, 133, 255, 0.56) inset;
   background-repeat: no-repeat; /* Impede que a imagem se repita */
   background-position: 10px center; /* Ajusta a posição da imagem para a esquerda e centraliza verticalmente */
   padding-left: 50px !important; /* Aumenta o padding-left para evitar sobreposição do texto com a imagem */
   width: 100%; /* Ajusta a largura dos inputs para preencher o espaço disponível */
   border: 1px solid #ccc; /* Define a cor da borda */
   border-radius: 5px; /* Arredonda as bordas do input */
-  margin: 10px 0; /* Define a margem superior e inferior */
   padding: 20px; /* Define o padding interno para o topo, direita e baixo */
-}
-
-/* Ajusta a configuração específica de padding para cada input, caso necessário */
-.nome_aluno {
-  padding-left: 50px; /* Exemplo: ajusta especificamente para este input, se necessário */
-}
-
-.emailAluno {
-  padding-left: 50px; /* Exemplo: ajusta especificamente para este input, se necessário */
-}
-
-.senha_aluno {
-  padding-left: 50px; /* Exemplo: ajusta especificamente para este input, se necessário */
 }

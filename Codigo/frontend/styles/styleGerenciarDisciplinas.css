@@ -7,7 +7,7 @@ body, html {
     background-size: cover; /* Assegura que a imagem de fundo cubra toda a tela */
     background-position: center; /* Centraliza a imagem de fundo na tela */
     background-repeat: no-repeat;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
 
   .container {
