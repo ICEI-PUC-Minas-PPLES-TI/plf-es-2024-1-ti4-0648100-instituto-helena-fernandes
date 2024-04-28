@@ -7,7 +7,7 @@ body, html {
     background-size: cover; /* Assegura que a imagem de fundo cubra toda a tela */
     background-position: center; /* Centraliza a imagem de fundo na tela */
     background-repeat: no-repeat;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
 
 .container {
@@ -43,11 +43,28 @@ body, html {
 
 .add-button {
     background-color: #09F112;
-    color: white;
+    color: #3E3F4A;
     padding: 10px 70px;
+    font-weight: 600;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
+    cursor: pointer;    
+    margin-bottom: 10px;
+    box-shadow: 2px 3px 0px 0px #046C08;
+    scale: 1;
+    transition: .3s;
+}
+
+.add-button:hover{
+  background-color: #09F112;
+  color: #3E3F4A;
+  padding: 10px 70px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;    
+  margin-bottom: 10px;
+  scale: 1.1;
+  transition: .3s;
 }
 
 /* Estilos para o card de professor */
