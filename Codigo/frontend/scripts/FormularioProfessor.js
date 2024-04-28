@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", function() {
     // Chamada para carregar as disciplinas quando a página carregar
     carregarDisciplinas();
 
+    
+
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         
@@ -30,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const cpfProfessor = document.getElementById('cpf_professor').value;
         const dataNascimento = document.getElementById('data_nascimento').value;
         const formacaoProfessor = document.getElementById('formacao_professor').value;
-        const disciplinaId = parseFloat(disciplinasSelect.value); // Convertendo o valor para número
+        const disciplinaId = disciplinasSelect.options[disciplinasSelect.selectedIndex].value;
         const emailProfessor = document.getElementById('email_professor').value;
 
         // Obtendo a carga horária da disciplina selecionada

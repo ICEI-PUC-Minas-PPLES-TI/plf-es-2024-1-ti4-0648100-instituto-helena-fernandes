@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário do Professor</title>
+    <link rel="stylesheet" href="../styles/styleEditarProfessor.css">
+</head>
+<body>
+    <div class="container">
+        <div class="container1">
+            <div class="logo-container">
+                <img src="../images/LOGO.png" alt="Logo"> 
+            </div>
+        </div>
+        <div class="container2">
+            <div class="form-container">
+                <form id="formProfessor" action="">
+                    <label for="nome_professor">Nome do Professor:</label>
+                    <input type="text" class="nome_professor" name="nome_professor" id="nome_professor" placeholder="Nome do Professor">
+                    <label for="cpf_professor">CPF:</label>
+                    <input type="text" name="cpf_professor" id="cpf_professor" placeholder="CPF do Professor">
+                    <label for="data_nascimento">Data de Nascimento:</label>
+                    <input type="text" name="data_nascimento" id="data_nascimento" placeholder="Data de Nascimento">
+                    <label for="formacao_professor">Formação:</label>
+                    <input type="text" name="formacao_professor" id="formacao_professor" placeholder="Formação do Professor">
+                    <label for="disciplinas">Disciplina:</label>
+                    <select name="disciplinas" id="disciplinas" class="inputField">
+                        <option value="" disabled selected>Selecionar Disciplina</option>
+                        <!-- Opções de disciplina serão inseridas aqui via JavaScript -->
+                    </select>
+                    <label for="email_professor">Email do Professor:</label>
+                    <input type="text" name="email_professor" id="email_professor" placeholder="Email do Professor">
+                    <div class="buttonPC">
+                        <button type="submit">Editar</button>
+                        <p class="linkVoltar">Voltar para a página anterior</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../scripts/EditarProfessor.js"></script>
+</body>
+</html>

@@ -8,54 +8,23 @@
 </head>
 <body>
     <div class="container">
-        <div class="logo-container">
-            <img src="../images/LOGO.png" alt="Logo">
-        </div>
-        <div class="container1">
-            <div class="text-center">
-                <h1>Gerenciar Professores</h1>
+        <header>
+            <div class="logo-container">
+                <img src="../images/LOGO.png" alt="Logo">
             </div>
+            <h1>Gerenciamento de Professores</h1>
+        </header>
+
+        <main>
             <div class="button-container">
-                <a href="./FormularioProfessor.html"><button class="add-button">Adicionar</button></a> 
+                <a href="./EditarProfessor.html"><button class="add-button">Adicionar</button></a> 
             </div>
-            <div class="card">
-                <div class="professor">
-<!--                    <img src="../images/image.png" alt="Professor Image" width="106" height="106">-->
-                    <div>
-                        <h3>Professor 1</h3>
-                        <p>Disciplina: Matemática</p>
-                    </div>
-                </div>
-                <button>Detalhes</button>
-            </div>
-            <div class="card">
-                <div class="professor">
-<!--                    <img src="../images/image.png" alt="Professor Image" width="106" height="106">-->
-                    <div>
-                        <h3>Professor 2</h3>
-                        <p>Disciplina: Matemática</p>
-                    </div>
-                </div>
-                <button>Detalhes</button>
-            </div>
-
-        <ul id="lista-alunos"></ul>
-        <script src="../scripts/ListarProfessores.js"></script>
-
+            <ul id="lista-professores"> <!-- Lista de professores -->
+                <!-- Os cards dos professores serão inseridos aqui dinamicamente -->
+            </ul>
+        </main>
     </div>
     
-    
-    
-
-
+    <script src="../scripts/ListarProfessores.js"></script> <!-- Importe o arquivo JavaScript -->
 </body>
-
-
-
-
-
-
-
-
-
 </html>
