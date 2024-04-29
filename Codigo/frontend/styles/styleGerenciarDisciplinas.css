@@ -74,12 +74,12 @@ html {
 
 
 .disciplina-item {
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin: 20px;
-    width: 300px;
-    height: auto;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 200px;
+  height: auto;
+  text-align: center; /* Centraliza o conteúdo dentro do elemento */
 }
 
 .botao-editar,
@@ -93,9 +93,21 @@ html {
 }
 
 .botao-excluir {
-    background-color: #e74c3c; /* Cor vermelha */
+  background-color: #e74c3c; /* Cor vermelha */
 }
 
 .botao-editar {
-    background-color: #f2d22e; /* Cor amarela */
+  background-color: #f2d22e; /* Cor amarela */
+}
+
+h2{
+  text-align: center;
+}
+p{
+  text-align: center;
+}
+
+#lista-disciplinas {
+  list-style-type: none;
+  padding: 0;
 }
