@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function carregarAlunos() {
-    fetch('http://localhost:8080/aluno')
+    fetch('http://localhost:8080/aluno?status_aluno=1')
         .then(response => response.json())
         .then(data => {
             const alunosCheckboxes = document.getElementById('alunosCheckboxes');

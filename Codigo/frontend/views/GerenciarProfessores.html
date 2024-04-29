@@ -17,12 +17,26 @@
 
         <main>
             <div class="button-container">
-                <a href="./EditarProfessor.html"><button class="add-button">Adicionar</button></a> 
+                <a href="./FormularioProfessor.html"><button class="add-button">Adicionar</button></a> 
             </div>
             <ul id="lista-professores"> <!-- Lista de professores -->
                 <!-- Os cards dos professores serão inseridos aqui dinamicamente -->
             </ul>
         </main>
+
+        <!-- Overlay para o card de detalhes -->
+        <div id="detalhes-overlay"></div>
+
+        <!-- Card de detalhes -->
+        <div id="detalhes-card">
+            <h2>Detalhes do Professor</h2>
+            <div id="detalhes-conteudo">
+                <!-- As informações detalhadas do professor serão inseridas aqui dinamicamente -->
+            </div>
+            <button class="botao-voltar" id="botao-voltar">Voltar</button>
+            <button class="botao-editar" id="botao-editar">Editar</button>
+            <button class="botao-excluir" id="botao-excluir">Excluir</button>
+        </div>
     </div>
     
     <script src="../scripts/ListarProfessores.js"></script> <!-- Importe o arquivo JavaScript -->

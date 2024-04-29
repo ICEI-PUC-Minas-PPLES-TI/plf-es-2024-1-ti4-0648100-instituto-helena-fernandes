@@ -52,6 +52,7 @@ body, html {
   box-shadow: 2px 3px 0px 0px #046C08;
   scale: 1;
   transition: .3s;
+  margin-top: 10px;
 }
 
 .add-button:hover {
