@@ -1,0 +1,127 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/BGGerenciarProfessores.jpg'); /* Certifique-se de ajustar o caminho conforme necessário */
+    background-size: cover; /* Assegura que a imagem de fundo cubra toda a tela */
+    background-position: center; /* Centraliza a imagem de fundo na tela */
+    background-repeat: no-repeat;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden; /* Impede o scroll na página */
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .logo-container {
+      width: 50px;
+      height: auto; 
+      margin-top: 3%;
+    }
+    
+    .logo-container img {
+      width: 100%;
+      height: auto; 
+    }
+    /* Estilo para o contêiner do formulário */
+.form-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; /* Alinha os itens no início do eixo transversal */
+  background-color: white;
+  padding: 20px;
+  position: absolute;
+  top: 5%;
+  right: 31%;
+  width: 100%;
+  height: 100%;
+  max-width: 500px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px; /* Espaço entre os campos do formulário */
+    }
+    
+    label {
+      margin-bottom: 0px;
+      vertical-align: top;
+      font-weight: bold; /* Adiciona negrito */
+    }
+    
+
+/* Estilo para os inputs */
+input[type="text"],
+input[type="email"],
+input[type="date"],
+select {
+  border: 2px solid #7C85FF8F;
+  box-shadow: 0px 0px 8px 0px rgba(124, 133, 255, 0.56) inset;
+  border-radius: 5px;
+  padding: 12px;
+  font-size: 15px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+/* Estilo para o container do botão */
+.add-button {
+  display: flex;
+  flex-direction: column; /* Altera a direção do flex container para coluna */
+  align-items: center; /* Centraliza os itens horizontalmente */
+}
+
+/* Estilo para o botão */
+.add-button {
+  background-color: #09F112;
+  color: #3E3F4A;
+  padding: 10px 70px;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;    
+  margin-bottom: 10px;
+  box-shadow: 2px 3px 0px 0px #046C08;
+  scale: 1;
+  transition: .3s;
+}
+
+/* Estilo para o botão quando passa o mouse sobre ele */
+.add-button button:hover {
+  background-color: #09F112;
+  color: #3E3F4A;
+  padding: 10px 70px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;    
+  margin-bottom: 10px;
+  scale: 1.1;
+  transition: .3s;
+}
+
+/* Estilo para o link "Voltar para a página anterior" */
+a {
+  margin-top: 10px; /* Adiciona um espaço entre o botão e o link */
+  font-size: 12px; /* Define o tamanho da fonte como pequeno */
+  color: blue; /* Define a cor do texto como azul */
+  text-decoration: underline; /* Sublinha o texto */
+  cursor: pointer; /* Altera o cursor ao passar sobre o link */
+}
+
+/* Estilo para o link quando passa o mouse sobre ele */
+a {
+  color: darkblue; /* Altera a cor do texto quando passa o mouse sobre o link */
+}
+
