@@ -47,12 +47,29 @@ html {
 }
 
 .add-button {
-    background-color: #09f112;
-    color: white;
-    padding: 10px 70px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  background-color: #09F112;
+  color: #3E3F4A;
+  padding: 10px 70px;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;    
+  margin-bottom: 10px;
+  box-shadow: 2px 3px 0px 0px #046C08;
+  scale: 1;
+  transition: .3s;
+}
+
+.add-button:hover{
+  background-color: #09F112;
+  color: #3E3F4A;
+  padding: 10px 70px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;    
+  margin-bottom: 10px;
+  scale: 1.1;
+  transition: .3s;
 }
 
 
@@ -67,19 +84,16 @@ html {
 
 .botao-editar,
 .botao-excluir {
-    background-color: transparent;
-    color: #fff;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 10px;
-    display: inline-block; /* Para alinhar os botões lado a lado */
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 5px; /* Adiciona margem entre os botões */
 }
 
 .botao-excluir {
     background-color: #e74c3c; /* Cor vermelha */
-    margin-left: 10px; /* Adiciona um espaço entre os botões */
 }
 
 .botao-editar {
