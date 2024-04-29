@@ -1,44 +1,53 @@
-body, html {
+body,
+html {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    background-image: url('../images/BGGerenciarProfessores.jpg'); /* Certifique-se de ajustar o caminho conforme necessário */
-    background-size: cover; /* Assegura que a imagem de fundo cubra toda a tela */
-    background-position: center; /* Centraliza a imagem de fundo na tela */
+    background-image: url('../images/BGGerenciarProfessores.jpg');
+    /* Certifique-se de ajustar o caminho conforme necessário */
+    background-size: cover;
+    /* Assegura que a imagem de fundo cubra toda a tela */
+    background-position: center;
+    /* Centraliza a imagem de fundo na tela */
     background-repeat: no-repeat;
     font-family: 'Poppins', sans-serif;
-  }
+}
 
-  .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 100%;
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
 
 .logo-container {
-    width: 50px; /* Defina a largura desejada */
-    height: auto; /* Isso permite que a altura seja ajustada automaticamente para manter a proporção */
+    width: 50px;
+    /* Defina a largura desejada */
+    height: auto;
+    /* Isso permite que a altura seja ajustada automaticamente para manter a proporção */
     margin-top: 3%;
-  }
-  
-  .logo-container img {
-    width: 100%; /* Garante que a imagem ocupe toda a largura do contêiner */
-    height: auto; /* Isso permite que a altura seja ajustada automaticamente para manter a proporção */
-  }
-  
-  .container1 {
+}
+
+.logo-container img {
+    width: 100%;
+    /* Garante que a imagem ocupe toda a largura do contêiner */
+    height: auto;
+    /* Isso permite que a altura seja ajustada automaticamente para manter a proporção */
+}
+
+.container1 {
     text-align: center;
 }
 
 .text-center {
-    margin-top: 50px; /* Espaçamento entre o texto e o botão, ajuste conforme necessário */
+    margin-top: 50px;
+    /* Espaçamento entre o texto e o botão, ajuste conforme necessário */
 }
 
 .add-button {
-    background-color: #09F112;
+    background-color: #09f112;
     color: white;
     padding: 10px 70px;
     border: none;
@@ -46,3 +55,33 @@ body, html {
     cursor: pointer;
 }
 
+
+.disciplina-item {
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+    width: 300px;
+    height: auto;
+}
+
+.botao-editar,
+.botao-excluir {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    display: inline-block; /* Para alinhar os botões lado a lado */
+}
+
+.botao-excluir {
+    background-color: #e74c3c; /* Cor vermelha */
+    margin-left: 10px; /* Adiciona um espaço entre os botões */
+}
+
+.botao-editar {
+    background-color: #f2d22e; /* Cor amarela */
+}
