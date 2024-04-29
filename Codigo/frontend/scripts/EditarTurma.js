@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Carregar alunos, professores e disciplinas
     carregarAlunos();
     carregarProfessores();
     carregarDisciplinas();
@@ -15,10 +16,10 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('nome_turma').value = nomeTurmaParam;
     }
 
-    const form = document.getElementById('turmaForm');
+    const form = document.getElementById('formTurma');
     form.addEventListener('submit', function(event) {
         event.preventDefault();
-        registrarTurma();
+        atualizarTurma();
     });
 });
 
@@ -52,6 +53,46 @@ function preencherCheckboxes(urlParams) {
         disciplinasIds.forEach(disciplinaId => preencherCheckbox(disciplinaId));
     }
 }
+
+function atualizarTurma() {
+    const idTurma = getIdTurmaDaURL();
+    const nomeTurma = document.getElementById('nome_turma').value;
+    const alunosSelecionados = Array.from(document.querySelectorAll('input[name="alunos"]:checked')).map(el => parseInt(el.value));
+    const professoresSelecionados = Array.from(document.querySelectorAll('input[name="professores"]:checked')).map(el => parseInt(el.value));
+    const disciplinasSelecionadas = Array.from(document.querySelectorAll('input[name="disciplinas"]:checked')).map(el => parseInt(el.value));
+
+    const turmaData = {
+        nome_turma: nomeTurma,
+        alunos: alunosSelecionados,
+        professores: professoresSelecionados,
+        disciplinas: disciplinasSelecionadas
+    };
+
+    fetch(`http://localhost:8080/turma/${idTurma}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(turmaData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro ao atualizar a turma');
+        }
+        alert('Turma atualizada com sucesso!');
+        window.location.href = './GerenciarTurma.html'; // Redirecionar para a página de gerenciamento de turmas
+    })
+    .catch(error => {
+        console.error('Erro ao atualizar a turma:', error);
+        alert('Ocorreu um erro ao atualizar a turma. Por favor, tente novamente.');
+    });
+}
+
+function getIdTurmaDaURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('id'); // Obtém o ID da turma da URL
+}
+
 
 function carregarAlunos() {
     fetch('http://localhost:8080/aluno?status_aluno=1')
@@ -126,29 +167,4 @@ function carregarDisciplinas() {
                 disciplinasCheckboxes.appendChild(br);
             });
         });
-}
-
-function registrarTurma() {
-    const nomeTurma = document.getElementById('nome_turma').value;
-    const alunosSelecionados = Array.from(document.querySelectorAll('input[name="alunos"]:checked')).map(el => ({id_aluno: parseInt(el.value)}));
-    const professoresSelecionados = Array.from(document.querySelectorAll('input[name="professores"]:checked')).map(el => ({id_professor: parseInt(el.value)}));
-    const disciplinasSelecionadas = Array.from(document.querySelectorAll('input[name="disciplinas"]:checked')).map(el => ({idDisciplina: parseInt(el.value)}));
-
-    const turmaData = {
-        nome_turma: nomeTurma,
-        alunos: alunosSelecionados,
-        professores: professoresSelecionados,
-        disciplinas: disciplinasSelecionadas
-    };
-
-    fetch('http://localhost:8080/turma', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(turmaData)
-    })
-    .then(response => response.json())
-    .then(data => alert('Turma registrada com sucesso!'))
-    .catch(error => alert('Erro ao registrar turma'));
 }

@@ -2,6 +2,7 @@ package com.gerenciadorhelenafernandes.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,23 +48,36 @@ public class TurmaService {
         return turmaRepository.save(turma);
     }
 
-    @Transactional
-    public Turma update(Turma turma) {
-        // Verifica se a turma já existe no banco de dados
-        Optional<Turma> turmaOptional = turmaRepository.findById(turma.getId_turma());
-        if (turmaOptional.isPresent()) {
-            return turmaRepository.save(turma); // Atualiza a turma existente
-        } else {
-            throw new RuntimeException("Turma não encontrada para atualização!");
-        }
-    }
+@Transactional
+public Turma update(Long idTurma, Turma turmaAtualizada) {
+    Turma turmaExistente = findById(idTurma);
+    
+    // Atualizar os campos da turma com base nos dados recebidos
+    turmaExistente.setNome_turma(turmaAtualizada.getNome_turma());
+
+    // Atualizar relacionamentos com alunos
+    List<Aluno> alunosSelecionados = alunoRepository.findAllById(turmaAtualizada.getAlunos().stream().map(Aluno::getId_aluno).collect(Collectors.toList()));
+    turmaExistente.setAlunos(alunosSelecionados);
+
+    // Atualizar relacionamentos com professores
+    List<Professor> professoresSelecionados = professorRepository.findAllById(turmaAtualizada.getProfessores().stream().map(Professor::getId_professor).collect(Collectors.toList()));
+    turmaExistente.setProfessores(professoresSelecionados);
+
+    // Atualizar relacionamentos com disciplinas
+    List<Disciplina> disciplinasSelecionadas = disciplinaRepository.findAllById(turmaAtualizada.getDisciplinas().stream().map(Disciplina::getIdDisciplina).collect(Collectors.toList()));
+    turmaExistente.setDisciplinas(disciplinasSelecionadas);
+    
+    // Salvar e retornar a turma atualizada
+    return turmaRepository.save(turmaExistente);
+}
+
+    
 
     @Transactional
     public void delete(Long idTurma) {
         // Verifica se a turma existe no banco de dados antes de excluir
         Optional<Turma> turmaOptional = turmaRepository.findById(idTurma);
         if (turmaOptional.isPresent()) {
-            // Exclui a turma, o que deve lidar com a exclusão das entradas relacionadas nas tabelas turma_aluno, turma_professor e turma_disciplina
             turmaRepository.delete(turmaOptional.get());
         } else {
             throw new RuntimeException("Turma não encontrada para exclusão!");

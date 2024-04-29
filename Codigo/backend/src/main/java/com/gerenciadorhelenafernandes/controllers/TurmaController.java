@@ -38,12 +38,14 @@ public class TurmaController {
         turma = turmaService.create(turma);
         return ResponseEntity.status(201).body(turma);
     }
+    
     @PutMapping("/{id_turma}")
-    public ResponseEntity<Turma> update(@RequestBody Turma turma, @PathVariable Long id_turma) {
+    public ResponseEntity<Turma> update(@PathVariable Long id_turma, @RequestBody Turma turma) {
         turma.setId_turma(id_turma); // Garante que o ID seja o mesmo informado na URL
-        turma = turmaService.update(turma);
+        turma = turmaService.update(id_turma, turma);
         return ResponseEntity.status(200).body(turma);
     }
+    
 
     @DeleteMapping("/{id_turma}")
     public ResponseEntity<?> delete(@PathVariable Long id_turma) {

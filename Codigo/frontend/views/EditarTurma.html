@@ -15,8 +15,8 @@
         </div>
         <div class="container2">
             <div class="form-container">
-                <form id="formProfessor" action="">
-                    <label for="nome_professor">Nome do Turma:</label>
+                <form id="formTurma" action="">
+                    <label for="nome_turma">Nome da Turma:</label>
                     <input type="text" class="nome_turma" name="nome_turma" id="nome_turma" placeholder="Nome da Turma">
                     <p class="box-name">Alunos:</p>
                     <div id="alunosCheckboxes"></div>
@@ -24,8 +24,9 @@
                     <div id="disciplinasCheckboxes"></div>
                     <p class="box-name">Professores:</p>
                     <div id="professoresCheckboxes"></div>
-                    <button id="btnEditar" type="button">Editar</button>
-
+                    <div class="buttonPC">
+                    <button onclick="atualizarTurma()" id="btnEditar" type="button">Editar</button>
+                </div>
                     <a href="./GerenciarTurma.html"><p class="linkVoltar">Voltar para a página anterior</p></a>
                 </form>
             </div>
