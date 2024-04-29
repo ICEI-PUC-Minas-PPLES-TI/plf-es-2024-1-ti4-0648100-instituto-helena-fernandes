@@ -46,6 +46,7 @@ body, html {
   text-align: center; /* Centraliza o botão "Adicionar" */
   margin-top: 20px; /* Espaçamento entre o cabeçalho e o botão */
 }
+/* Estilo para o botão */
 .add-button {
   background-color: #09F112;
   color: #3E3F4A;
@@ -53,12 +54,24 @@ body, html {
   font-weight: 600;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
+  cursor: pointer;    
+  margin-bottom: 10px;
   box-shadow: 2px 3px 0px 0px #046C08;
+  scale: 1;
   transition: .3s;
 }
-.add-button:hover {
+
+/* Estilo para o botão quando passa o mouse sobre ele */
+.add-button button:hover {
+  background-color: #09F112;
+  color: #3E3F4A;
+  padding: 10px 70px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;    
+  margin-bottom: 10px;
   scale: 1.1;
+  transition: .3s;
 }
 
 /* Estilos para o card de professor */
@@ -105,8 +118,9 @@ body, html {
 }
 .botao-detalhes {
   background-color: #3498db;
+  box-shadow: 2px 3px 0px 0px #094b77;
   color: #fff;
-  border: none;
+  border: 1px solid #094b77;
   padding: 8px 16px;
   border-radius: 4px;
   cursor: pointer;
@@ -117,8 +131,9 @@ body, html {
 /* Estilos para o botão de editar */
 .botao-editar {
   background-color: #F2D22E;
-  color: #fff;
-  border: none;
+  box-shadow: 2px 3px 0px 0px #9b8207;
+  color: #000;
+  border: 1px solid #9b8207;
   padding: 8px 16px;
   border-radius: 4px;
   cursor: pointer;
@@ -129,8 +144,9 @@ body, html {
 /* Estilos para o botão de excluir */
 .botao-excluir {
   background-color: #e74c3c;
+  box-shadow: 2px 3px 0px 0px #8b1306;
   color: #fff;
-  border: none;
+  border: 1px solid #8b1306;
   padding: 8px 16px;
   border-radius: 4px;
   cursor: pointer;
@@ -193,29 +209,4 @@ body, html {
   padding: 8px 16px;
   border-radius: 4px;
   cursor: pointer;
-}
-
-
-.botao-editar {
-  background-color: #F2D22E;
-  color: #fff;
-  border: none;
-}
-
-.botao-excluir {
-  background-color: #e74c3c;
-  color: #fff;
-  border: none;
-}
-
-.botao-azul {
-  background-color: #3498db; /* Cor azul */
-}
-
-.botao-amarelo {
-  background-color: #F2D22E; /* Cor amarela */
-}
-
-.botao-vermelho {
-  background-color: #e74c3c; /* Cor vermelha */
 }
