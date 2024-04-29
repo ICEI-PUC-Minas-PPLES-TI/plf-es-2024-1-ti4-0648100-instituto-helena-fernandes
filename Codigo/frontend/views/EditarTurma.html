@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário da Turma</title>
+    <link rel="stylesheet" href="../styles/styleEditarProfessor.css">
+</head>
+<body>
+    <div class="container">
+        <div class="container1">
+            <div class="logo-container">
+                <img src="../images/LOGO.png" alt="Logo"> 
+            </div>
+        </div>
+        <div class="container2">
+            <div class="form-container">
+                <form id="formProfessor" action="">
+                    <label for="nome_professor">Nome do Turma:</label>
+                    <input type="text" class="nome_turma" name="nome_turma" id="nome_turma" placeholder="Nome da Turma">
+                    <p class="box-name">Alunos:</p>
+                    <div id="alunosCheckboxes"></div>
+                    <p class="box-name">Disciplinas:</p>
+                    <div id="disciplinasCheckboxes"></div>
+                    <p class="box-name">Professores:</p>
+                    <div id="professoresCheckboxes"></div>
+                    <button id="btnEditar" type="button">Editar</button>
+
+                    <a href="./GerenciarTurma.html"><p class="linkVoltar">Voltar para a página anterior</p></a>
+                </form>
+            </div>
+        </div>
+    </div>    
+    <script src="../scripts/EditarTurma.js"></script>
+</body>
+</html>

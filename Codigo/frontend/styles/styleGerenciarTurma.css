@@ -1,47 +1,221 @@
 body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('../images/BGGerenciarProfessores.jpg'); /* Certifique-se de ajustar o caminho conforme necessário */
-    background-size: cover; /* Assegura que a imagem de fundo cubra toda a tela */
-    background-position: center; /* Centraliza a imagem de fundo na tela */
-    background-repeat: no-repeat;
-    font-family: 'Poppins', sans-serif;
-  }
-
-  .container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../images/BGGerenciarProfessores.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: 'Poppins', sans-serif;
+}
+.container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* Alinha todos os itens no eixo principal */
+  justify-content: center; /* Alinha todos os itens no eixo cruzado */
   width: 100%;
   height: 100%;
 }
-
 .logo-container {
-    width: 50px; /* Defina a largura desejada */
-    height: auto; /* Isso permite que a altura seja ajustada automaticamente para manter a proporção */
-    margin-top: 3%;
-  }
-
-  .logo-container img {
-    width: 100%; /* Garante que a imagem ocupe toda a largura do contêiner */
-    height: auto; /* Isso permite que a altura seja ajustada automaticamente para manter a proporção */
-  }
-
-  .container1 {
-    text-align: center;
+  width: 80px; /* Ajuste conforme necessário */
+  height: auto; 
+  margin-top: 3%; 
 }
+
+.logo-container img {
+  width: 100%;
+  height: auto;
+}
+.header {
+  text-align: center;
+}
+
+.container1 {
+  text-align: center;
+}
+.professor-item {
+  margin: 10px 0; /* Adiciona margem em cima e embaixo de cada item */
+}
+
 
 .text-center {
-    margin-top: 50px; /* Espaçamento entre o texto e o botão, ajuste conforme necessário */
+  margin-top: 50px; /* Espaçamento entre o texto e o botão, ajuste conforme necessário */
+}
+.button-container {
+  text-align: center; /* Centraliza o botão "Adicionar" */
+  margin-top: 20px; /* Espaçamento entre o cabeçalho e o botão */
+}
+.add-button {
+  background-color: #09F112;
+  color: #3E3F4A;
+  padding: 10px 70px;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 2px 3px 0px 0px #046C08;
+  transition: .3s;
+}
+.add-button:hover {
+  scale: 1.1;
 }
 
-.add-button {
-    background-color: #09F112;
-    color: white;
-    padding: 10px 70px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+/* Estilos para o card de professor */
+.card {
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px;
+  width: 300px;
+  height: auto;
+}
+
+.card button {
+  background: #ED3239;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 30px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../images/image.png');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(10%);
+  z-index: -1;
+}
+
+#lista-professores {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  max-width: 800px; /* Limita a largura total da lista */
+  margin: 0 auto; /* Centraliza a lista de professores */
+}
+.botao-detalhes {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: 8px;     
+}
+
+/* Estilos para o botão de editar */
+.botao-editar {
+  background-color: #F2D22E;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 8px;      
+  padding: 8px;
+}
+
+/* Estilos para o botão de excluir */
+.botao-excluir {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 8px;     
+  padding: 8px;
+}
+#detalhes-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+  z-index: 1000; /* Garante que o overlay esteja na frente de todos os outros elementos */
+}
+
+#detalhes-card {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1001; /* Garante que o card esteja na frente do overlay */
+}
+
+#detalhes-card h2 {
+  margin-top: 0;
+}
+
+#detalhes-card button {
+  margin-top: 10px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#detalhes-card button:hover {
+  background-color: #2980b9;
+}
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  margin: 20px;
+  width: 300px;
+  height: auto;
+}
+
+.card button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+.botao-editar {
+  background-color: #F2D22E;
+  color: #fff;
+  border: none;
+}
+
+.botao-excluir {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+}
+
+.botao-azul {
+  background-color: #3498db; /* Cor azul */
+}
+
+.botao-amarelo {
+  background-color: #F2D22E; /* Cor amarela */
+}
+
+.botao-vermelho {
+  background-color: #e74c3c; /* Cor vermelha */
 }

@@ -8,26 +8,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-        <div class="container">
-            <div class="logo-container">
-                <img src="../images/LOGO.png" alt="Logo">
+    <div class="container">
+        <div class="logo-container">
+            <img src="../images/LOGO.png" alt="Logo">
+        </div>
+        <div class="container1">
+            <div class="text-center">
+                <h1>Gerenciar Turma</h1>
             </div>
-            <div class="container1">
-                <div class="text-center">
-                    <h1>Gerenciar Turma</h1>
-                </div>
-                <div class="button-container">
-                    <a href="./FormularioTurma.html"><button class="add-button">Adicionar</button></a> 
-                </div>
-                <div class="card">
-                    <div class="">
-                    </div>   
-                </div> 
-            </div> 
-        </div> 
-                
-
-   
+            <div class="button-container">
+                <a href="./FormularioTurma.html"><button class="add-button">Adicionar</button></a>
+            </div>
+            <ul id="lista-turma">
+                <!-- Os cards serão inseridos dinamicamente -->
+            </ul>
+        </div>
+        <div id="detalhes-overlay"></div>
+        <div id="detalhes-card">
+            <h2>Detalhes da Turma</h2>
+            <div id="detalhes-conteudo"></div>
+            <button class="botao-voltar" id="botao-voltar">Voltar</button>
+            <button class="botao-editar" id="botao-editar">Editar</button>
+            <button class="botao-excluir" id="botao-excluir">Excluir</button>
+        </div>
+    </div>
+    <script src="../scripts/ListarTurma.js"></script>
 </body>
 </html>
