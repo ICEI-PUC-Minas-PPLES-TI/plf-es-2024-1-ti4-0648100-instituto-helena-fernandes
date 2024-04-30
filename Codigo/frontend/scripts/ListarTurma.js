@@ -28,7 +28,7 @@ function criarItemTurma(turma) {
     // Botão de detalhes
     const botaoDetalhes = document.createElement('button');
     botaoDetalhes.textContent = 'Detalhes';
-    botaoDetalhes.classList.add('botao-detalhes', 'botao-azul');
+    botaoDetalhes.classList.add('botao-detalhes', 'botao-excluir');
 
     // Adicionar evento de clique ao botão de detalhes
     botaoDetalhes.addEventListener('click', function() {

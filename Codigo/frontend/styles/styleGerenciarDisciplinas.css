@@ -94,11 +94,27 @@ html {
 }
 
 .botao-excluir {
-  background-color: #e74c3c; /* Cor vermelha */
+  background-color: #e74c3c;
+  box-shadow: 2px 3px 0px 0px #8b1306;
+  color: #fff;
+  border: 1px solid #8b1306;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 8px;     
+  padding: 8px;
 }
 
 .botao-editar {
-  background-color: #f2d22e; /* Cor amarela */
+  background-color: #F2D22E;
+  box-shadow: 2px 3px 0px 0px #9b8207;
+  color: #000;
+  border: 1px solid #9b8207;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 8px;      
+  padding: 8px;
 }
 
 h2{
