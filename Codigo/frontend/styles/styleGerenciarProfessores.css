@@ -55,20 +55,23 @@ body, html {
 #lista-professores {
     list-style-type: none;
     padding: 0;
-    width: 100%;
-    max-width: 800px; /* Limita a largura total da lista */
-    margin: 0 auto; /* Centraliza a lista de professores */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Distribui os itens igualmente ao longo do eixo horizontal */
+    align-items: flex-start; /* Alinha os itens no topo das linhas */
 }
 
-/* Estilos para os cards */
 .card {
     background-color: #f5f5f5;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin: 20px;
-    width: 80%; 
+    width: calc(33.33% - 40px); /* 33.33% da largura do contêiner com margens */
+    max-width: 300px; /* Limita a largura máxima de cada card */
+    box-sizing: border-box; /* Inclui padding e borda na largura total */
 }
+
 
 .card h2, .card p {
     text-align: center; /* Centraliza o texto */
