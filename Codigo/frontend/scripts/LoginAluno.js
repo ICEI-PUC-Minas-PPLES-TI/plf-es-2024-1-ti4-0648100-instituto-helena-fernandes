@@ -30,7 +30,7 @@ function login() {
             .then(aluno => {
                 switch (aluno.status_aluno) {
                     case "1":
-                        window.location.href = "../views/TelaAceito.html";
+                        window.location.href = "../views/TelaAluno.html";
                         break;
                     case "2":
                         window.location.href = "../views/TelaRecusado.html";
