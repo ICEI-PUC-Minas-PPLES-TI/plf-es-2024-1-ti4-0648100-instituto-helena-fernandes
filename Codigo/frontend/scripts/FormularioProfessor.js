@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const dataNascimento = document.getElementById('data_nascimento').value;
         const formacaoProfessor = document.getElementById('formacao_professor').value;
         const disciplinaId = disciplinasSelect.options[disciplinasSelect.selectedIndex].value;
-        const emailProfessor = document.getElementById('email_professor').value;
+        const emailProfessor = document.getElementById('emailProfessor').value;
 
         // Obtendo a carga horária da disciplina selecionada
         const cargaHoraria = parseFloat(disciplinasSelect.options[disciplinasSelect.selectedIndex].getAttribute('data-carga-horaria'));
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 nomeDisciplina: disciplinasSelect.options[disciplinasSelect.selectedIndex].text,
                 cargaHoraria: cargaHoraria
             },
-            email_professor: emailProfessor
+            emailProfessor: emailProfessor
         };
         
         fetch('http://localhost:8080/professor', {

@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('cpf_professor').value = cpfProfessor;
     document.getElementById('data_nascimento').value = dataNascimento;
     document.getElementById('formacao_professor').value = formacaoProfessor;
-    document.getElementById('email_professor').value = emailProfessor;
+    document.getElementById('emailProfessor').value = emailProfessor;
     // Selecionar a disciplina correspondente no select
     const disciplinaOption = Array.from(disciplinasSelect.options).find(option => option.text === disciplinaProfessor);
     if (disciplinaOption) {
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const novaDataNascimento = document.getElementById('data_nascimento').value;
         const novaFormacaoProfessor = document.getElementById('formacao_professor').value;
         const novaDisciplinaId = disciplinasSelect.options[disciplinasSelect.selectedIndex].value;
-        const novoEmailProfessor = document.getElementById('email_professor').value;
+        const novoEmailProfessor = document.getElementById('emailProfessor').value;
 
         // Obtendo a carga horária da disciplina selecionada
         const novaCargaHoraria = parseFloat(disciplinasSelect.options[disciplinasSelect.selectedIndex].getAttribute('data-carga-horaria'));
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 nomeDisciplina: disciplinasSelect.options[disciplinasSelect.selectedIndex].text,
                 cargaHoraria: novaCargaHoraria
             },
-            email_professor: novoEmailProfessor
+            emailProfessor: novoEmailProfessor
         };
         
         fetch(`http://localhost:8080/professor/${idProfessor}`, {

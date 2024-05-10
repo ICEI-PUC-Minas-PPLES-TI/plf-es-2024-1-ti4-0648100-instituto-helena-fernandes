@@ -38,7 +38,7 @@ function exibirDetalhesProfessor(professor, item) {
         <p><strong>Data de Nascimento:</strong> ${professor.data_nascimento}</p>
         <p><strong>Formação:</strong> ${professor.formacao_professor}</p>
         <p><strong>Disciplina:</strong> ${professor.disciplina.nomeDisciplina}</p>
-        <p><strong>Email:</strong> ${professor.email_professor}</p>
+        <p><strong>Email:</strong> ${professor.emailProfessor}</p>
     `;
 
     // Exibir o overlay e o card de detalhes

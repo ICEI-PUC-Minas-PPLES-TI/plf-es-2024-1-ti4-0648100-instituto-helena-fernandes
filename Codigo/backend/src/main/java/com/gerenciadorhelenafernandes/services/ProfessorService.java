@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.gerenciadorhelenafernandes.models.Professor;
 import com.gerenciadorhelenafernandes.repositories.ProfessorRepository;
 
@@ -19,7 +18,8 @@ public class ProfessorService {
 
     public Professor findById(Long idProfessor) {
         Optional<Professor> professorOptional = professorRepository.findById(idProfessor);
-        return professorOptional.orElseThrow(() -> new RuntimeException("Professor não encontrado! ID: " + idProfessor));
+        return professorOptional
+                .orElseThrow(() -> new RuntimeException("Professor não encontrado! ID: " + idProfessor));
     }
 
     public List<Professor> findAll() {
@@ -42,6 +42,17 @@ public class ProfessorService {
         } else {
             throw new RuntimeException("Professor não encontrado para atualização!");
         }
+    }
+
+   public Long validateLogin(String email, String senha) {
+        Optional<Professor> professorOptional = professorRepository.findByEmailProfessor(email);
+        if (professorOptional.isPresent()) {
+            Professor professor = professorOptional.get();
+            if (senha.equals(professor.getSenha_professor())) {
+                return professor.getId_professor(); // Login bem-sucedido
+            }
+        }
+        throw new RuntimeException("Professor não encontrado ou senha inválida.");
     }
 
     @Transactional

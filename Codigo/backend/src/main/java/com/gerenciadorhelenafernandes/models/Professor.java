@@ -46,8 +46,12 @@ public class Professor {
     @JoinColumn(name = "id_disciplina")
     private Disciplina disciplina;
 
-    @Column(name = "email_professor", length = 100, nullable = false)
+    @Column(name = "emailProfessor", length = 100, nullable = false)
     @NotBlank
-    private String email_professor;
+    private String emailProfessor;
+
+    @Column(name = "senha_professor", length = 100, nullable = false)
+    @NotBlank
+    private String senha_professor;
 
 }

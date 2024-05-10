@@ -3,9 +3,9 @@ package com.gerenciadorhelenafernandes.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import com.gerenciadorhelenafernandes.models.Disciplina;
 import com.gerenciadorhelenafernandes.models.Professor;
 import com.gerenciadorhelenafernandes.services.ProfessorService;
@@ -29,6 +29,17 @@ public class ProfessorController {
     public ResponseEntity<List<Professor>> findAll() {
         List<Professor> professores = professorService.findAll();
         return ResponseEntity.ok().body(professores);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Long> validation(@RequestBody Professor professor) {
+        try {
+            Long idProfessor = professorService.validateLogin(professor.getEmailProfessor(),
+                    professor.getSenha_professor());
+            return ResponseEntity.ok(idProfessor);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(-1L); // Indica erro
+        }
     }
 
     @GetMapping("/disciplinas")
