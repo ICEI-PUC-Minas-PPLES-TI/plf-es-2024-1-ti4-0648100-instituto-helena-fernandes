@@ -1,19 +1,9 @@
 package com.gerenciadorhelenafernandes.controllers;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.gerenciadorhelenafernandes.models.Turma;
 import com.gerenciadorhelenafernandes.services.TurmaService;
@@ -36,8 +26,7 @@ public class TurmaController {
             @RequestParam(value = "nome", required = false) String nome) {
         List<Turma> lista;
         if (nome != null) {
-            // Você pode implementar uma lógica de busca por nome se necessário
-            lista = turmaService.findAll(); // Por enquanto, apenas retorna todas as turmas
+            lista = turmaService.findAll();
         } else {
             lista = turmaService.findAll();
         }
@@ -49,17 +38,54 @@ public class TurmaController {
         turma = turmaService.create(turma);
         return ResponseEntity.status(201).body(turma);
     }
-
+    
     @PutMapping("/{id_turma}")
-    public ResponseEntity<Turma> update(@RequestBody Turma turma, @PathVariable Long id_turma) {
+    public ResponseEntity<Turma> update(@PathVariable Long id_turma, @RequestBody Turma turma) {
         turma.setId_turma(id_turma); // Garante que o ID seja o mesmo informado na URL
-        turma = turmaService.update(turma);
+        turma = turmaService.update(id_turma, turma);
         return ResponseEntity.status(200).body(turma);
     }
+    
 
     @DeleteMapping("/{id_turma}")
     public ResponseEntity<?> delete(@PathVariable Long id_turma) {
         turmaService.delete(id_turma);
         return ResponseEntity.status(204).build();
+    }
+
+    @PutMapping("/{id_turma}/alunos")
+    public ResponseEntity<?> adicionarAlunos(@PathVariable Long id_turma, @RequestBody List<Long> alunosIds) {
+        turmaService.adicionarAluno(id_turma, alunosIds);
+        return ResponseEntity.status(200).build();
+    }
+
+    @DeleteMapping("/{id_turma}/alunos")
+    public ResponseEntity<?> removerAlunos(@PathVariable Long id_turma, @RequestBody List<Long> alunosIds) {
+        turmaService.removerAluno(id_turma, alunosIds);
+        return ResponseEntity.status(200).build();
+    }
+
+    @PutMapping("/{id_turma}/professores")
+    public ResponseEntity<?> adicionarProfessores(@PathVariable Long id_turma, @RequestBody List<Long> professoresIds) {
+        turmaService.adicionarProfessor(id_turma, professoresIds);
+        return ResponseEntity.status(200).build();
+    }
+
+    @DeleteMapping("/{id_turma}/professores")
+    public ResponseEntity<?> removerProfessores(@PathVariable Long id_turma, @RequestBody List<Long> professoresIds) {
+        turmaService.removerProfessor(id_turma, professoresIds);
+        return ResponseEntity.status(200).build();
+    }
+
+    @PutMapping("/{id_turma}/disciplinas")
+    public ResponseEntity<?> adicionarDisciplinas(@PathVariable Long id_turma, @RequestBody List<Long> disciplinasIds) {
+        turmaService.adicionarDisciplina(id_turma, disciplinasIds);
+        return ResponseEntity.status(200).build();
+    }
+
+    @DeleteMapping("/{id_turma}/disciplinas")
+    public ResponseEntity<?> removerDisciplinas(@PathVariable Long id_turma, @RequestBody List<Long> disciplinasIds) {
+        turmaService.removerDisciplina(id_turma, disciplinasIds);
+        return ResponseEntity.status(200).build();
     }
 }

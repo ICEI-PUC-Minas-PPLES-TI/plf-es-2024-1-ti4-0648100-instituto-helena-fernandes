@@ -77,14 +77,14 @@ select {
 }
 
 /* Estilo para o container do botão */
-.buttonPC {
+.add-button {
   display: flex;
   flex-direction: column; /* Altera a direção do flex container para coluna */
   align-items: center; /* Centraliza os itens horizontalmente */
 }
 
 /* Estilo para o botão */
-.buttonPC button {
+.add-button {
   background-color: #09F112;
   color: #3E3F4A;
   padding: 10px 70px;
@@ -99,7 +99,7 @@ select {
 }
 
 /* Estilo para o botão quando passa o mouse sobre ele */
-.buttonPC button:hover {
+.add-button button:hover {
   background-color: #09F112;
   color: #3E3F4A;
   padding: 10px 70px;
@@ -112,7 +112,7 @@ select {
 }
 
 /* Estilo para o link "Voltar para a página anterior" */
-.linkVoltar {
+a {
   margin-top: 10px; /* Adiciona um espaço entre o botão e o link */
   font-size: 12px; /* Define o tamanho da fonte como pequeno */
   color: blue; /* Define a cor do texto como azul */
@@ -121,7 +121,7 @@ select {
 }
 
 /* Estilo para o link quando passa o mouse sobre ele */
-.linkVoltar:hover {
+a {
   color: darkblue; /* Altera a cor do texto quando passa o mouse sobre o link */
 }
 

@@ -3,62 +3,78 @@ body, html {
     padding: 0;
     width: 100%;
     height: 100%;
-    background-image: url('../images/BGGerenciarProfessores.jpg'); /* Certifique-se de ajustar o caminho conforme necessário */
-    background-size: cover; /* Assegura que a imagem de fundo cubra toda a tela */
-    background-position: center; /* Centraliza a imagem de fundo na tela */
-    background-repeat: no-repeat;
+    background: url('../images/BGGerenciarProfessores.jpg') center/cover no-repeat;
     font-family: 'Roboto', sans-serif;
-  }
+}
+
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* Aligns all content centrally */
     width: 100%;
     height: 100%;
 }
 
+.centralizado {
+    text-align: center; /* Ensures all text is centered */
+}
+
 .logo-container {
-    width: 50px; /* Defina a largura desejada */
-    height: auto; /* Isso permite que a altura seja ajustada automaticamente para manter a proporção */
-    margin-top: 3%;
+    width: 50px; 
+
 }
 
 .logo-container img {
-    width: 100%; /* Garante que a imagem ocupe toda a largura do contêiner */
-    height: auto; /* Isso permite que a altura seja ajustada automaticamente para manter a proporção */
+    width: 50px; /* Adjust as needed */
+    margin-left: 380% !important;
+    
 }
 
-.container1 {
-    text-align: center;
-}
-.professor-item {
-    margin: 10px 0; /* Adiciona margem em cima e embaixo de cada item */
-}
-
-
-.text-center {
-    margin-top: 50px; /* Espaçamento entre o texto e o botão, ajuste conforme necessário */
+.button-container {
+    margin-top: 20px;
 }
 
 .add-button {
     background-color: #09F112;
-    color: white;
+    color: #3E3F4A;
     padding: 10px 70px;
+    font-weight: 600;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    box-shadow: 2px 3px 0px #046C08;
+    transition: 0.3s;
 }
 
-/* Estilos para o card de professor */
+.add-button:hover {
+    transform: scale(1.1);
+}
+
+#lista-professores {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Distribui os itens igualmente ao longo do eixo horizontal */
+    align-items: flex-start; /* Alinha os itens no topo das linhas */
+}
+
 .card {
     background-color: #f5f5f5;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin: 20px;
-    width: 300px;
-    height: auto;
+    width: calc(33.33% - 40px); /* 33.33% da largura do contêiner com margens */
+    max-width: 300px; /* Limita a largura máxima de cada card */
+    box-sizing: border-box; /* Inclui padding e borda na largura total */
+}
+
+
+.card h2, .card p {
+    text-align: center; /* Centraliza o texto */
 }
 
 .card button {
@@ -68,55 +84,80 @@ body, html {
     border-radius: 5px;
     padding: 10px 30px;
     cursor: pointer;
-    margin-top: 20px;
-}
-
-.card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('../images/image.png');
-    background-size: cover;
-    background-position: center;
-    filter: brightness(10%);
-    z-index: -1;
-}
-
-#lista-professores {
-    list-style-type: none;
-    padding: 0;
+    margin-top: 10px; 
 }
 
 .botao-detalhes {
     background-color: #3498db;
     color: #fff;
-    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block; /* Garante tratamento como bloco */
+    margin: 0 auto; /* Centraliza o botão */
+}
+
+#detalhes-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    z-index: 1000; /* Garante que o overlay esteja na frente de todos os outros elementos */
+}
+
+#detalhes-card {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1001; /* Garante que o card esteja na frente do overlay */
+}
+
+#detalhes-card h2 {
+    margin-top: 0;
+}
+
+#detalhes-card button {
+   margin-top: 10px;
+    background-color: #3498db;
+    background-color: #fff;
     padding: 8px 16px;
     border-radius: 4px;
     cursor: pointer;
 }
 
-/* Estilos para o botão de editar */
+#detalhes-card button:hover {
+    background-color: #2980b9;
+}
+
 .botao-editar {
-    background-color: #F2D22E;
+    background-color: #F2D22E !important;
     color: #fff;
     border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-bottom: 5px; /* Adiciona margem entre os botões */
 }
 
-/* Estilos para o botão de excluir */
 .botao-excluir {
-    background-color: #e74c3c;
+    background-color: #e74c3c !important;
     color: #fff;
     border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-bottom: 8px; /* Adiciona margem entre os botões */
+}
+
+.botao-azul {
+    background-color: #3498db; /* Cor azul */
+}
+
+botao-vermelho {
+    background-color: #e74c3c; /* Cor vermelha */
+}
+
+botao-amarelo {
+    background-color: #F2D22E; /* Cor amarela */
 }

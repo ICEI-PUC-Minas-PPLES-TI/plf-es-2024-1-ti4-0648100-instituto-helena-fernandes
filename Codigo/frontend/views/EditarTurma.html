@@ -2,9 +2,8 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro Turma</title>
-    <link rel="stylesheet" href="../styles/styleCadastroTurma.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Editar Turma</title>
+    <link rel="stylesheet" href="../styles/styleEditarTurma.css">
 </head>
 <body>
     <div class="container">
@@ -13,26 +12,28 @@
         </div>
         <div class="container1">
             <div class="text-center">
-                <h1>Nova Turma</h1>
+                <h1>Editar Turma</h1>
             </div>
             <div class="box">
-                <form id="turmaForm" action="">
+                <form id="turmaForm">
                     <p class="box-name">Nome da Turma:</p>
-                    <input type="text" id="nome_turma" class="nome_turma" name= "nome_turma" placeholder="8° Ano">
+                    <input type="text" id="nome_turma" name="nome_turma" placeholder="8° Ano">
+
                     <p class="box-name">Alunos:</p>
                     <div id="alunosCheckboxes"></div>
+
                     <p class="box-name">Disciplinas:</p>
                     <div id="disciplinasCheckboxes"></div>
+
                     <p class="box-name">Professores:</p>
                     <div id="professoresCheckboxes"></div>
-                    <div class="button1">
-                        <button type="submit" class="add-button">Registrar</button>
-                    </div>
+
+                    <button type="submit" class="add-button">Salvar</button>
                 </form>
                 <a href="./GerenciarTurma.html">Voltar para a página anterior</a>
             </div>
         </div>
     </div>
-    <script src="../scripts/CadastroTurma.js"></script>
+    <script src="../scripts/EditarTurma.js"></script>
 </body>
 </html>

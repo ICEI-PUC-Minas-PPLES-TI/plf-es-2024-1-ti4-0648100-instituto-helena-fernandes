@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <header>
+        <header class="centralizado">
             <div class="logo-container">
                 <img src="../images/LOGO.png" alt="Logo">
             </div>
@@ -16,14 +16,28 @@
         </header>
 
         <main>
-            <div class="button-container">
-                <a href="./FormularioProfessor.html"><button class="add-button">Adicionar</button></a> 
+            <div class="button-container centralizado">
+                <a href="./EditarProfessor.html"><button class="add-button">Adicionar</button></a> 
             </div>
             <ul id="lista-professores"> 
             </ul>
         </main>
+
+        <!-- Overlay para o card de detalhes -->
+        <div id="detalhes-overlay"></div>
+
+        <!-- Card de detalhes -->
+        <div id="detalhes-card">
+            <h2>Detalhes do Professor</h2>
+            <div id="detalhes-conteudo">
+                <!-- As informações detalhadas do professor serão inseridas aqui dinamicamente -->
+            </div>
+            <button class="botao-voltar" id="botao-voltar">Voltar</button>
+            <button class="botao-editar" id="botao-editar">Editar</button>
+            <button class="botao-excluir" id="botao-excluir">Excluir</button>
+        </div>
     </div>
     
-    <script src="../scripts/ListarProfessores.js"></script> <!-- Importe o arquivo JavaScript -->
+    <script src="../scripts/ListarProfessores.js"></script>
 </body>
 </html>

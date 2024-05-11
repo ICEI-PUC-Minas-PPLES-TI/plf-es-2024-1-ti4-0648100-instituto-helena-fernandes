@@ -1,5 +1,7 @@
 package com.gerenciadorhelenafernandes.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,14 +26,17 @@ public class Aluno {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name = "id_aluno", unique = true)
+   @JsonProperty("id_aluno")
    private Long id_aluno;
 
    @Column(name = "nome_aluno", length = 100, nullable = false)
    @NotBlank
+   @JsonProperty("nome_aluno")
    private String nome_aluno;
 
    @Column(name = "emailAluno", length = 100, nullable = false)
    @NotBlank
+   @JsonProperty("emailAluno")
    private String emailAluno;
 
    @Column(name = "senha_aluno", length = 100, nullable = false)
