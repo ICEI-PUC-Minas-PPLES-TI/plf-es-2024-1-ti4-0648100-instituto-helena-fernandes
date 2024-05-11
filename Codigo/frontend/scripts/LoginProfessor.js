@@ -21,15 +21,16 @@ function login() {
         }
     })
     .then(data => {
+        console.log(data)
         if (data === -1) {
             alert("Credenciais inválidas. Por favor, tente novamente.");
-        }else {
-            window.location.href = "../views/TelaProfessor.html";
-            }
-        }).catch(error => {
+        } else {
+            // Redirecionar para a página do professor com o ID do professor como parâmetro na URL
+            window.location.href = `../views/TelaProfessor.html?id=${data}`;
+        }
+    })
+    .catch(error => {
         console.error('Erro ao fazer login:', error);
         alert("Ocorreu um erro ao fazer login. Por favor, tente novamente mais tarde.");
     });
-    
-    
 }
