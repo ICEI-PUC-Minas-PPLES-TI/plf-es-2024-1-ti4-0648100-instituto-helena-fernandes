@@ -21,7 +21,6 @@ function login() {
         }
     })
     .then(data => {
-        console.log(data)
         if (data === -1) {
             alert("Credenciais inválidas. Por favor, tente novamente.");
         } else {
