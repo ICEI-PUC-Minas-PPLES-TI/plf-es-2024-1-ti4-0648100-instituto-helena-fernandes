@@ -23,7 +23,7 @@ public class Disciplina {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_disciplina", unique = true)
+    @Column(name = "id_disciplina")
     private Long idDisciplina;
 
     @Column(name = "nome_disciplina", length = 100, nullable = false)

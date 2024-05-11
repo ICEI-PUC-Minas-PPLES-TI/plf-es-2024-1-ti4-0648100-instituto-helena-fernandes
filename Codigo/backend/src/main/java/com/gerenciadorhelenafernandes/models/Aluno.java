@@ -2,17 +2,14 @@ package com.gerenciadorhelenafernandes.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = Aluno.TABLE_NAME)
@@ -28,6 +25,9 @@ public class Aluno {
    @Column(name = "id_aluno", unique = true)
    @JsonProperty("id_aluno")
    private Long id_aluno;
+
+   @OneToMany(mappedBy = "aluno")
+   private List<Notas> notas;
 
    @Column(name = "nome_aluno", length = 100, nullable = false)
    @NotBlank
