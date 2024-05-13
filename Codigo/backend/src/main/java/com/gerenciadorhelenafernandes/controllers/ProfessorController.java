@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.gerenciadorhelenafernandes.models.Disciplina;
 import com.gerenciadorhelenafernandes.models.Professor;
+import com.gerenciadorhelenafernandes.models.Turma;
 import com.gerenciadorhelenafernandes.services.ProfessorService;
 import com.gerenciadorhelenafernandes.services.DisciplinaService;
 
