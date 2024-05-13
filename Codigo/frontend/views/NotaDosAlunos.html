@@ -2,25 +2,43 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Gerenciamento de Turmas</title>
-    <link rel="stylesheet" href="../styles/styleListarTurmasProfessor.css">
+    <title>Notas dos Alunos</title>
+    <link rel="stylesheet" href="../styles/styleNotaDosAlunos.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <div class="logo-container">
-            <img src="../images/LOGO.png" alt="Logo"> 
+            <img src="../images/LOGO.png" alt="Logo">
         </div>
         <div class="container1">
             <div class="text-center">
-                <h1 id="nome-disciplina"></h1>
+                <h1>Turma <span id="nome-turma"></span></h1>
             </div>
         </div>
 
-        <ul id="lista-turmas"></ul>
+        <form id="notas-form">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aluno</th>
+                        <th>P1</th>
+                        <th>P2</th>
+                        <th>P3</th>
+                        <th>T1</th>
+                        <th>T2</th>
+                        <th>T3</th>
+                    </tr>
+                </thead>
+                <tbody id="lista-alunos">
+                    <!-- Linhas de alunos serão inseridas aqui -->
+                </tbody>
+            </table>
+            <button type="submit">Salvar Alterações</button>
+        </form>
+
         <a href="ListarTurmasProfessor.html">Voltar para a página anterior</a>
         <script src="../scripts/NotaDosAlunos.js"></script>
-
     </div>
 </body>
 </html>

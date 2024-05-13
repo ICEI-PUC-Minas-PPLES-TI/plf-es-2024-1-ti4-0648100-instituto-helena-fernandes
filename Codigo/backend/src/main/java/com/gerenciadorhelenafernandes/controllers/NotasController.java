@@ -5,15 +5,16 @@ import com.gerenciadorhelenafernandes.services.NotasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("/notas")
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class NotasController {
+
     private final NotasService notasService;
 
     @Autowired
@@ -39,6 +40,16 @@ public class NotasController {
         Notas savedNotas = notasService.saveNotas(notas);
         return new ResponseEntity<>(savedNotas, HttpStatus.CREATED);
     }
+
+    @PostMapping("/multiple")
+public ResponseEntity<?> saveMultipleNotas(@RequestBody List<Notas> notasList) {
+    for (Notas notas : notasList) {
+        System.out.println("Recebido: " + notas);
+    }
+    notasService.saveAll(notasList);
+    return ResponseEntity.status(HttpStatus.CREATED).build();
+}
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteNotasById(@PathVariable("id") Long id) {

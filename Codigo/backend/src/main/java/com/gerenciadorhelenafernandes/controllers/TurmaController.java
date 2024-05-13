@@ -1,12 +1,13 @@
 package com.gerenciadorhelenafernandes.controllers;
-import java.util.List;
 
+import com.gerenciadorhelenafernandes.models.Aluno;
+import com.gerenciadorhelenafernandes.models.Turma;
+import com.gerenciadorhelenafernandes.services.TurmaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.gerenciadorhelenafernandes.models.Turma;
-import com.gerenciadorhelenafernandes.services.TurmaService;
+import java.util.List;
 
 @RestController
 @CrossOrigin("*")
@@ -19,6 +20,12 @@ public class TurmaController {
     @GetMapping("/{id_turma}")
     public ResponseEntity<?> findById(@PathVariable("id_turma") Long idTurma) {
         return ResponseEntity.status(200).body(turmaService.findById(idTurma));
+    }
+
+    @GetMapping("/{id_turma}/alunos")
+    public ResponseEntity<List<Aluno>> getAlunosByTurma(@PathVariable("id_turma") Long idTurma) {
+        Turma turma = turmaService.findById(idTurma);
+        return ResponseEntity.ok(turma.getAlunos());
     }
 
     @GetMapping
@@ -38,14 +45,13 @@ public class TurmaController {
         turma = turmaService.create(turma);
         return ResponseEntity.status(201).body(turma);
     }
-    
+
     @PutMapping("/{id_turma}")
     public ResponseEntity<Turma> update(@PathVariable Long id_turma, @RequestBody Turma turma) {
         turma.setId_turma(id_turma); // Garante que o ID seja o mesmo informado na URL
         turma = turmaService.update(id_turma, turma);
         return ResponseEntity.status(200).body(turma);
     }
-    
 
     @DeleteMapping("/{id_turma}")
     public ResponseEntity<?> delete(@PathVariable Long id_turma) {

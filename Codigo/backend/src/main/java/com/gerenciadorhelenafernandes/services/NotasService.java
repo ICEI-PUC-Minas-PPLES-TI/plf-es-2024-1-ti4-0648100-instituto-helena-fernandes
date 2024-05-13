@@ -33,4 +33,7 @@ public class NotasService {
     public void deleteNotasById(Long id) {
         notasRepository.deleteById(id);
     }
+    public List<Notas> saveAll(List<Notas> notasList) {
+        return notasRepository.saveAll(notasList);
+    }
 }
