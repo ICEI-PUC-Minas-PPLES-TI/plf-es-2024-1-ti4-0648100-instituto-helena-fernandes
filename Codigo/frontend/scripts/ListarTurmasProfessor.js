@@ -8,6 +8,31 @@ function getParameterByName(name, url = window.location.href) {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
+// Função para criar um elemento de lista com a classe 'card'
+function criarCard(turma) {
+    const item = document.createElement('li');
+    item.classList.add('card'); // Adiciona a classe 'card' ao elemento <li>
+
+    // Nome da turma
+    const nomeTurma = document.createElement('h2');
+    nomeTurma.textContent = 'Turma ' + turma.nome_turma;
+
+    // Botão de detalhes
+    const detalhesButton = document.createElement('button');
+    detalhesButton.textContent = 'Gerenciar Notas';
+    detalhesButton.classList.add('buttonDetalhes'); // Adiciona a classe 'buttonDetalhes' ao botão
+    detalhesButton.addEventListener('click', function() {
+        //adicionar link para próxima página
+        
+    });
+
+    // Adicionar elementos ao item
+    item.appendChild(nomeTurma);
+    item.appendChild(detalhesButton);
+
+    return item;
+}
+
 // Função para carregar as turmas do professor
 function carregarTurmasDoProfessor(idProfessor) {
     fetch(`http://localhost:8080/professor/${idProfessor}/turmas`)
@@ -20,8 +45,7 @@ function carregarTurmasDoProfessor(idProfessor) {
         .then(turmas => {
             const listaTurmas = document.getElementById('lista-turmas');
             turmas.forEach(turma => {
-                const item = document.createElement('li');
-                item.textContent = turma.nome_turma;
+                const item = criarCard(turma);
                 listaTurmas.appendChild(item);
             });
         })
@@ -36,4 +60,3 @@ document.addEventListener('DOMContentLoaded', function() {
     const idProfessor = getParameterByName('id'); // Obtendo o ID do professor da URL
     carregarTurmasDoProfessor(idProfessor);
 });
-

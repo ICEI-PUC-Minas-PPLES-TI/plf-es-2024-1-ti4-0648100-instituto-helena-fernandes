@@ -48,10 +48,39 @@ html {
 }
 
 .card {
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 8px 0px rgba(124, 133, 255, 0.56);
+    border-radius: 10px;
     padding: 20px;
-    width: 200px;
-    height: auto;
+    margin: 15px;
+    width: 175px;
+    font-size: 16px;
     text-align: center;
+    
 }
+
+.buttonDetalhes {
+    background-color: #F2D22E;
+    box-shadow: 2px 3px 0px 0px #9b8207;
+    border: 1px solid #9b8207 !important;
+    color: #000;
+    padding: 10px 20px; /* Reduza o padding horizontal */
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.buttonDetalhes:hover {
+    background-color: #f2d22e;
+    border: 1px solid #9b8207;
+    color: #000;
+    padding: 10px 20px; /* Reduza o padding horizontal */
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 2px 3px 0px 0px #9b8207;
+    scale: 1.1;
+    transition: .3s;
+}
+
