@@ -7,13 +7,8 @@ function criarItemTurma(turma) {
     const nomeTurma = document.createElement('h2');
     nomeTurma.textContent = turma.nomeTurma;
 
-    // Período da turma
-    const periodoTurma = document.createElement('p');
-    periodoTurma.textContent = `Período: ${turma.periodo}`;
-
     // Adicionar elementos ao item
     item.appendChild(nomeTurma);
-    item.appendChild(periodoTurma);
 
     return item;
 }
@@ -39,8 +34,8 @@ function carregarNomeDisciplina() {
         .then(response => response.json())
         .then(disciplinas => {
             if (disciplinas.length > 0) {
-                const nomeDisciplina = disciplinas[0].nome_disciplina; // Assume que o professor só tem uma disciplina
-                document.querySelector('.text-center h1').textContent = nomeDisciplina;
+                const nomeDisciplina = disciplinas[0].nomeDisciplina; // Corrigido para acessar o campo correto
+                document.getElementById('nome-disciplina').textContent = nomeDisciplina;
             } else {
                 console.error('Nenhuma disciplina encontrada para o professor');
                 alert('Nenhuma disciplina encontrada para o professor. Por favor, verifique as configurações.');
@@ -85,3 +80,4 @@ document.addEventListener('DOMContentLoaded', carregarNomeDisciplina);
 
 // Chamar a função para carregar as turmas quando a página carregar
 document.addEventListener('DOMContentLoaded', carregarTurmas);
+
