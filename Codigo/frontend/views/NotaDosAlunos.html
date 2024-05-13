@@ -4,19 +4,14 @@
     <meta charset="UTF-8">
     <title>Notas dos Alunos</title>
     <link rel="stylesheet" href="../styles/styleNotaDosAlunos.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="logoHeader">
+        <img src="../images/LOGO.png" alt="Logo">
+    </div>
     <div class="container">
-        <div class="logo-container">
-            <img src="../images/LOGO.png" alt="Logo">
-        </div>
-        <div class="container1">
-            <div class="text-center">
-                <h1>Turma <span id="nome-turma"></span></h1>
-            </div>
-        </div>
-
+        <h1 class="text-center">Turma 6A</h1>
         <form id="notas-form">
             <table>
                 <thead>
@@ -31,14 +26,16 @@
                     </tr>
                 </thead>
                 <tbody id="lista-alunos">
-                    <!-- Linhas de alunos serão inseridas aqui -->
+                    <!-- Alunos serão carregados aqui -->
                 </tbody>
             </table>
-            <button type="submit">Salvar Alterações</button>
+            <div class="button-group">
+                <button type="submit">Salvar Alterações</button>
+                <button type="button" onclick="window.history.back()">Voltar</button>
+            </div>
         </form>
-
-        <a href="ListarTurmasProfessor.html">Voltar para a página anterior</a>
-        <script src="../scripts/NotaDosAlunos.js"></script>
+      
     </div>
+    <script src="../scripts/NotaDosAlunos.js"></script>
 </body>
 </html>
