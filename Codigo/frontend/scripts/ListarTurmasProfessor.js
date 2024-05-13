@@ -1,83 +1,39 @@
-// Função para criar um item de turma na lista
-function criarItemTurma(turma) {
-    const item = document.createElement('li');
-    item.classList.add('card'); // Adicionar a classe 'card' ao elemento <li>
-
-    // Nome da turma
-    const nomeTurma = document.createElement('h2');
-    nomeTurma.textContent = turma.nomeTurma;
-
-    // Adicionar elementos ao item
-    item.appendChild(nomeTurma);
-
-    return item;
+// Função para extrair parâmetros da URL
+function getParameterByName(name, url = window.location.href) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
-// Função para obter o ID do professor da URL
-function getProfessorIdFromUrl() {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('id');
-}
-
-// Função para carregar o nome da disciplina do professor
-function carregarNomeDisciplina() {
-    const idProfessor = getProfessorIdFromUrl();
-
-    // Verifica se o ID do professor foi obtido corretamente
-    if (!idProfessor) {
-        console.error('ID do professor não encontrado na URL');
-        alert('O ID do professor não foi encontrado na URL. Por favor, tente novamente.');
-        return;
-    }
-
-    fetch(`http://localhost:8080/professor/${idProfessor}/disciplinas`)
-        .then(response => response.json())
-        .then(disciplinas => {
-            if (disciplinas.length > 0) {
-                const nomeDisciplina = disciplinas[0].nomeDisciplina; // Corrigido para acessar o campo correto
-                document.getElementById('nome-disciplina').textContent = nomeDisciplina;
-            } else {
-                console.error('Nenhuma disciplina encontrada para o professor');
-                alert('Nenhuma disciplina encontrada para o professor. Por favor, verifique as configurações.');
-            }
-        })
-        .catch(error => {
-            console.error('Erro ao carregar disciplina:', error);
-            alert('Ocorreu um erro ao carregar a disciplina. Por favor, tente novamente.');
-        });
-}
-
-// Função para carregar as turmas do banco de dados para um professor específico
-function carregarTurmas() {
-    const idProfessor = getProfessorIdFromUrl();
-
-    // Verifica se o ID do professor foi obtido corretamente
-    if (!idProfessor) {
-        console.error('ID do professor não encontrado na URL');
-        alert('O ID do professor não foi encontrado na URL. Por favor, tente novamente.');
-        return;
-    }
-
+// Função para carregar as turmas do professor
+function carregarTurmasDoProfessor(idProfessor) {
     fetch(`http://localhost:8080/professor/${idProfessor}/turmas`)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Falha ao buscar turmas');
+            }
+            return response.json();
+        })
         .then(turmas => {
             const listaTurmas = document.getElementById('lista-turmas');
-            listaTurmas.innerHTML = ''; // Limpar a lista antes de adicionar as turmas
-
             turmas.forEach(turma => {
-                const itemTurma = criarItemTurma(turma);
-                listaTurmas.appendChild(itemTurma);
+                const item = document.createElement('li');
+                item.textContent = turma.nome_turma;
+                listaTurmas.appendChild(item);
             });
         })
         .catch(error => {
             console.error('Erro ao carregar turmas:', error);
-            alert('Ocorreu um erro ao carregar as turmas. Por favor, tente novamente.');
+            alert('Não foi possível carregar as turmas. Por favor, tente novamente.');
         });
 }
 
-// Chamar a função para carregar o nome da disciplina quando a página carregar
-document.addEventListener('DOMContentLoaded', carregarNomeDisciplina);
-
-// Chamar a função para carregar as turmas quando a página carregar
-document.addEventListener('DOMContentLoaded', carregarTurmas);
+// Carregar as turmas quando o documento estiver pronto
+document.addEventListener('DOMContentLoaded', function() {
+    const idProfessor = getParameterByName('id'); // Obtendo o ID do professor da URL
+    carregarTurmasDoProfessor(idProfessor);
+});
 

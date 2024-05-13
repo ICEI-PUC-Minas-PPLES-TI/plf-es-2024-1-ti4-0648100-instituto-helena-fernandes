@@ -11,6 +11,8 @@ import com.gerenciadorhelenafernandes.models.Professor;
 import com.gerenciadorhelenafernandes.services.ProfessorService;
 import com.gerenciadorhelenafernandes.services.DisciplinaService;
 
+import com.gerenciadorhelenafernandes.repositories.TurmaRepository;
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/professor")
@@ -19,6 +21,9 @@ public class ProfessorController {
     @Autowired
     private ProfessorService professorService;
     private DisciplinaService disciplinaService;
+
+    @Autowired
+    private TurmaRepository turmaRepository;  
 
     @GetMapping("/{idProfessor}")
     public ResponseEntity<?> findById(@PathVariable("idProfessor") Long idProfessor) {
@@ -66,5 +71,20 @@ public class ProfessorController {
         professorService.delete(idProfessor);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/{idProfessor}/turmas")
+    public ResponseEntity<List<Turma>> findTurmasByProfessor(@PathVariable Long idProfessor) {
+        try {
+            List<Turma> turmas = turmaRepository.findByProfessorId(idProfessor);
+            if (turmas.isEmpty()) {
+                return ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.ok(turmas);
+        } catch (Exception e) {
+            e.printStackTrace();  // Log the exception to the console or log file
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+    
+
 
 }
