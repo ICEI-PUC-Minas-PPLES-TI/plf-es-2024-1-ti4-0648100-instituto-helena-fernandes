@@ -22,8 +22,8 @@ function criarCard(turma) {
     detalhesButton.textContent = 'Gerenciar Notas';
     detalhesButton.classList.add('buttonDetalhes'); // Adiciona a classe 'buttonDetalhes' ao botão
     detalhesButton.addEventListener('click', function() {
-        //adicionar link para próxima página
-        
+        // Redireciona para a página de detalhes da turma
+        window.location.href = `notaDosAlunos.html?id_turma=${turma.id_turma}`;
     });
 
     // Adicionar elementos ao item
