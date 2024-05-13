@@ -60,10 +60,10 @@ html {
 }
 
 .buttonDetalhes {
-    background-color: #F2D22E;
-    box-shadow: 2px 3px 0px 0px #9b8207;
-    border: 1px solid #9b8207 !important;
-    color: #000;
+    background-color: #7C85FF; 
+    box-shadow: 2px 3px 0px 0px #4859B4; 
+    border: 1px solid #4859B4 !important; 
+    color: #fff; /* Texto branco */
     padding: 10px 20px; /* Reduza o padding horizontal */
     font-weight: 600;
     border: none;
@@ -73,14 +73,15 @@ html {
 }
 
 .buttonDetalhes:hover {
-    background-color: #f2d22e;
-    border: 1px solid #9b8207;
-    color: #000;
+    background-color: #6F78EE;
+    border: 1px solid #4859B4; 
+    color: #fff; /* Texto branco */
     padding: 10px 20px; /* Reduza o padding horizontal */
     border-radius: 5px;
     cursor: pointer;
-    box-shadow: 2px 3px 0px 0px #9b8207;
+    box-shadow: 2px 3px 0px 0px #4859B4;
     scale: 1.1;
     transition: .3s;
 }
+
 

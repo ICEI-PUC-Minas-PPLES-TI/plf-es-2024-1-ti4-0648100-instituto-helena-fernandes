@@ -13,3 +13,4 @@ public interface DisciplinaRepository extends JpaRepository<Disciplina, Long>{
     List<Disciplina> findByNomeDisciplina(String nome);
 
 }
+
