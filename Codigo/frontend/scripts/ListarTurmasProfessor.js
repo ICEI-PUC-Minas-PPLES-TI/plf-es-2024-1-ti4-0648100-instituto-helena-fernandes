@@ -6,9 +6,7 @@ function getParameterByName(name, url = window.location.href) {
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
-
-// Função para carregar as turmas do professor
+}// Função para carregar as turmas do professor
 function carregarTurmasDoProfessor(idProfessor) {
     fetch(`http://localhost:8080/professor/${idProfessor}/turmas`)
         .then(response => {
@@ -22,6 +20,16 @@ function carregarTurmasDoProfessor(idProfessor) {
             turmas.forEach(turma => {
                 const item = document.createElement('li');
                 item.textContent = turma.nome_turma;
+
+                // Criar um botão para cada turma
+                const botao = document.createElement('button');
+                botao.textContent = 'Ver Notas';
+                botao.addEventListener('click', function() {
+                    // Redirecionar para a página notaDosAlunos.html com o id_turma
+                    window.location.href = `notaDosAlunos.html?id_turma=${turma.id_turma}`;
+                });
+                item.appendChild(botao);
+
                 listaTurmas.appendChild(item);
             });
         })
@@ -36,4 +44,3 @@ document.addEventListener('DOMContentLoaded', function() {
     const idProfessor = getParameterByName('id'); // Obtendo o ID do professor da URL
     carregarTurmasDoProfessor(idProfessor);
 });
-
