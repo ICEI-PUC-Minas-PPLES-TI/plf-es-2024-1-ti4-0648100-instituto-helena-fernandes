@@ -46,6 +46,16 @@ function carregarTurmasDoProfessor(idProfessor) {
             const listaTurmas = document.getElementById('lista-turmas');
             turmas.forEach(turma => {
                 const item = criarCard(turma);
+
+                // Criar um botão para cada turma
+                const botao = document.createElement('button');
+                botao.textContent = 'Ver Notas';
+                botao.addEventListener('click', function() {
+                    // Redirecionar para a página notaDosAlunos.html com o id_turma
+                    window.location.href = `notaDosAlunos.html?id_turma=${turma.id_turma}`;
+                });
+                item.appendChild(botao);
+
                 listaTurmas.appendChild(item);
             });
         })

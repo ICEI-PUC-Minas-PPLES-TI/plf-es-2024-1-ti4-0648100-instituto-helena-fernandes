@@ -1,7 +1,6 @@
 package com.gerenciadorhelenafernandes.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,6 +30,9 @@ public class Notas {
     @JoinColumn(name = "id_disciplina") // Chave estrangeira que faz referência à tabela disciplina
     private Disciplina disciplina;
 
+    @ManyToOne
+    @JoinColumn(name = "id_turma")
+    private Turma turma;
 
     @Column(name = "prova1")
     private Double prova1;
