@@ -39,6 +39,7 @@ function exibirDetalhesProfessor(professor, item) {
         <p><strong>Formação:</strong> ${professor.formacao_professor}</p>
         <p><strong>Disciplina:</strong> ${professor.disciplina.nomeDisciplina}</p>
         <p><strong>Email:</strong> ${professor.emailProfessor}</p>
+        <p><strong>Senha:</strong> ${professor.senha_professor}</p>
     `;
 
     // Exibir o overlay e o card de detalhes
@@ -48,7 +49,7 @@ function exibirDetalhesProfessor(professor, item) {
     // Configurar o clique no botão de editar para redirecionar para a página de edição do professor
     document.getElementById('botao-editar').addEventListener('click', function() {
         // Redirecionar para a página de edição (EditarProfessor.html)
-        window.location.href = `./EditarProfessor.html?id=${professor.id_professor}&nome=${encodeURIComponent(professor.nome_professor)}&cpf=${encodeURIComponent(professor.cpf_professor)}&dataNascimento=${encodeURIComponent(professor.data_nascimento)}&formacao=${encodeURIComponent(professor.formacao_professor)}&disciplina=${encodeURIComponent(professor.disciplina.nomeDisciplina)}&email=${encodeURIComponent(professor.email_professor)}`;
+        window.location.href = `./EditarProfessor.html?id=${professor.id_professor}&nome=${encodeURIComponent(professor.nome_professor)}&cpf=${encodeURIComponent(professor.cpf_professor)}&dataNascimento=${encodeURIComponent(professor.data_nascimento)}&formacao=${encodeURIComponent(professor.formacao_professor)}&disciplina=${encodeURIComponent(professor.disciplina.nomeDisciplina)}&email=${encodeURIComponent(professor.emailProfessor)}&senha=${encodeURIComponent(professor.senha_professor)}`;
     
     });
 
