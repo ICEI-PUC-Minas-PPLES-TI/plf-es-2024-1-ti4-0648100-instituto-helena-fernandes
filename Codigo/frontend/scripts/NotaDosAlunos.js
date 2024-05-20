@@ -39,6 +39,17 @@ function salvarNotas(event) {
     event.preventDefault();
 
     const idTurma = getParameterByName('id_turma');
+    console.log('IdTurma:', idTurma);
+    const idProfessor = getParameterByName('id_professor');
+    console.log('idProfessor',idProfessor);
+    const idDisciplina = getParameterByName('id_disciplina');
+    console.log('idDisciplina:', idDisciplina);
+
+    if (!idTurma || !idProfessor || !idDisciplina) {
+        alert('ID da turma, professor ou disciplina não encontrado.');
+        return;
+    }
+
     const inputs = document.querySelectorAll('input[type="number"]');
     const notas = [];
 
@@ -49,7 +60,13 @@ function salvarNotas(event) {
 
         let nota = notas.find(n => n.id_aluno == idAluno);
         if (!nota) {
-            nota = { id_aluno: idAluno, id_turma: idTurma };
+            nota = {
+                id_aluno: idAluno,
+                id_professor: idProfessor,
+                id_disciplina: idDisciplina,
+                id_turma: idTurma
+            };
+
             notas.push(nota);
         }
 
@@ -81,7 +98,11 @@ function salvarNotas(event) {
 // Carregar os alunos quando o documento estiver pronto
 document.addEventListener('DOMContentLoaded', function() {
     const idTurma = getParameterByName('id_turma');
-    carregarAlunosDaTurma(idTurma);
+    if (idTurma) {
+        carregarAlunosDaTurma(idTurma);
+    } else {
+        alert('ID da turma não encontrado.');
+    }
 
     document.getElementById('notas-form').addEventListener('submit', salvarNotas);
 });

@@ -9,7 +9,7 @@ function getParameterByName(name, url = window.location.href) {
 }
 
 // Função para criar um elemento de lista com a classe 'card'
-function criarCard(turma) {
+function criarCard(turma, idProfessor, idDisciplina) {
     const item = document.createElement('li');
     item.classList.add('card'); // Adiciona a classe 'card' ao elemento <li>
 
@@ -23,7 +23,7 @@ function criarCard(turma) {
     detalhesButton.classList.add('buttonDetalhes'); // Adiciona a classe 'buttonDetalhes' ao botão
     detalhesButton.addEventListener('click', function() {
         // Redireciona para a página de detalhes da turma
-        window.location.href = `notaDosAlunos.html?id_turma=${turma.id_turma}`;
+        window.location.href = `notaDosAlunos.html?id_turma=${turma.id_turma}&id_professor=${idProfessor}&id_disciplina=${turma.id_disciplina}`;
     });
 
     // Adicionar elementos ao item
@@ -45,7 +45,9 @@ function carregarTurmasDoProfessor(idProfessor) {
         .then(turmas => {
             const listaTurmas = document.getElementById('lista-turmas');
             turmas.forEach(turma => {
-                const item = criarCard(turma);
+                // Supondo que id_disciplina está nos detalhes da turma
+                const idDisciplina = turma.id_disciplina;
+                const item = criarCard(turma, idProfessor, idDisciplina);
                 listaTurmas.appendChild(item);
             });
         })
@@ -58,5 +60,6 @@ function carregarTurmasDoProfessor(idProfessor) {
 // Carregar as turmas quando o documento estiver pronto
 document.addEventListener('DOMContentLoaded', function() {
     const idProfessor = getParameterByName('id'); // Obtendo o ID do professor da URL
+    console.log('idProfessor:', idProfessor); // Adicionado para depuração
     carregarTurmasDoProfessor(idProfessor);
 });
