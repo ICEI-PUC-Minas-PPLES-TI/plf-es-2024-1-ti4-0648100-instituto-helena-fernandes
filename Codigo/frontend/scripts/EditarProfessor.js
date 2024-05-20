@@ -31,12 +31,14 @@ document.addEventListener("DOMContentLoaded", function() {
     const formacaoProfessor = decodeURIComponent(urlParams.get('formacao'));
     const disciplinaProfessor = decodeURIComponent(urlParams.get('disciplina'));
     const emailProfessor = decodeURIComponent(urlParams.get('email'));
+    const senhaProfessor = decodeURIComponent(urlParams.get('senha'));
 
     document.getElementById('nome_professor').value = nomeProfessor;
     document.getElementById('cpf_professor').value = cpfProfessor;
     document.getElementById('data_nascimento').value = dataNascimento;
     document.getElementById('formacao_professor').value = formacaoProfessor;
     document.getElementById('emailProfessor').value = emailProfessor;
+    document.getElementById('senha_professor').value = senhaProfessor;
     // Selecionar a disciplina correspondente no select
     const disciplinaOption = Array.from(disciplinasSelect.options).find(option => option.text === disciplinaProfessor);
     if (disciplinaOption) {
@@ -56,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const novaFormacaoProfessor = document.getElementById('formacao_professor').value;
         const novaDisciplinaId = disciplinasSelect.options[disciplinasSelect.selectedIndex].value;
         const novoEmailProfessor = document.getElementById('emailProfessor').value;
+        const novaSenhaProfessor = document.getElementById('senha_professor').value;
 
         // Obtendo a carga horária da disciplina selecionada
         const novaCargaHoraria = parseFloat(disciplinasSelect.options[disciplinasSelect.selectedIndex].getAttribute('data-carga-horaria'));
@@ -71,7 +74,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 nomeDisciplina: disciplinasSelect.options[disciplinasSelect.selectedIndex].text,
                 cargaHoraria: novaCargaHoraria
             },
-            emailProfessor: novoEmailProfessor
+            emailProfessor: novoEmailProfessor,            
+            senha_professor: novaSenhaProfessor
         };
         
         fetch(`http://localhost:8080/professor/${idProfessor}`, {
