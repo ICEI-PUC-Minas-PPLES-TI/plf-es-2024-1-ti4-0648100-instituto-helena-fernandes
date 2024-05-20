@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = Professor.TABLE_NAME)
 @AllArgsConstructor
@@ -23,7 +25,8 @@ public class Professor {
     @Column(name = "id_professor", unique = true)
     private Long id_professor;
 
-    @OneToMany(mappedBy = "professor")
+    @OneToMany(mappedBy = "professor", cascade = CascadeType.ALL)
+    @JsonManagedReference 
     private List<Notas> notas;
 
     @Column(name = "nome_professor", length = 100, nullable = false)

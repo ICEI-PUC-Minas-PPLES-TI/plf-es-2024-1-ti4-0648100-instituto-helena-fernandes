@@ -1,38 +1,58 @@
 package com.gerenciadorhelenafernandes.services;
 
-import com.gerenciadorhelenafernandes.models.Notas;
-import com.gerenciadorhelenafernandes.repositories.NotasRepository;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import com.gerenciadorhelenafernandes.models.Notas;
+import com.gerenciadorhelenafernandes.repositories.NotasRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class NotasService {
 
-    private final NotasRepository notasRepository;
-
     @Autowired
-    public NotasService(NotasRepository notasRepository) {
-        this.notasRepository = notasRepository;
+    private NotasRepository notasRepository;
+
+    public Notas findById(Long idNotas) {
+        Optional<Notas> notasOptional = notasRepository.findById(idNotas);
+        return notasOptional.orElseThrow(() -> new RuntimeException("Notas não encontrada! ID: " + idNotas));
     }
 
-    public List<Notas> getAllNotas() {
+    public List<Notas> findAll() {
         return notasRepository.findAll();
     }
 
-    public Optional<Notas> getNotasById(Long id) {
-        return notasRepository.findById(id);
-    }
-
-    public Notas saveNotas(Notas notas) {
+    @Transactional
+    public Notas create(Notas notas) {
+        notas.setIdNotas(null); // Garante que o ID seja nulo para evitar conflitos de atualização
         return notasRepository.save(notas);
     }
 
-    public void deleteNotasById(Long id) {
-        notasRepository.deleteById(id);
+    @Transactional
+    public Notas update(Notas notas) {
+        Optional<Notas> notasOptional = notasRepository.findById(notas.getIdNotas());
+        if (notasOptional.isPresent()) {
+            return notasRepository.save(notas);
+        } else {
+            throw new RuntimeException("Notas não encontrada para atualização!");
+        }
     }
+
+    @Transactional
+    public void delete(Long idNotas) {
+        Optional<Notas> notasOptional = notasRepository.findById(idNotas);
+        if (notasOptional.isPresent()) {
+            notasRepository.delete(notasOptional.get());
+        } else {
+            throw new RuntimeException("Notas não encontrada para exclusão!");
+        }
+    }
+
+    @Transactional
     public List<Notas> saveAll(List<Notas> notasList) {
         return notasRepository.saveAll(notasList);
     }
