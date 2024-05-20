@@ -23,7 +23,7 @@ function criarCard(turma, idProfessor, idDisciplina) {
     detalhesButton.classList.add('buttonDetalhes'); // Adiciona a classe 'buttonDetalhes' ao botão
     detalhesButton.addEventListener('click', function() {
         // Redireciona para a página de detalhes da turma
-        window.location.href = `notaDosAlunos.html?id_turma=${turma.id_turma}&id_professor=${idProfessor}&id_disciplina=${turma.id_disciplina}`;
+        window.location.href = `notaDosAlunos.html?id_turma=${turma.id_turma}&id_professor=${idProfessor}&id_disciplina=${idDisciplina}`;
     });
 
     // Adicionar elementos ao item
@@ -32,6 +32,22 @@ function criarCard(turma, idProfessor, idDisciplina) {
 
     return item;
 }
+
+// Função para buscar disciplina do professor
+async function obterDisciplinaDoProfessor(idProfessor) {
+    try {
+        const response = await fetch(`http://localhost:8080/professor/${idProfessor}`);
+        if (!response.ok) {
+            throw new Error('Falha ao buscar disciplina do professor');
+        }
+        const data = await response.json();
+        return data.id_disciplina;
+    } catch (error) {
+        console.error('Erro ao carregar disciplina:', error);
+        return null;
+    }
+}
+
 
 // Função para carregar as turmas do professor
 function carregarTurmasDoProfessor(idProfessor) {
@@ -45,8 +61,7 @@ function carregarTurmasDoProfessor(idProfessor) {
         .then(turmas => {
             const listaTurmas = document.getElementById('lista-turmas');
             turmas.forEach(turma => {
-                // Supondo que id_disciplina está nos detalhes da turma
-                const idDisciplina = turma.id_disciplina;
+                const idDisciplina = obterDisciplinaDoProfessor(idProfessor);
                 const item = criarCard(turma, idProfessor, idDisciplina);
                 listaTurmas.appendChild(item);
             });
