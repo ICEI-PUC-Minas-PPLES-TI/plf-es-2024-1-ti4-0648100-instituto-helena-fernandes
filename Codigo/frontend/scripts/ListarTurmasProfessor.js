@@ -32,8 +32,6 @@ function criarCard(turma, idProfessor, idDisciplina) {
 
     return item;
 }
-
-// Função para buscar disciplina do professor
 async function obterDisciplinaDoProfessor(idProfessor) {
     try {
         const response = await fetch(`http://localhost:8080/professor/${idProfessor}`);
@@ -41,7 +39,9 @@ async function obterDisciplinaDoProfessor(idProfessor) {
             throw new Error('Falha ao buscar disciplina do professor');
         }
         const data = await response.json();
-        return data.id_disciplina;
+        console.log('Dados do professor:', data); // Log para depuração
+        console.log('Disciplina do professor:', data.disciplina); // Verifique a estrutura do objeto disciplina
+        return data.disciplina.idDisciplina; // Acesse diretamente o idDisciplina do objeto disciplina
     } catch (error) {
         console.error('Erro ao carregar disciplina:', error);
         return null;
@@ -49,28 +49,31 @@ async function obterDisciplinaDoProfessor(idProfessor) {
 }
 
 
-// Função para carregar as turmas do professor
-function carregarTurmasDoProfessor(idProfessor) {
-    fetch(`http://localhost:8080/professor/${idProfessor}/turmas`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Falha ao buscar turmas');
-            }
-            return response.json();
-        })
-        .then(turmas => {
-            const listaTurmas = document.getElementById('lista-turmas');
-            turmas.forEach(turma => {
-                const idDisciplina = obterDisciplinaDoProfessor(idProfessor);
-                const item = criarCard(turma, idProfessor, idDisciplina);
-                listaTurmas.appendChild(item);
-            });
-        })
-        .catch(error => {
-            console.error('Erro ao carregar turmas:', error);
-            alert('Não foi possível carregar as turmas. Por favor, tente novamente.');
+async function carregarTurmasDoProfessor(idProfessor) {
+    try {
+        const response = await fetch(`http://localhost:8080/professor/${idProfessor}/turmas`);
+        if (!response.ok) {
+            throw new Error('Falha ao buscar turmas');
+        }
+        const turmas = await response.json();
+        const listaTurmas = document.getElementById('lista-turmas');
+        
+        // Obter a disciplina do professor uma vez
+        const idDisciplina = await obterDisciplinaDoProfessor(idProfessor);
+        if (idDisciplina === null) {
+            throw new Error('Disciplina do professor não encontrada');
+        }
+
+        turmas.forEach(turma => {
+            const item = criarCard(turma, idProfessor, idDisciplina);
+            listaTurmas.appendChild(item);
         });
+    } catch (error) {
+        console.error('Erro ao carregar turmas:', error);
+        alert('Não foi possível carregar as turmas. Por favor, tente novamente.');
+    }
 }
+
 
 // Carregar as turmas quando o documento estiver pronto
 document.addEventListener('DOMContentLoaded', function() {
