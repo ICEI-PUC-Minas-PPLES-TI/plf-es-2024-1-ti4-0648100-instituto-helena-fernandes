@@ -39,7 +39,6 @@ function atualizar() {
             cpf_responsavel: cpf_responsavel,
             telefone_responsavel: telefone_responsavel,
             status_aluno: status
-
           }),
     })
     .then(response => {

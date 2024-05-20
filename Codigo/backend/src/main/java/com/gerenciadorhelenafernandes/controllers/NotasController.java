@@ -2,7 +2,6 @@ package com.gerenciadorhelenafernandes.controllers;
 
 import com.gerenciadorhelenafernandes.models.Notas;
 import com.gerenciadorhelenafernandes.services.NotasService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +16,6 @@ public class NotasController {
 
     private final NotasService notasService;
 
-    @Autowired
     public NotasController(NotasService notasService) {
         this.notasService = notasService;
     }
@@ -42,14 +40,19 @@ public class NotasController {
     }
 
     @PostMapping("/multiple")
-public ResponseEntity<?> saveMultipleNotas(@RequestBody List<Notas> notasList) {
-    for (Notas notas : notasList) {
-        System.out.println("Recebido: " + notas);
+    public ResponseEntity<?> saveMultipleNotas(@RequestBody List<Notas> notasList) {
+        Notas primeiraNota = notasList.get(0);
+        Notas savedNotas = notasService.saveNotas(primeiraNota);
+        Long idNotas = savedNotas.getIdNotas();
+    
+        for (Notas notas : notasList) {
+            notas.setIdNotas(idNotas);
+        }
+        notasService.saveAll(notasList);
+        
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-    notasService.saveAll(notasList);
-    return ResponseEntity.status(HttpStatus.CREATED).build();
-}
-
+    
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteNotasById(@PathVariable("id") Long id) {

@@ -39,11 +39,8 @@ function salvarNotas(event) {
     event.preventDefault();
 
     const idTurma = getParameterByName('id_turma');
-    console.log('IdTurma:', idTurma);
     const idProfessor = getParameterByName('id_professor');
-    console.log('idProfessor',idProfessor);
     const idDisciplina = getParameterByName('id_disciplina');
-    console.log('idDisciplina:', idDisciplina);
 
     if (!idTurma || !idProfessor || !idDisciplina) {
         alert('ID da turma, professor ou disciplina não encontrado.');
@@ -53,25 +50,35 @@ function salvarNotas(event) {
     const inputs = document.querySelectorAll('input[type="number"]');
     const notas = [];
 
+    // Map to store the notes for each student by their ID
+    const notasMap = new Map();
+
     inputs.forEach(input => {
         const idAluno = input.getAttribute('data-id-aluno');
         const nomeNota = input.getAttribute('name');
         const valorNota = input.value;
 
-        let nota = notas.find(n => n.id_aluno == idAluno);
-        if (!nota) {
-            nota = {
-                id_aluno: idAluno,
-                id_professor: idProfessor,
-                id_disciplina: idDisciplina,
-                id_turma: idTurma
-            };
-
-            notas.push(nota);
+        if (!notasMap.has(idAluno)) {
+            notasMap.set(idAluno, {
+                aluno: { id_aluno: parseInt(idAluno) },
+                professor: { id_professor: parseInt(idProfessor) },
+                turma: { id_turma: parseInt(idTurma) },
+                disciplina: { idDisciplina: parseInt(idDisciplina) },
+                prova1: null,
+                prova2: null,
+                prova3: null,
+                trabalho1: null,
+                trabalho2: null,
+                trabalho3: null
+            });
         }
 
+        const nota = notasMap.get(idAluno);
         nota[nomeNota] = valorNota;
     });
+
+    // Convert map values to an array
+    notasMap.forEach((nota) => notas.push(nota));
 
     // Log the data to be sent
     console.log('Dados enviados:', notas);

@@ -72,6 +72,16 @@ public class AlunoController {
         return ResponseEntity.status(201).body(aluno);
     }
 
+    @PutMapping("/{id_aluno}/status")
+    public ResponseEntity<Aluno> updateStatusAluno(@PathVariable Long id_aluno, @RequestBody Aluno alunoDetails) {
+        try {
+            Aluno updatedAluno = alunoService.updateStatus(id_aluno, alunoDetails.getStatus_aluno());
+            return new ResponseEntity<>(updatedAluno, HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @DeleteMapping("/{id_aluno}")
     public ResponseEntity<?> delete(@PathVariable Long id_aluno) {
         alunoService.delete(id_aluno);

@@ -85,8 +85,7 @@ fetch('http://localhost:8080/aluno?status_aluno=0')
 
 // Função para atualizar o status do aluno
 function atualizarStatusAluno(idAluno, novoStatus) {
-    
-    fetch(`http://localhost:8080/aluno/${idAluno}`, {
+    fetch(`http://localhost:8080/aluno/${idAluno}/status`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'

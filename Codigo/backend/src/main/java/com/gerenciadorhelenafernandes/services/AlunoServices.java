@@ -60,6 +60,17 @@ public class AlunoServices {
         return alunoRepository.save(aluno);
     }
 
+    public Aluno updateStatus(Long id_aluno, String novoStatus) {
+        Optional<Aluno> alunoOpt = alunoRepository.findById(id_aluno);
+        if (alunoOpt.isPresent()) {
+            Aluno aluno = alunoOpt.get();
+            aluno.setStatus_aluno(novoStatus);
+            return alunoRepository.save(aluno);
+        } else {
+            throw new RuntimeException("Aluno não encontrado");
+        }
+    }
+
     public void delete(Long id_aluno) {
         Aluno aluno = findById(id_aluno);
         if (aluno != null) {
