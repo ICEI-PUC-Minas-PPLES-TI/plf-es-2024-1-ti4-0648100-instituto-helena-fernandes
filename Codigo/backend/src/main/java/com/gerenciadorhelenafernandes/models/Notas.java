@@ -1,7 +1,5 @@
 package com.gerenciadorhelenafernandes.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,18 +20,14 @@ public class Notas {
 
     @ManyToOne
     @JoinColumn(name = "id_aluno")
-    @JsonBackReference // Indica o lado "filho" da relação, onde a serialização deve parar para evitar
-                       // loops
     private Aluno aluno;
 
     @ManyToOne
     @JoinColumn(name = "id_professor")
-    @JsonBackReference
     private Professor professor;
 
     @ManyToOne
     @JoinColumn(name = "id_disciplina")
-    @JsonBackReference
     private Disciplina disciplina;
 
     @ManyToOne

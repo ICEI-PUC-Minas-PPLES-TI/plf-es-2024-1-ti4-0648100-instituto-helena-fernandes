@@ -1,6 +1,5 @@
 package com.gerenciadorhelenafernandes.models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.*;
@@ -27,8 +26,7 @@ public class Aluno {
     @JsonProperty("id_aluno")
     private Long id_aluno;
 
-    @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL)
-    @JsonManagedReference // Indica o lado "pai" da relação, onde a serialização começa
+    @OneToMany(mappedBy = "aluno")
     private List<Notas> notas;
 
     @Column(name = "nome_aluno", length = 100, nullable = false)

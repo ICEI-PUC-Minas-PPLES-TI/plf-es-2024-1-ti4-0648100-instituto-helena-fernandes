@@ -55,7 +55,7 @@ function salvarNotas(event) {
   inputs.forEach((input) => {
     const idAluno = input.getAttribute("data-id-aluno");
     const nomeNota = input.getAttribute("name");
-    const valorNota = parseFloat(input.value) || 0;
+    const valorNota = input.value;
 
     if (!notasMap.has(idAluno)) {
       notasMap.set(idAluno, {
@@ -78,7 +78,8 @@ function salvarNotas(event) {
 
   notasMap.forEach((nota) => notas.push(nota));
 
-  console.log("Dados enviados:", JSON.stringify(notas, null, 2));
+
+  console.log('Dados enviados:', notas);
 
   fetch("http://localhost:8080/notas/multiple", {
     method: "POST",
