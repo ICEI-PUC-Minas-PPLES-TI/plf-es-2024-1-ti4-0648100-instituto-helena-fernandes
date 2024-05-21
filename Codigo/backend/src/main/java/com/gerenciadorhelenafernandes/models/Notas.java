@@ -1,5 +1,7 @@
 package com.gerenciadorhelenafernandes.models;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,21 +20,37 @@ public class Notas {
     @Column(name = "id_notas", unique = true)
     private Long idNotas;
 
-    @ManyToOne
-    @JoinColumn(name = "id_aluno")
-    private Aluno aluno;
+    @ManyToMany
+    @JoinTable(
+        name = "nota_aluno",
+        joinColumns = @JoinColumn(name = "id_nota"),
+        inverseJoinColumns = @JoinColumn(name = "id_aluno")
+    )
+    private List<Aluno> alunos;
 
-    @ManyToOne
-    @JoinColumn(name = "id_professor")
-    private Professor professor;
+    @ManyToMany
+    @JoinTable(
+        name = "nota_professor",
+        joinColumns = @JoinColumn(name = "id_nota"),
+        inverseJoinColumns = @JoinColumn(name = "id_professor")
+    )
+    private List<Professor> professores;
 
-    @ManyToOne
-    @JoinColumn(name = "id_disciplina")
-    private Disciplina disciplina;
+    @ManyToMany
+    @JoinTable(
+        name = "nota_disciplina",
+        joinColumns = @JoinColumn(name = "id_nota"),
+        inverseJoinColumns = @JoinColumn(name = "id_disciplina")
+    )
+    private List<Disciplina> disciplinas;
 
-    @ManyToOne
-    @JoinColumn(name = "id_turma")
-    private Turma turma;
+    @ManyToMany
+    @JoinTable(
+        name = "nota_turma",
+        joinColumns = @JoinColumn(name = "id_nota"),
+        inverseJoinColumns = @JoinColumn(name = "id_turma")
+    )
+    private List<Turma> turmas;
 
     @Column(name = "prova1")
     private Double prova1;
