@@ -81,7 +81,7 @@ function salvarNotas(event) {
 
   console.log('Dados enviados:', notas);
 
-  fetch("http://localhost:8080/notas/multiple", {
+  fetch("http://localhost:8080/notas", {
       method: "POST",
       headers: {
           "Content-Type": "application/json",

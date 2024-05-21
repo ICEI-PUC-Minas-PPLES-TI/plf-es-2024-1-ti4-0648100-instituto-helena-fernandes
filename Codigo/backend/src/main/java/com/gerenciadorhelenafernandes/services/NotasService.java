@@ -2,7 +2,6 @@ package com.gerenciadorhelenafernandes.services;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,30 +55,14 @@ public class NotasService {
     @Transactional
     public Notas update(Long idNotas, Notas notasAtualizada) {
         Notas notasExistente = findById(idNotas);
-        
-        // Atualizar campos básicos
+
+        // Atualizar apenas as notas
         notasExistente.setProva1(notasAtualizada.getProva1());
         notasExistente.setProva2(notasAtualizada.getProva2());
         notasExistente.setProva3(notasAtualizada.getProva3());
         notasExistente.setTrabalho1(notasAtualizada.getTrabalho1());
         notasExistente.setTrabalho2(notasAtualizada.getTrabalho2());
         notasExistente.setTrabalho3(notasAtualizada.getTrabalho3());
-
-        // Atualizar relacionamentos com alunos
-        List<Aluno> alunosSelecionados = alunoRepository.findAllById(notasAtualizada.getAlunos().stream().map(Aluno::getId_aluno).collect(Collectors.toList()));
-        notasExistente.setAlunos(alunosSelecionados);
-
-        // Atualizar relacionamentos com professores
-        List<Professor> professoresSelecionados = professorRepository.findAllById(notasAtualizada.getProfessores().stream().map(Professor::getId_professor).collect(Collectors.toList()));
-        notasExistente.setProfessores(professoresSelecionados);
-
-        // Atualizar relacionamentos com disciplinas
-        List<Disciplina> disciplinasSelecionadas = disciplinaRepository.findAllById(notasAtualizada.getDisciplinas().stream().map(Disciplina::getIdDisciplina).collect(Collectors.toList()));
-        notasExistente.setDisciplinas(disciplinasSelecionadas);
-
-        // Atualizar relacionamentos com turmas
-        List<Turma> turmasSelecionadas = turmaRepository.findAllById(notasAtualizada.getTurmas().stream().map(Turma::getId_turma).collect(Collectors.toList()));
-        notasExistente.setTurmas(turmasSelecionadas);
 
         return notasRepository.save(notasExistente);
     }

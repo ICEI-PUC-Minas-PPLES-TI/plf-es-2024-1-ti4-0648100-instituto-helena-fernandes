@@ -31,12 +31,6 @@ public class NotasController {
     }
 
     @PostMapping
-    public ResponseEntity<Notas> create(@RequestBody Notas notas) {
-        notas = notasService.create(notas);
-        return ResponseEntity.status(HttpStatus.CREATED).body(notas);
-    }
-
-    @PostMapping("/multiple")
     public ResponseEntity<?> saveMultipleNotas(@RequestBody List<Notas> notasList) {
         try {
             if (notasList == null || notasList.isEmpty()) {
