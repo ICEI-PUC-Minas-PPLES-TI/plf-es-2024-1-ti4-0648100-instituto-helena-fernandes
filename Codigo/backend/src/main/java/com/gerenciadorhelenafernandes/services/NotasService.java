@@ -1,5 +1,6 @@
 package com.gerenciadorhelenafernandes.services;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,6 +41,10 @@ public class NotasService {
     public Notas findById(Long idNotas) {
         Optional<Notas> notasOptional = notasRepository.findById(idNotas);
         return notasOptional.orElseThrow(() -> new RuntimeException("Notas não encontrada! ID: " + idNotas));
+    }
+
+    public Notas findNotasByAlunoIdAndTurmaId(Long idAluno, Long idTurma) {
+        return notasRepository.findByAlunosIdAlunoAndTurmasIdTurma(idAluno, idTurma);
     }
 
     public List<Notas> findAll() {
@@ -137,4 +142,58 @@ public class NotasService {
         List<Turma> turmas = turmaRepository.findAllById(turmasIds);
         notas.getTurmas().removeAll(turmas);
     }
+
+    @Transactional
+    public Notas cadastrarNota(Long idAluno, Long idTurma, Long idDisciplina, Double notaProva1, Double notaProva2,
+            Double notaProva3, Double notaTrabalho1, Double notaTrabalho2, Double notaTrabalho3) {
+        // Verificar se a nota já foi cadastrada
+        Notas notasExistente = notasRepository.findByAlunosIdAlunoAndTurmasIdTurmaAndDisciplinasIdDisciplina(idAluno,
+                idTurma, idDisciplina);
+        if (notasExistente != null) {
+            throw new RuntimeException("Nota já cadastrada para este aluno nesta disciplina.");
+        }
+
+        // Buscar aluno, turma e disciplina pelo ID
+        Aluno aluno = alunoRepository.findById(idAluno)
+                .orElseThrow(() -> new RuntimeException("Aluno não encontrado!"));
+        Turma turma = turmaRepository.findById(idTurma)
+                .orElseThrow(() -> new RuntimeException("Turma não encontrada!"));
+        Disciplina disciplina = disciplinaRepository.findById(idDisciplina)
+                .orElseThrow(() -> new RuntimeException("Disciplina não encontrada!"));
+
+        // Criar uma nova instância de Notas
+        Notas novaNota = new Notas();
+
+        // Definir o aluno, turma e disciplina para a nova nota
+        novaNota.setAlunos(Collections.singletonList(aluno));
+        novaNota.setTurmas(Collections.singletonList(turma));
+        novaNota.setDisciplinas(Collections.singletonList(disciplina));
+
+        // Definir as notas de prova e trabalho
+        novaNota.setProva1(notaProva1);
+        novaNota.setProva2(notaProva2);
+        novaNota.setProva3(notaProva3);
+        novaNota.setTrabalho1(notaTrabalho1);
+        novaNota.setTrabalho2(notaTrabalho2);
+        novaNota.setTrabalho3(notaTrabalho3);
+
+        // Salvar e retornar a nova nota
+        return notasRepository.save(novaNota);
+    }
+
+    @Transactional
+    public void editarNota(Long idNota, Double notaProva1, Double notaProva2,
+            Double notaProva3, Double notaTrabalho1, Double notaTrabalho2, Double notaTrabalho3) {
+        Notas notas = findById(idNota);
+
+        notas.setProva1(notaProva1);
+        notas.setProva2(notaProva2);
+        notas.setProva3(notaProva3);
+        notas.setTrabalho1(notaTrabalho1);
+        notas.setTrabalho2(notaTrabalho2);
+        notas.setTrabalho3(notaTrabalho3);
+        
+        notasRepository.save(notas);
+    }
+
 }

@@ -36,7 +36,7 @@ public class AlunoServices {
     
     @Transactional
     public Aluno create(Aluno obj) {
-        obj.setId_aluno(null);
+        obj.setIdAluno(null);
         return this.alunoRepository.save(obj);
     }
     
@@ -60,8 +60,8 @@ public class AlunoServices {
         return alunoRepository.save(aluno);
     }
 
-    public Aluno updateStatus(Long id_aluno, String novoStatus) {
-        Optional<Aluno> alunoOpt = alunoRepository.findById(id_aluno);
+    public Aluno updateStatus(Long IdAluno, String novoStatus) {
+        Optional<Aluno> alunoOpt = alunoRepository.findById(IdAluno);
         if (alunoOpt.isPresent()) {
             Aluno aluno = alunoOpt.get();
             aluno.setStatus_aluno(novoStatus);
@@ -71,8 +71,8 @@ public class AlunoServices {
         }
     }
 
-    public void delete(Long id_aluno) {
-        Aluno aluno = findById(id_aluno);
+    public void delete(Long IdAluno) {
+        Aluno aluno = findById(IdAluno);
         if (aluno != null) {
             try {
                 this.alunoRepository.delete(aluno);
@@ -91,11 +91,11 @@ public class AlunoServices {
             if(senha.equals(aluno.getSenha_aluno())) {
                 // Login bem-sucedido
                 if ("1".equals(aluno.getStatus_aluno())) {
-                    return -aluno.getId_aluno(); // ID negativo para status 1
+                    return -aluno.getIdAluno(); // ID negativo para status 1
                 } else if ("2".equals(aluno.getStatus_aluno())) {
-                    return aluno.getId_aluno(); // ID positivo para status 2, mas com lógica especial no frontend
+                    return aluno.getIdAluno(); // ID positivo para status 2, mas com lógica especial no frontend
                 }
-                return aluno.getId_aluno(); // ID positivo normal para outros casos
+                return aluno.getIdAluno(); // ID positivo normal para outros casos
             }
         }
         throw new RuntimeException("Aluno não encontrado ou senha inválida.");
@@ -105,7 +105,7 @@ public class AlunoServices {
     public Long findIdByEmail(String email) {
         Optional<Aluno> alunoOptional = alunoRepository.findByEmailAluno(email);
         if (alunoOptional.isPresent()) {
-            return alunoOptional.get().getId_aluno();
+            return alunoOptional.get().getIdAluno();
         } else {
             throw new RuntimeException("Aluno não encontrado com o email fornecido.");
         }

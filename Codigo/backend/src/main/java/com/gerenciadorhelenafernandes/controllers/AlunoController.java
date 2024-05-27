@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.gerenciadorhelenafernandes.models.Aluno;
+import com.gerenciadorhelenafernandes.models.Notas;
 import com.gerenciadorhelenafernandes.services.AlunoServices;
+import com.gerenciadorhelenafernandes.services.NotasService;
 
 @RestController
 @CrossOrigin("*")
@@ -25,6 +27,7 @@ public class AlunoController {
 
     @Autowired
     private AlunoServices alunoService;
+    private NotasService notasService;
 
     @GetMapping("/{id_aluno}")
     public ResponseEntity<?> findById(@PathVariable("id_aluno") Long id_aluno) {
@@ -65,7 +68,7 @@ public class AlunoController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(-1L); // Indica erro
         }
     }
-    
+
     @PutMapping("/{id_aluno}")
     public ResponseEntity<Aluno> update(@RequestBody Aluno aluno, @PathVariable Long id_aluno) {
         aluno = alunoService.update(aluno, id_aluno);
@@ -87,4 +90,15 @@ public class AlunoController {
         alunoService.delete(id_aluno);
         return ResponseEntity.status(204).build();
     }
+
+    @GetMapping("/{idAluno}/turmas/{idTurma}/notas")
+    public ResponseEntity<Notas> getNotasDoAlunoNaTurma(@PathVariable Long idAluno, @PathVariable Long idTurma) {
+        try {
+            Notas notas = notasService.findNotasByAlunoIdAndTurmaId(idAluno, idTurma);
+            return ResponseEntity.ok(notas);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null); 
+        }
+    }
+
 }

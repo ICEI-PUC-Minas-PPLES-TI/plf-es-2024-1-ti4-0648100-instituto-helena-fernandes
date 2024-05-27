@@ -27,8 +27,8 @@ public class Turma {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_turma", unique = true)
-    private Long id_turma;
+    @Column(name = "idTurma", unique = true)
+    private Long idTurma;
 
     @Column(name = "nome_turma")
     private String nome_turma;

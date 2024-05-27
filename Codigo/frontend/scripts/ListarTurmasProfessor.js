@@ -23,7 +23,7 @@ function criarCard(turma, idProfessor, idDisciplina) {
     detalhesButton.classList.add('buttonDetalhes'); // Adiciona a classe 'buttonDetalhes' ao botão
     detalhesButton.addEventListener('click', function() {
         // Redireciona para a página de detalhes da turma
-        window.location.href = `notaDosAlunos.html?id_turma=${turma.id_turma}&id_professor=${idProfessor}&id_disciplina=${idDisciplina}`;
+        window.location.href = `notaDosAlunos.html?id_turma=${turma.idTurma}&id_professor=${idProfessor}&id_disciplina=${idDisciplina}`;
     });
 
     // Adicionar elementos ao item

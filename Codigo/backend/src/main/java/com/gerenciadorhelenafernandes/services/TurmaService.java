@@ -1,6 +1,9 @@
 package com.gerenciadorhelenafernandes.services;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -10,10 +13,12 @@ import com.gerenciadorhelenafernandes.models.Turma;
 import com.gerenciadorhelenafernandes.models.Aluno;
 import com.gerenciadorhelenafernandes.models.Professor;
 import com.gerenciadorhelenafernandes.models.Disciplina;
+import com.gerenciadorhelenafernandes.models.Notas;
 import com.gerenciadorhelenafernandes.repositories.TurmaRepository;
 import com.gerenciadorhelenafernandes.repositories.AlunoRepository;
 import com.gerenciadorhelenafernandes.repositories.ProfessorRepository;
 import com.gerenciadorhelenafernandes.repositories.DisciplinaRepository;
+import com.gerenciadorhelenafernandes.repositories.NotasRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -32,6 +37,9 @@ public class TurmaService {
     @Autowired
     private DisciplinaRepository disciplinaRepository;
 
+    @Autowired
+    private NotasRepository notasRepository;
+
     public Turma findById(Long idTurma) {
         Optional<Turma> turmaOptional = turmaRepository.findById(idTurma);
         return turmaOptional.orElseThrow(() -> new RuntimeException("Turma não encontrada! ID: " + idTurma));
@@ -44,34 +52,35 @@ public class TurmaService {
     @Transactional
     public Turma create(Turma turma) {
         // Garante que o ID seja nulo para evitar conflitos de atualização
-        turma.setId_turma(null);
+        turma.setIdTurma(null);
         return turmaRepository.save(turma);
     }
 
-@Transactional
-public Turma update(Long idTurma, Turma turmaAtualizada) {
-    Turma turmaExistente = findById(idTurma);
-    
-    // Atualizar os campos da turma com base nos dados recebidos
-    turmaExistente.setNome_turma(turmaAtualizada.getNome_turma());
+    @Transactional
+    public Turma update(Long idTurma, Turma turmaAtualizada) {
+        Turma turmaExistente = findById(idTurma);
 
-    // Atualizar relacionamentos com alunos
-    List<Aluno> alunosSelecionados = alunoRepository.findAllById(turmaAtualizada.getAlunos().stream().map(Aluno::getId_aluno).collect(Collectors.toList()));
-    turmaExistente.setAlunos(alunosSelecionados);
+        // Atualizar os campos da turma com base nos dados recebidos
+        turmaExistente.setNome_turma(turmaAtualizada.getNome_turma());
 
-    // Atualizar relacionamentos com professores
-    List<Professor> professoresSelecionados = professorRepository.findAllById(turmaAtualizada.getProfessores().stream().map(Professor::getId_professor).collect(Collectors.toList()));
-    turmaExistente.setProfessores(professoresSelecionados);
+        // Atualizar relacionamentos com alunos
+        List<Aluno> alunosSelecionados = alunoRepository
+                .findAllById(turmaAtualizada.getAlunos().stream().map(Aluno::getIdAluno).collect(Collectors.toList()));
+        turmaExistente.setAlunos(alunosSelecionados);
 
-    // Atualizar relacionamentos com disciplinas
-    List<Disciplina> disciplinasSelecionadas = disciplinaRepository.findAllById(turmaAtualizada.getDisciplinas().stream().map(Disciplina::getIdDisciplina).collect(Collectors.toList()));
-    turmaExistente.setDisciplinas(disciplinasSelecionadas);
-    
-    // Salvar e retornar a turma atualizada
-    return turmaRepository.save(turmaExistente);
-}
+        // Atualizar relacionamentos com professores
+        List<Professor> professoresSelecionados = professorRepository.findAllById(
+                turmaAtualizada.getProfessores().stream().map(Professor::getId_professor).collect(Collectors.toList()));
+        turmaExistente.setProfessores(professoresSelecionados);
 
-    
+        // Atualizar relacionamentos com disciplinas
+        List<Disciplina> disciplinasSelecionadas = disciplinaRepository.findAllById(turmaAtualizada.getDisciplinas()
+                .stream().map(Disciplina::getIdDisciplina).collect(Collectors.toList()));
+        turmaExistente.setDisciplinas(disciplinasSelecionadas);
+
+        // Salvar e retornar a turma atualizada
+        return turmaRepository.save(turmaExistente);
+    }
 
     @Transactional
     public void delete(Long idTurma) {
@@ -125,4 +134,61 @@ public Turma update(Long idTurma, Turma turmaAtualizada) {
         List<Disciplina> disciplinas = disciplinaRepository.findAllById(disciplinasIds);
         turma.getDisciplinas().removeAll(disciplinas);
     }
+
+    @Transactional
+    public List<Map<String, Object>> getNotasDosAlunosNaDisciplina(Long idTurma, Long idDisciplina) {
+        List<Map<String, Object>> notasDosAlunos = new ArrayList<>();
+
+        // Buscar a turma pelo ID
+        Turma turma = findById(idTurma);
+
+        // Verificar se a turma existe
+        if (turma != null) {
+            // Buscar a disciplina pelo ID
+            Disciplina disciplina = disciplinaRepository.findById(idDisciplina).orElse(null);
+
+            // Verificar se a disciplina existe
+            if (disciplina != null) {
+                // Iterar sobre os alunos da turma
+                for (Aluno aluno : turma.getAlunos()) {
+                    Map<String, Object> notasDoAluno = new HashMap<>();
+                    notasDoAluno.put("idAluno", aluno.getIdAluno());
+                    notasDoAluno.put("nomeAluno", aluno.getNome_aluno());
+
+                    // Buscar as notas do aluno na disciplina específica
+                    Notas notas = notasRepository.findByAlunosIdAlunoAndTurmasIdTurmaAndDisciplinasIdDisciplina(
+                            aluno.getIdAluno(), idTurma, idDisciplina);
+
+                    // Verificar se existem notas para o aluno na disciplina
+                    if (notas != null) {
+                        // Adicionar as notas encontradas
+                        notasDoAluno.put("notaProva1", notas.getProva1());
+                        notasDoAluno.put("notaProva2", notas.getProva2());
+                        notasDoAluno.put("notaProva3", notas.getProva3());
+
+                        notasDoAluno.put("notaTrabalho1", notas.getTrabalho1());
+                        notasDoAluno.put("notaTrabalho2", notas.getTrabalho2());
+                        notasDoAluno.put("notaTrabalho3", notas.getTrabalho3());
+                        // Adicione outros campos de nota conforme necessário
+                    } else {
+                        // Caso não existam notas para o aluno na disciplina, adicione valores padrão
+                        notasDoAluno.put("notaProva1", 0);
+                        notasDoAluno.put("notaProva2", 0);
+                        notasDoAluno.put("notaProva3", 0);
+
+                        notasDoAluno.put("notaTrabalho1", 0);
+                        notasDoAluno.put("notaTrabalho2", 0);
+                        notasDoAluno.put("notaTrabalho3", 0);
+                    }
+
+                    // Adicionar as notas do aluno na lista
+                    notasDosAlunos.add(notasDoAluno);
+                }
+            }
+        }
+
+        return notasDosAlunos;
+    }
+
+
 }

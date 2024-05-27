@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/notas")
@@ -47,7 +48,8 @@ public class NotasController {
 
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao salvar múltiplas notas: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Erro ao salvar múltiplas notas: " + e.getMessage());
         }
     }
 
@@ -109,5 +111,37 @@ public class NotasController {
     public ResponseEntity<?> removerTurmas(@PathVariable Long id_notas, @RequestBody List<Long> turmasIds) {
         notasService.removerTurma(id_notas, turmasIds);
         return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @PutMapping("/{idNota}/turma/{idTurma}/disciplina/{idDisciplina}")
+    public ResponseEntity<?> editarNota(@PathVariable Long idTurma, @PathVariable Long idDisciplina,
+            @PathVariable Long idNota, @RequestBody Map<String, Double> requestBody) {
+        try {
+            Double notaProva1 = requestBody.get("notaProva1");
+            Double notaProva2 = requestBody.get("notaProva2");
+            Double notaProva3 = requestBody.get("notaProva3");
+            Double notaTrabalho1 = requestBody.get("notaTrabalho1");
+            Double notaTrabalho2 = requestBody.get("notaTrabalho2");
+            Double notaTrabalho3 = requestBody.get("notaTrabalho3");
+
+            notasService.editarNota(idNota, notaProva1, notaProva2, notaProva3, notaTrabalho1, notaTrabalho2,
+                    notaTrabalho3);
+
+            return ResponseEntity.status(HttpStatus.OK).body("Nota editada com sucesso.");
+        } catch (NullPointerException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Parâmetros incompletos.");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/aluno/{idAluno}/turmas/{idTurma}")
+    public ResponseEntity<Notas> getNotasByAlunoAndTurma(@PathVariable Long idAluno, @PathVariable Long idTurma) {
+        Notas notas = notasService.findNotasByAlunoIdAndTurmaId(idAluno, idTurma);
+        if (notas != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(notas);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 }

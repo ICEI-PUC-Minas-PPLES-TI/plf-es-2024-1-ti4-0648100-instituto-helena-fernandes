@@ -7,4 +7,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface NotasRepository extends JpaRepository<Notas, Long> {
+
+    Notas findByAlunosIdAlunoAndTurmasIdTurma(Long idAluno, Long idTurma);
+
+    Notas findByAlunosIdAlunoAndTurmasIdTurmaAndDisciplinasIdDisciplina(Long idAluno, Long idTurma, Long idDisciplina);
 }

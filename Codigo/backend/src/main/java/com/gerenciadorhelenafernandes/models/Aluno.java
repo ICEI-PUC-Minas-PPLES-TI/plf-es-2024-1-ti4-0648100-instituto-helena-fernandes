@@ -9,7 +9,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Entity
 @Table(name = Aluno.TABLE_NAME)
 @AllArgsConstructor
@@ -21,9 +20,9 @@ public class Aluno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_aluno", unique = true)
-    @JsonProperty("id_aluno")
-    private Long id_aluno;
+    @Column(name = "idAluno", unique = true)
+    @JsonProperty("idAluno")
+    private Long idAluno;
 
     @Column(name = "nome_aluno", length = 100, nullable = false)
     @NotBlank

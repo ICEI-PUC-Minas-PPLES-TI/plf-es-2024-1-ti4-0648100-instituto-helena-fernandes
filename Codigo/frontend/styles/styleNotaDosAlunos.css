@@ -120,3 +120,53 @@ form .button-group {
     gap: 20px;
     width: 100%;
 }
+
+/* Estilo para o card de detalhes */
+.detalhes-card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    width: 80%;
+    max-width: 400px;
+}
+
+.detalhes-card h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.detalhes-card form {
+    display: flex;
+    flex-direction: column;
+}
+
+.detalhes-card label {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.detalhes-card label input {
+    width: 50%;
+}
+
+.detalhes-card button {
+    width: auto;
+    padding: 10px 20px;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.detalhes-card button[type="button"] {
+    background-color: #007bff;
+}
+
+.detalhes-card button[type="button"]:hover {
+    background-color: #0056b3;
+}
