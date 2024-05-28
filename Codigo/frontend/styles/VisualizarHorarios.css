@@ -1,0 +1,144 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/BGGerenciarProfessores.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Poppins', sans-serif;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Alinha todos os itens no eixo principal */
+    justify-content: center; /* Alinha todos os itens no eixo cruzado */
+    width: 100%;
+    height: 100%;
+  }
+  .logo-container {
+    width: 80px; /* Ajuste conforme necessário */
+    height: auto; 
+    margin-top: 3%; 
+  }
+  
+  .logo-container img {
+    width: 100%;
+    height: auto;
+  }
+  .header {
+    text-align: center;
+  }
+  
+  .container1 {
+    text-align: center;
+  }
+/* CSS CARROSSEL*/
+
+  [carrousel] {
+    display: flex;
+    position: relative;
+    background-color: inherit;
+    border-radius: 10px;
+    min-height: 50vh;
+    min-width: 50vw;
+  
+    &::before {
+      content: "";
+      display: block;
+      padding-bottom: 50%;
+    }
+  
+    [name~="carrousel"] {
+      display: none;
+  
+      &:checked {
+        + .slide {
+          pointer-events: auto;
+          opacity: 1;
+          .slide-content {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .slide-content {
+      opacity: 0;
+      transition: opacity 1s;
+    }
+  
+    .back,
+    .forward {
+      display: block;
+      position: absolute;
+      top: calc(50% - 2rem);
+      height: 4rem;
+      width: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+      font-size: 0.5rem;
+      background-color: inherit;
+      border-radius: 100px;
+      box-shadow: 0 2px 0 0 rgba(black, 0.1);
+      transform: scale(0.9);
+      transition: transform 0.2s;
+  
+      &:hover {
+        transform: scale(1);
+        background-color: #3065B1;
+      }
+    }
+  
+    .back {
+      left: calc(0% + 1rem);
+    }
+  
+    .forward {
+      right: calc(0% + 1rem);
+    }
+  
+  /* CSS DE CADA HORÁRIO */
+
+  .horario {
+    margin-bottom: 20px;
+    padding: 10px 25px;;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #E9E9E9;
+    display: flex;
+    justify-content: space-between; /* Distribui o espaço igualmente entre os elementos */
+    align-items: center; /* Alinha os elementos ao centro verticalmente */
+}
+
+.horario > div {
+    margin: 0 24px; /* Espaçamento entre as divs internas */
+}
+
+.horario h2 {
+    margin: 0; /* Remove a margem padrão do <h2> */
+    font-size: 22px;
+    color: #4D4D4D;
+}
+
+.horario p {
+    color: #4D4D4D;
+    margin: 0px; /* Reduz a margem superior do <p> */
+}
+  }
