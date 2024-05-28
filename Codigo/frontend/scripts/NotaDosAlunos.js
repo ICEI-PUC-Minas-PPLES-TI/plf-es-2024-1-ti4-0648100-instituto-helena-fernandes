@@ -7,19 +7,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// Função para extrair parâmetros da URL
 function getParameterByName(name, url = window.location.href) {
     name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    const regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
         results = regex.exec(url);
     if (!results) return null;
     if (!results[2]) return "";
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-// Função para carregar os alunos da turma junto com as notas
 async function carregarAlunosDaTurma(idTurma) {
     try {
+        console.log(`Carregando alunos da turma: ${idTurma}`);
         const response = await fetch(`http://localhost:8080/turma/${idTurma}/alunos`);
         if (!response.ok) {
             throw new Error("Falha ao buscar alunos");
@@ -48,11 +47,11 @@ async function carregarAlunosDaTurma(idTurma) {
     }
 }
 
-// Função para carregar as notas de um aluno específico
 async function carregarNotasDoAluno(idAluno, idTurma) {
     try {
+        console.log(`Carregando notas do aluno: aluno: ${idAluno}, turma: ${idTurma}`);
         const response = await fetch(`http://localhost:8080/notas/aluno/${idAluno}/turmas/${idTurma}`);
-        if (!response.ok) { 
+        if (!response.ok) {
             throw new Error("Falha ao buscar notas do aluno");
         }
         const notas = await response.json();
@@ -63,9 +62,7 @@ async function carregarNotasDoAluno(idAluno, idTurma) {
     }
 }
 
-// Função para abrir o card de detalhes de um aluno específico
 function abrirDetalhes(idAluno, idTurma, idNota, idDisciplina) {
-    // Remover qualquer card existente antes de criar um novo
     const cardExistente = document.getElementById("detalhes-card");
     if (cardExistente) {
         cardExistente.remove();
@@ -95,8 +92,6 @@ function abrirDetalhes(idAluno, idTurma, idNota, idDisciplina) {
     carregarNotasParaDetalhes(idAluno, idTurma);
 }
 
-
-// Função para carregar as notas de um aluno específico no card de detalhes
 async function carregarNotasParaDetalhes(idAluno, idTurma) {
     try {
         const notas = await carregarNotasDoAluno(idAluno, idTurma);
@@ -112,7 +107,6 @@ async function carregarNotasParaDetalhes(idAluno, idTurma) {
     }
 }
 
-// Função para salvar os detalhes de um aluno específico
 async function salvarDetalhes(idAluno, idTurma, idNota, idDisciplina) {
     const form = document.getElementById("form-detalhes");
     const notas = {
@@ -125,6 +119,7 @@ async function salvarDetalhes(idAluno, idTurma, idNota, idDisciplina) {
     };
 
     try {
+        console.log(`Salvando detalhes: aluno: ${idNota}, turma: ${idTurma}, disciplina: ${idDisciplina}`, notas);
         const response = await fetch(`http://localhost:8080/notas/${idNota}/turma/${idTurma}/disciplina/${idDisciplina}`, {
             method: "PUT",
             headers: {
@@ -145,8 +140,6 @@ async function salvarDetalhes(idAluno, idTurma, idNota, idDisciplina) {
     }
 }
 
-
-// Função para fechar o card de detalhes
 function fecharDetalhes() {
     const card = document.getElementById("detalhes-card");
     if (card) {
