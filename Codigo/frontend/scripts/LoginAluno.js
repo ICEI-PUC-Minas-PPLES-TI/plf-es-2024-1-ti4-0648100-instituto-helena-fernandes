@@ -25,21 +25,22 @@ function login() {
             alert("Credenciais inválidas. Por favor, tente novamente.");
         } else {
             // Faz uma nova requisição para buscar o status do aluno
-            fetch(`http://localhost:8080/aluno/${Math.abs(data)}`) // Usa o valor absoluto do ID para a requisição
+            const alunoId = Math.abs(data); // Usa o valor absoluto do ID para a requisição
+            fetch(`http://localhost:8080/aluno/${alunoId}`)
             .then(response => response.json())
             .then(aluno => {
                 switch (aluno.status_aluno) {
                     case "1":
-                        window.location.href = "../views/TelaAluno.html";
+                        window.location.href = `../views/TelaAluno.html?idAluno=${alunoId}`;
                         break;
                     case "2":
-                        window.location.href = "../views/TelaRecusado.html";
+                        window.location.href = `../views/TelaRecusado.html?idAluno=${alunoId}`;
                         break;
                     case "0":
-                        window.location.href = "../views/ConfirmacaoAluno.html";
+                        window.location.href = `../views/ConfirmacaoAluno.html?idAluno=${alunoId}`;
                         break;
                     default:
-                        window.location.href = `../views/FormularioAluno.html?idAluno=${data}`;
+                        window.location.href = `../views/FormularioAluno.html?idAluno=${alunoId}`;
                 }
             })
             .catch(error => {
@@ -52,6 +53,4 @@ function login() {
         console.error('Erro ao fazer login:', error);
         alert("Ocorreu um erro ao fazer login. Por favor, tente novamente mais tarde.");
     });
-    
-    
 }
