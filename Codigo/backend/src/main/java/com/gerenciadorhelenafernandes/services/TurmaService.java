@@ -108,6 +108,18 @@ public class TurmaService {
     }
 
     @Transactional
+    public List<Professor> getProfessoresById(Long id_turma) {
+        Turma turma = turmaRepository.findById(id_turma).orElseThrow(() -> new RuntimeException("Turma não encontrada!"));
+        return turma.getProfessores();
+    }
+
+    @Transactional
+    public List<Disciplina> getDisciplinasById(Long id_turma) {
+        Turma turma = turmaRepository.findById(id_turma).orElseThrow(() -> new RuntimeException("Turma não encontrada!"));
+        return turma.getDisciplinas();
+    }
+    
+    @Transactional
     public void adicionarProfessor(Long idTurma, List<Long> professoresIds) {
         Turma turma = findById(idTurma);
         List<Professor> professores = professorRepository.findAllById(professoresIds);

@@ -6,11 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.gerenciadorhelenafernandes.models.Disciplina;
 import com.gerenciadorhelenafernandes.models.Professor;
 import com.gerenciadorhelenafernandes.models.Turma;
 import com.gerenciadorhelenafernandes.services.ProfessorService;
-import com.gerenciadorhelenafernandes.services.DisciplinaService;
 
 import com.gerenciadorhelenafernandes.repositories.TurmaRepository;
 
@@ -21,7 +19,6 @@ public class ProfessorController {
 
     @Autowired
     private ProfessorService professorService;
-    private DisciplinaService disciplinaService;
 
     @Autowired
     private TurmaRepository turmaRepository;  
@@ -47,13 +44,6 @@ public class ProfessorController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(-1L); // Indica erro
         }
     }
-
-    @GetMapping("/disciplinas")
-    public ResponseEntity<List<Disciplina>> findAllDisciplinas() {
-        List<Disciplina> disciplinas = disciplinaService.findAll();
-        return ResponseEntity.ok().body(disciplinas);
-    }
-
     @PostMapping
     public ResponseEntity<Professor> create(@RequestBody Professor professor) {
         Professor novoProfessor = professorService.create(professor);
@@ -85,9 +75,4 @@ public class ProfessorController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
-
-    
-    
-
-
 }

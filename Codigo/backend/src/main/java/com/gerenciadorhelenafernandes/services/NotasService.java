@@ -3,6 +3,7 @@ package com.gerenciadorhelenafernandes.services;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,6 +59,31 @@ public class NotasService {
     }
 
     @Transactional
+    public void saveMultipleNotas(List<Notas> notasList) {
+        for (Notas nota : notasList) {
+            // Fetch and set persistent entities for each nota
+            List<Aluno> alunosPersistentes = alunoRepository.findAllById(
+                    nota.getAlunos().stream().map(Aluno::getIdAluno).collect(Collectors.toList()));
+
+            List<Professor> professoresPersistentes = professorRepository.findAllById(
+                    nota.getProfessores().stream().map(Professor::getId_professor).collect(Collectors.toList()));
+
+            List<Disciplina> disciplinasPersistentes = disciplinaRepository.findAllById(
+                    nota.getDisciplinas().stream().map(Disciplina::getIdDisciplina).collect(Collectors.toList()));
+
+            List<Turma> turmasPersistentes = turmaRepository.findAllById(
+                    nota.getTurmas().stream().map(Turma::getIdTurma).collect(Collectors.toList()));
+
+            nota.setAlunos(alunosPersistentes);
+            nota.setProfessores(professoresPersistentes);
+            nota.setDisciplinas(disciplinasPersistentes);
+            nota.setTurmas(turmasPersistentes);
+        }
+
+        notasRepository.saveAll(notasList);
+    }
+
+    @Transactional
     public Notas update(Long idNotas, Notas notasAtualizada) {
         Notas notasExistente = findById(idNotas);
 
@@ -88,88 +114,24 @@ public class NotasService {
     }
 
     @Transactional
-    public void adicionarAluno(Long idNotas, List<Long> alunosIds) {
-        Notas notas = findById(idNotas);
-        List<Aluno> alunos = alunoRepository.findAllById(alunosIds);
-        notas.getAlunos().addAll(alunos);
-    }
-
-    @Transactional
-    public void removerAluno(Long idNotas, List<Long> alunosIds) {
-        Notas notas = findById(idNotas);
-        List<Aluno> alunos = alunoRepository.findAllById(alunosIds);
-        notas.getAlunos().removeAll(alunos);
-    }
-
-    @Transactional
-    public void adicionarProfessor(Long idNotas, List<Long> professoresIds) {
-        Notas notas = findById(idNotas);
-        List<Professor> professores = professorRepository.findAllById(professoresIds);
-        notas.getProfessores().addAll(professores);
-    }
-
-    @Transactional
-    public void removerProfessor(Long idNotas, List<Long> professoresIds) {
-        Notas notas = findById(idNotas);
-        List<Professor> professores = professorRepository.findAllById(professoresIds);
-        notas.getProfessores().removeAll(professores);
-    }
-
-    @Transactional
-    public void adicionarDisciplina(Long idNotas, List<Long> disciplinasIds) {
-        Notas notas = findById(idNotas);
-        List<Disciplina> disciplinas = disciplinaRepository.findAllById(disciplinasIds);
-        notas.getDisciplinas().addAll(disciplinas);
-    }
-
-    @Transactional
-    public void removerDisciplina(Long idNotas, List<Long> disciplinasIds) {
-        Notas notas = findById(idNotas);
-        List<Disciplina> disciplinas = disciplinaRepository.findAllById(disciplinasIds);
-        notas.getDisciplinas().removeAll(disciplinas);
-    }
-
-    @Transactional
-    public void adicionarTurma(Long idNotas, List<Long> turmasIds) {
-        Notas notas = findById(idNotas);
-        List<Turma> turmas = turmaRepository.findAllById(turmasIds);
-        notas.getTurmas().addAll(turmas);
-    }
-
-    @Transactional
-    public void removerTurma(Long idNotas, List<Long> turmasIds) {
-        Notas notas = findById(idNotas);
-        List<Turma> turmas = turmaRepository.findAllById(turmasIds);
-        notas.getTurmas().removeAll(turmas);
-    }
-
-    @Transactional
-    public Notas cadastrarNota(Long idAluno, Long idTurma, Long idDisciplina, Double notaProva1, Double notaProva2,
+    public Notas cadastrarNota(Long idAluno,Long idTurma, Long idDisciplina,  Long idProfessor, Double notaProva1, Double notaProva2,
             Double notaProva3, Double notaTrabalho1, Double notaTrabalho2, Double notaTrabalho3) {
-        // Verificar se a nota já foi cadastrada
-        Notas notasExistente = notasRepository.findByAlunosIdAlunoAndTurmasIdTurmaAndDisciplinasIdDisciplina(idAluno,
-                idTurma, idDisciplina);
-        if (notasExistente != null) {
-            throw new RuntimeException("Nota já cadastrada para este aluno nesta disciplina.");
-        }
-
         // Buscar aluno, turma e disciplina pelo ID
         Aluno aluno = alunoRepository.findById(idAluno)
                 .orElseThrow(() -> new RuntimeException("Aluno não encontrado!"));
         Turma turma = turmaRepository.findById(idTurma)
                 .orElseThrow(() -> new RuntimeException("Turma não encontrada!"));
+        Professor professor = professorRepository.findById(idProfessor)
+                .orElseThrow(() -> new RuntimeException("Professor não encontrado!"));
         Disciplina disciplina = disciplinaRepository.findById(idDisciplina)
                 .orElseThrow(() -> new RuntimeException("Disciplina não encontrada!"));
 
         // Criar uma nova instância de Notas
         Notas novaNota = new Notas();
-
-        // Definir o aluno, turma e disciplina para a nova nota
         novaNota.setAlunos(Collections.singletonList(aluno));
-        novaNota.setTurmas(Collections.singletonList(turma));
+        novaNota.setTurmas(Collections.singletonList(turma));        
+        novaNota.setProfessores(Collections.singletonList(professor));
         novaNota.setDisciplinas(Collections.singletonList(disciplina));
-
-        // Definir as notas de prova e trabalho
         novaNota.setProva1(notaProva1);
         novaNota.setProva2(notaProva2);
         novaNota.setProva3(notaProva3);
@@ -192,7 +154,7 @@ public class NotasService {
         notas.setTrabalho1(notaTrabalho1);
         notas.setTrabalho2(notaTrabalho2);
         notas.setTrabalho3(notaTrabalho3);
-        
+
         notasRepository.save(notas);
     }
 

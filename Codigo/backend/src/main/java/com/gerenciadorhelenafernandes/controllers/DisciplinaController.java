@@ -32,7 +32,7 @@ public class DisciplinaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Disciplina>> listarTodas(
+    public ResponseEntity<List<Disciplina>> findAll(
             @RequestParam(value = "nome", required = false) String nome) {
         List<Disciplina> lista;
         if (nome != null) {
