@@ -73,38 +73,6 @@ function getParameterByName(name, url = window.location.href) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-async function carregarAlunosDaTurma(idTurma) {
-    try {
-        console.log(`Carregando alunos da turma: ${idTurma}`);
-        const responseAlunos = await fetch(`http://localhost:8080/turma/${idTurma}/alunos`);
-        if (!responseAlunos.ok) {
-            throw new Error("Falha ao buscar alunos");
-        }
-        const alunos = await responseAlunos.json();
-        const listaAlunos = document.getElementById("lista-alunos");
-
-        for (const aluno of alunos) {
-            const notas = await carregarNotasDoAluno(aluno.idAluno, idTurma);
-            const row = document.createElement("tr");
-            row.innerHTML = `
-                <td>${aluno.nome_aluno}</td>
-                <td>${notas.prova1 ?? 0}</td>
-                <td>${notas.prova2 ?? 0}</td>
-                <td>${notas.prova3 ?? 0}</td>
-                <td>${notas.trabalho1 ?? 0}</td>
-                <td>${notas.trabalho2 ?? 0}</td>
-                <td>${notas.trabalho3 ?? 0}</td>
-                <td><button type="button" onclick="abrirDetalhes(${aluno.idAluno}, ${idTurma}, ${notas.id}, ${notas.idDisciplina})">Detalhes</button></td>
-            `;
-            listaAlunos.appendChild(row);
-        }
-    } catch (error) {
-        console.error("Erro ao carregar alunos:", error);
-        alert("Não foi possível carregar os alunos. Por favor, tente novamente.");
-    }
-}
-
-
 async function carregarNotasDoAluno(idAluno, idTurma) {
     const idDisciplina = getParameterByName("id_disciplina");
     try {
@@ -126,6 +94,7 @@ async function abrirDetalhes(idAluno, idTurma, idNota, idDisciplina) {
     if (cardExistente) {
         cardExistente.remove();
     }
+    console.log("idNota "+ idNota);
 
     const card = document.createElement("div");
     card.id = "detalhes-card";
@@ -201,6 +170,7 @@ async function salvarDetalhes(idAluno, idTurma, idNota, idDisciplina) {
         let response;
 
         if (idNota == null || idNota === "undefined") {
+
             // Cria nova nota
             response = await fetch(`http://localhost:8080/turma/${idTurma}/disciplina/${idDisciplina}/professor/${idProfessor}/notas`, {
                 method: "POST",

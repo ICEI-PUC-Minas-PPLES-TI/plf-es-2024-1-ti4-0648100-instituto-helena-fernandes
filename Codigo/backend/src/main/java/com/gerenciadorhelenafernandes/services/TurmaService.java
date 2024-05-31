@@ -147,6 +147,7 @@ public class TurmaService {
         turma.getDisciplinas().removeAll(disciplinas);
     }
 
+
     @Transactional
     public List<Map<String, Object>> getNotasDosAlunosNaDisciplina(Long idTurma, Long idDisciplina) {
         List<Map<String, Object>> notasDosAlunos = new ArrayList<>();
@@ -175,6 +176,7 @@ public class TurmaService {
                     if (notasList != null && !notasList.isEmpty()) {
                         Notas notas = notasList.get(0); // Supondo que sempre haverá uma única nota relevante
                         // Adicionar as notas encontradas
+                        notasDoAluno.put("idNota", notas.getIdNotas()); // Incluir o idNota
                         notasDoAluno.put("notaProva1", notas.getProva1());
                         notasDoAluno.put("notaProva2", notas.getProva2());
                         notasDoAluno.put("notaProva3", notas.getProva3());
@@ -184,6 +186,7 @@ public class TurmaService {
                         notasDoAluno.put("notaTrabalho3", notas.getTrabalho3());
                     } else {
                         // Caso não existam notas para o aluno na disciplina, adicione valores padrão
+                        notasDoAluno.put("idNota", null); // Incluir idNota como null
                         notasDoAluno.put("notaProva1", 0);
                         notasDoAluno.put("notaProva2", 0);
                         notasDoAluno.put("notaProva3", 0);
@@ -201,6 +204,7 @@ public class TurmaService {
     
         return notasDosAlunos;
     }
+    
     
     @Transactional
     public Map<String, Object> getNotasDoAlunoNaDisciplina(Long idTurma, Long idDisciplina, Long idAluno) {

@@ -112,9 +112,8 @@ public class NotasService {
     public List<Notas> saveAll(List<Notas> notasList) {
         return notasRepository.saveAll(notasList);
     }
-
     @Transactional
-    public Notas cadastrarNota(Long idAluno,Long idTurma, Long idDisciplina,  Long idProfessor, Double notaProva1, Double notaProva2,
+    public Notas cadastrarNota(Long idAluno, Long idTurma, Long idDisciplina, Long idProfessor, Double notaProva1, Double notaProva2,
             Double notaProva3, Double notaTrabalho1, Double notaTrabalho2, Double notaTrabalho3) {
         // Buscar aluno, turma e disciplina pelo ID
         Aluno aluno = alunoRepository.findById(idAluno)
@@ -125,11 +124,11 @@ public class NotasService {
                 .orElseThrow(() -> new RuntimeException("Professor não encontrado!"));
         Disciplina disciplina = disciplinaRepository.findById(idDisciplina)
                 .orElseThrow(() -> new RuntimeException("Disciplina não encontrada!"));
-
+    
         // Criar uma nova instância de Notas
         Notas novaNota = new Notas();
         novaNota.setAlunos(Collections.singletonList(aluno));
-        novaNota.setTurmas(Collections.singletonList(turma));        
+        novaNota.setTurmas(Collections.singletonList(turma));
         novaNota.setProfessores(Collections.singletonList(professor));
         novaNota.setDisciplinas(Collections.singletonList(disciplina));
         novaNota.setProva1(notaProva1);
@@ -138,13 +137,13 @@ public class NotasService {
         novaNota.setTrabalho1(notaTrabalho1);
         novaNota.setTrabalho2(notaTrabalho2);
         novaNota.setTrabalho3(notaTrabalho3);
-
+    
         // Salvar e retornar a nova nota
         return notasRepository.save(novaNota);
     }
-
+    
     @Transactional
-    public void editarNota(Long idAluno, Long idTurma, Long idDisciplina, Double notaProva1, Double notaProva2,
+    public Notas editarNota(Long idAluno, Long idTurma, Long idDisciplina, Double notaProva1, Double notaProva2,
             Double notaProva3, Double notaTrabalho1, Double notaTrabalho2, Double notaTrabalho3) {
         // Buscar a nota do aluno na turma e disciplina específicas
         List<Notas> notas = notasRepository.findByAlunosIdAlunoAndTurmasIdTurmaAndDisciplinasIdDisciplina(idAluno, idTurma, idDisciplina);
@@ -159,7 +158,7 @@ public class NotasService {
             nota.setTrabalho3(notaTrabalho3);
             
             // Salvar as alterações no banco de dados
-            notasRepository.save(nota);
+            return notasRepository.save(nota);
         } else if (notas.size() == 0) {
             // Se a nota não existir, lançar uma exceção
             throw new RuntimeException("Nota do aluno não encontrada.");
@@ -168,5 +167,6 @@ public class NotasService {
             throw new RuntimeException("Erro: Múltiplas notas encontradas para a combinação fornecida.");
         }
     }
+    
     
 }

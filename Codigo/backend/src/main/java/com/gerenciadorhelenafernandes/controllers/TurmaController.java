@@ -2,6 +2,7 @@ package com.gerenciadorhelenafernandes.controllers;
 
 import com.gerenciadorhelenafernandes.models.Aluno;
 import com.gerenciadorhelenafernandes.models.Disciplina;
+import com.gerenciadorhelenafernandes.models.Notas;
 import com.gerenciadorhelenafernandes.models.Professor;
 import com.gerenciadorhelenafernandes.models.Turma;
 import com.gerenciadorhelenafernandes.services.NotasService;
@@ -133,6 +134,7 @@ public class TurmaController {
         List<Map<String, Object>> notasDosAlunos = turmaService.getNotasDosAlunosNaDisciplina(idTurma, idDisciplina);
         return ResponseEntity.ok(notasDosAlunos);
     }
+    
 
     // recupera as notas de alunos específicos de uma turma específica em uma
     // disciplina específica
@@ -153,7 +155,7 @@ public class TurmaController {
     public ResponseEntity<?> cadastrarNota(@PathVariable Long idTurma, @PathVariable Long idDisciplina,
             @PathVariable Long idProfessor, @RequestBody Map<String, Object> requestBody) {
         try {
-            Long idAluno = Long.parseLong(requestBody.get("idAluno").toString());
+            Long idAluno = Long.parseLong(requestBody.get("idAluno").toString());   
             Double notaProva1 = Double.parseDouble(requestBody.get("notaProva1").toString());
             Double notaProva2 = Double.parseDouble(requestBody.get("notaProva2").toString());
             Double notaProva3 = Double.parseDouble(requestBody.get("notaProva3").toString());
@@ -161,10 +163,11 @@ public class TurmaController {
             Double notaTrabalho2 = Double.parseDouble(requestBody.get("notaTrabalho2").toString());
             Double notaTrabalho3 = Double.parseDouble(requestBody.get("notaTrabalho3").toString());
 
-            notasService.cadastrarNota(idAluno, idTurma, idDisciplina, idProfessor, notaProva1, notaProva2, notaProva3,
+            Notas novaNota = notasService.cadastrarNota(idAluno, idTurma, idDisciplina, idProfessor, notaProva1,
+                    notaProva2, notaProva3,
                     notaTrabalho1, notaTrabalho2, notaTrabalho3);
 
-            return ResponseEntity.status(HttpStatus.CREATED).body("Notas cadastradas com sucesso.");
+            return ResponseEntity.status(HttpStatus.CREATED).body(novaNota);
         } catch (NumberFormatException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Formato inválido para ID do aluno ou notas.");
         } catch (RuntimeException e) {
