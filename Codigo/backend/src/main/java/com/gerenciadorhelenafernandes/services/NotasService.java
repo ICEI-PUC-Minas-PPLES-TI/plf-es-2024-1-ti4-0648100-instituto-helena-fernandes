@@ -144,18 +144,29 @@ public class NotasService {
     }
 
     @Transactional
-    public void editarNota(Long idNota, Double notaProva1, Double notaProva2,
+    public void editarNota(Long idAluno, Long idTurma, Long idDisciplina, Double notaProva1, Double notaProva2,
             Double notaProva3, Double notaTrabalho1, Double notaTrabalho2, Double notaTrabalho3) {
-        Notas notas = findById(idNota);
-
-        notas.setProva1(notaProva1);
-        notas.setProva2(notaProva2);
-        notas.setProva3(notaProva3);
-        notas.setTrabalho1(notaTrabalho1);
-        notas.setTrabalho2(notaTrabalho2);
-        notas.setTrabalho3(notaTrabalho3);
-
-        notasRepository.save(notas);
+        // Buscar a nota do aluno na turma e disciplina específicas
+        List<Notas> notas = notasRepository.findByAlunosIdAlunoAndTurmasIdTurmaAndDisciplinasIdDisciplina(idAluno, idTurma, idDisciplina);
+        if (notas.size() == 1) {
+            Notas nota = notas.get(0);
+            // Atualizar as notas do aluno
+            nota.setProva1(notaProva1);
+            nota.setProva2(notaProva2);
+            nota.setProva3(notaProva3);
+            nota.setTrabalho1(notaTrabalho1);
+            nota.setTrabalho2(notaTrabalho2);
+            nota.setTrabalho3(notaTrabalho3);
+            
+            // Salvar as alterações no banco de dados
+            notasRepository.save(nota);
+        } else if (notas.size() == 0) {
+            // Se a nota não existir, lançar uma exceção
+            throw new RuntimeException("Nota do aluno não encontrada.");
+        } else {
+            // Se houver mais de uma nota para a combinação dada, lançar uma exceção
+            throw new RuntimeException("Erro: Múltiplas notas encontradas para a combinação fornecida.");
+        }
     }
-
+    
 }

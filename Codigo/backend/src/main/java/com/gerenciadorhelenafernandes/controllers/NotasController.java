@@ -64,27 +64,29 @@ public class NotasController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @PutMapping("/{idNota}/turma/{idTurma}/disciplina/{idDisciplina}")
-    public ResponseEntity<?> editarNota(@PathVariable Long idTurma, @PathVariable Long idDisciplina,
-            @PathVariable Long idNota, @RequestBody Map<String, Double> requestBody) {
-        try {
-            Double notaProva1 = requestBody.get("notaProva1");
-            Double notaProva2 = requestBody.get("notaProva2");
-            Double notaProva3 = requestBody.get("notaProva3");
-            Double notaTrabalho1 = requestBody.get("notaTrabalho1");
-            Double notaTrabalho2 = requestBody.get("notaTrabalho2");
-            Double notaTrabalho3 = requestBody.get("notaTrabalho3");
-
-            notasService.editarNota(idNota, notaProva1, notaProva2, notaProva3, notaTrabalho1, notaTrabalho2,
-                    notaTrabalho3);
-
-            return ResponseEntity.status(HttpStatus.OK).body("Nota editada com sucesso.");
-        } catch (NullPointerException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Parâmetros incompletos.");
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }
-    }
+     // Editar nota de um aluno em uma turma e disciplina específicas
+     @PutMapping("/aluno/{idAluno}/turma/{idTurma}/disciplina/{idDisciplina}")
+     public ResponseEntity<?> editarNota(@PathVariable Long idTurma, @PathVariable Long idDisciplina,
+             @PathVariable Long idAluno, @RequestBody Map<String, Double> requestBody) {
+         try {
+             Double notaProva1 = requestBody.get("notaProva1");
+             Double notaProva2 = requestBody.get("notaProva2");
+             Double notaProva3 = requestBody.get("notaProva3");
+             Double notaTrabalho1 = requestBody.get("notaTrabalho1");
+             Double notaTrabalho2 = requestBody.get("notaTrabalho2");
+             Double notaTrabalho3 = requestBody.get("notaTrabalho3");
+ 
+             notasService.editarNota(idAluno, idTurma, idDisciplina, notaProva1, notaProva2, notaProva3, notaTrabalho1,
+                     notaTrabalho2,
+                     notaTrabalho3);
+ 
+             return ResponseEntity.status(HttpStatus.OK).body("Nota editada com sucesso.");
+         } catch (NullPointerException e) {
+             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Parâmetros incompletos.");
+         } catch (RuntimeException e) {
+             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+         }
+     }
 
     // encontrar uma nota de um aluno específico
     @GetMapping("/aluno/{idAluno}/turmas/{idTurma}")

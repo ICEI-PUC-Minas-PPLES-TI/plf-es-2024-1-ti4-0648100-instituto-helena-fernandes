@@ -150,15 +150,15 @@ public class TurmaService {
     @Transactional
     public List<Map<String, Object>> getNotasDosAlunosNaDisciplina(Long idTurma, Long idDisciplina) {
         List<Map<String, Object>> notasDosAlunos = new ArrayList<>();
-
+    
         // Buscar a turma pelo ID
-        Turma turma = findById(idTurma);
-
+        Turma turma = turmaRepository.findById(idTurma).orElse(null);
+    
         // Verificar se a turma existe
         if (turma != null) {
             // Buscar a disciplina pelo ID
             Disciplina disciplina = disciplinaRepository.findById(idDisciplina).orElse(null);
-
+    
             // Verificar se a disciplina existe
             if (disciplina != null) {
                 // Iterar sobre os alunos da turma
@@ -166,41 +166,93 @@ public class TurmaService {
                     Map<String, Object> notasDoAluno = new HashMap<>();
                     notasDoAluno.put("idAluno", aluno.getIdAluno());
                     notasDoAluno.put("nomeAluno", aluno.getNome_aluno());
-
+    
                     // Buscar as notas do aluno na disciplina específica
-                    Notas notas = notasRepository.findByAlunosIdAlunoAndTurmasIdTurmaAndDisciplinasIdDisciplina(
+                    List<Notas> notasList = notasRepository.findByAlunosIdAlunoAndTurmasIdTurmaAndDisciplinasIdDisciplina(
                             aluno.getIdAluno(), idTurma, idDisciplina);
-
+    
                     // Verificar se existem notas para o aluno na disciplina
-                    if (notas != null) {
+                    if (notasList != null && !notasList.isEmpty()) {
+                        Notas notas = notasList.get(0); // Supondo que sempre haverá uma única nota relevante
                         // Adicionar as notas encontradas
                         notasDoAluno.put("notaProva1", notas.getProva1());
                         notasDoAluno.put("notaProva2", notas.getProva2());
                         notasDoAluno.put("notaProva3", notas.getProva3());
-
+    
                         notasDoAluno.put("notaTrabalho1", notas.getTrabalho1());
                         notasDoAluno.put("notaTrabalho2", notas.getTrabalho2());
                         notasDoAluno.put("notaTrabalho3", notas.getTrabalho3());
-                        // Adicione outros campos de nota conforme necessário
                     } else {
                         // Caso não existam notas para o aluno na disciplina, adicione valores padrão
                         notasDoAluno.put("notaProva1", 0);
                         notasDoAluno.put("notaProva2", 0);
                         notasDoAluno.put("notaProva3", 0);
-
+    
                         notasDoAluno.put("notaTrabalho1", 0);
                         notasDoAluno.put("notaTrabalho2", 0);
                         notasDoAluno.put("notaTrabalho3", 0);
                     }
-
+    
                     // Adicionar as notas do aluno na lista
                     notasDosAlunos.add(notasDoAluno);
                 }
             }
         }
-
+    
         return notasDosAlunos;
     }
-
-
+    
+    @Transactional
+    public Map<String, Object> getNotasDoAlunoNaDisciplina(Long idTurma, Long idDisciplina, Long idAluno) {
+        Map<String, Object> notasDoAluno = new HashMap<>();
+    
+        // Buscar a turma pelo ID
+        Turma turma = turmaRepository.findById(idTurma).orElse(null);
+    
+        // Verificar se a turma existe
+        if (turma != null) {
+            // Buscar a disciplina pelo ID
+            Disciplina disciplina = disciplinaRepository.findById(idDisciplina).orElse(null);
+    
+            // Verificar se a disciplina existe
+            if (disciplina != null) {
+                // Buscar o aluno pelo ID
+                Aluno aluno = alunoRepository.findById(idAluno).orElse(null);
+    
+                // Verificar se o aluno existe e se está matriculado na turma
+                if (aluno != null && turma.getAlunos().contains(aluno)) {
+                    notasDoAluno.put("idAluno", aluno.getIdAluno());
+                    notasDoAluno.put("nomeAluno", aluno.getNome_aluno());
+    
+                    // Buscar as notas do aluno na disciplina específica
+                    List<Notas> notasList = notasRepository.findByAlunosIdAlunoAndTurmasIdTurmaAndDisciplinasIdDisciplina(
+                            idAluno, idTurma, idDisciplina);
+    
+                    // Verificar se existem notas para o aluno na disciplina
+                    if (notasList != null && !notasList.isEmpty()) {
+                        Notas notas = notasList.get(0); // Supondo que sempre haverá uma única nota relevante
+                        // Adicionar as notas encontradas
+                        notasDoAluno.put("notaProva1", notas.getProva1());
+                        notasDoAluno.put("notaProva2", notas.getProva2());
+                        notasDoAluno.put("notaProva3", notas.getProva3());
+    
+                        notasDoAluno.put("notaTrabalho1", notas.getTrabalho1());
+                        notasDoAluno.put("notaTrabalho2", notas.getTrabalho2());
+                        notasDoAluno.put("notaTrabalho3", notas.getTrabalho3());
+                    } else {
+                        // Caso não existam notas para o aluno na disciplina, adicione valores padrão
+                        notasDoAluno.put("notaProva1", 0);
+                        notasDoAluno.put("notaProva2", 0);
+                        notasDoAluno.put("notaProva3", 0);
+    
+                        notasDoAluno.put("notaTrabalho1", 0);
+                        notasDoAluno.put("notaTrabalho2", 0);
+                        notasDoAluno.put("notaTrabalho3", 0);
+                    }
+                }
+            }
+        }
+    
+        return notasDoAluno;
+    }
 }
