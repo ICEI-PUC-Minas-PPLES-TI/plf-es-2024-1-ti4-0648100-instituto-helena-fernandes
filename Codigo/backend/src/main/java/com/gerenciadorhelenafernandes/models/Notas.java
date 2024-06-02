@@ -57,7 +57,7 @@ public class Notas {
 
     @Column(name = "prova2")
     private Double prova2;
-    // aaaa
+
     @Column(name = "prova3")
     private Double prova3;
 
@@ -69,5 +69,4 @@ public class Notas {
 
     @Column(name = "trabalho3")
     private Double trabalho3;
-
 }

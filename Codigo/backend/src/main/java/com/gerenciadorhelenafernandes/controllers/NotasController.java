@@ -99,4 +99,14 @@ public class NotasController {
         }
     }
 
+    @GetMapping("/aluno/{idAluno}/disciplinas")
+    public ResponseEntity<List<Notas>> listarNotasPorAluno(@PathVariable Long idAluno) {
+        List<Notas> notasList = notasService.findNotasByAluno(idAluno);
+        if (notasList != null && !notasList.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.OK).body(notasList);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
 }

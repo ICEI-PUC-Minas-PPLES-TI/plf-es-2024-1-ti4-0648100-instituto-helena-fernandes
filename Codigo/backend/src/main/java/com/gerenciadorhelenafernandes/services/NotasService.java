@@ -168,5 +168,8 @@ public class NotasService {
         }
     }
     
+    public List<Notas> findNotasByAluno(Long idAluno) {
+        return notasRepository.findByAlunosIdAluno(idAluno);
+    }
     
 }

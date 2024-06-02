@@ -15,4 +15,7 @@ public interface NotasRepository extends JpaRepository<Notas, Long> {
 
     List<Notas> findByAlunosIdAlunoAndTurmasIdTurmaAndDisciplinasIdDisciplina(Long alunoId, Long turmaId, Long disciplinaId);
 
+    List<Notas> findByAlunosIdAluno(Long idAluno);
+
+
 }
