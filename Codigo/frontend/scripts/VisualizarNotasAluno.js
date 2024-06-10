@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <td>${nota.trabalho1}</td>
                         <td>${nota.trabalho2}</td>
                         <td>${nota.trabalho3}</td>
+                        <td>${nota.prova1 + nota.prova2 + nota.prova3 + nota.trabalho1 + nota.trabalho2 + nota.trabalho3}</td>
                     `;
                     notasBody.appendChild(row);
                 });

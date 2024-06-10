@@ -1,74 +1,80 @@
 <!DOCTYPE html>
 <html lang="pt">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Visualizar Notas</title>
-    <link rel="stylesheet" href="../styles/styleVisualizarNotas.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link rel="stylesheet" href="../styles/styleNotaDosAlunos.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <div class="back-to-home">
-        <a href="./TelaAluno.html">
-            <span class="arrow-left">←</span> Voltar ao início
-        </a>
-        <style>
-            .back-to-home {
-                position: fixed;
-                top: 10px;
-                left: 10px;
-                background-color: #f1f1f1;
-                padding: 10px 20px;
-                border-radius: 5px;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            }
-            
-            .back-to-home a {
-                text-decoration: none;
-                color: #333;
-                font-weight: bold;
-                transition: .2s;
-            }
+      <a href="./TelaAluno.html">
+        <span class="arrow-left">←</span> Voltar ao início
+      </a>
+      <style>
+        .back-to-home {
+          position: fixed;
+          top: 10px;
+          left: 10px;
+          background-color: #f1f1f1;
+          padding: 10px 20px;
+          border-radius: 5px;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
 
-            .back-to-home a:hover {
-                text-decoration: none;
-                color: #C52620;
-                font-weight: bold;
-                transition: .2s;
-            }
-            
-            .back-to-home .arrow-left {
-                margin-right: 10px;
-            }
- </style>
+        .back-to-home a {
+          text-decoration: none;
+          color: #333;
+          font-weight: bold;
+          transition: 0.2s;
+        }
+
+        .back-to-home a:hover {
+          text-decoration: none;
+          color: #c52620;
+          font-weight: bold;
+          transition: 0.2s;
+        }
+
+        .back-to-home .arrow-left {
+          margin-right: 10px;
+        }
+      </style>
     </div>
-
+    <div class="logoHeader">
+        <img src="../images/LOGO.png" alt="Logo" />
+      </div>
     <div class="container">
-        <div class="logo-container">
-            <img src="../images/LOGO.png" alt="Logo"> 
-        </div>
-        <div class="container1">
-            <div class="text-center">
-                <h1>Veja suas Notas Abaixo</h1>
-                <table id="notas-table">
-                    <thead>
-                        <tr>
-                            <th>Disciplina</th>
-                            <th>Prova 1</th>
-                            <th>Prova 2</th>
-                            <th>Prova 3</th>
-                            <th>Trabalho 1</th>
-                            <th>Trabalho 2</th>
-                            <th>Trabalho 3</th>
-                        </tr>
-                    </thead>
-                    <tbody id="notas-body">
-                        <!-- Notas serão carregadas aqui -->
-                    </tbody>
-                </table>
+        <div class="text-center">
+          <h1>Veja suas Notas Abaixo</h1>
+          <form id="notas-form">
+          <table id="notas-table">
+            <thead>
+              <tr>
+                <th>Disciplina</th>
+                <th>P1</th>
+                <th>P2</th>
+                <th>P3</th>
+                <th>T1</th>
+                <th>T2</th>
+                <th>T3</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody id="notas-body">
+              <!-- Notas serão carregadas aqui -->
+            </tbody>
+          </table>
+          <div class="button-group">
+                <button type="button" onclick="window.history.back()">Voltar</button>
             </div>
         </div>
+    </form>
     </div>
 
     <script src="../scripts/VisualizarNotasAluno.js"></script>
-</body>
+  </body>
 </html>

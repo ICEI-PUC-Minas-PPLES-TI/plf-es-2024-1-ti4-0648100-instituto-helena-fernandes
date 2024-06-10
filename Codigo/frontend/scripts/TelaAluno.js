@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (idAluno) {
         // Atualiza os links dos botões com o ID do aluno
         document.getElementById('linkVisualizarNotas').href = `./VisualizarNota.html?idAluno=${idAluno}`;
-        document.getElementById('linkVisualizarHorarios').href = `./VisualizarHorario.html?idAluno=${idAluno}`;
+        document.getElementById('linkVisualizarHorarios').href = `./VisualizarHorariosAluno.html?idAluno=${idAluno}`;
     } else {
         alert("ID do aluno não encontrado.");
     }
