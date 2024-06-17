@@ -28,7 +28,7 @@ keywords:
   - springboot
   - tis
   - MySQL
-repository-code: 
+repository-code: https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti4-0648100-instituto-helena-fernandes.git
 license: CC-BY-4.0
 version: 1.0.0
 date-released: 2022-07-14
