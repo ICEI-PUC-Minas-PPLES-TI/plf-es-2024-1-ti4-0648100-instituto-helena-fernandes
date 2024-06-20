@@ -84,4 +84,32 @@ html {
     transition: .3s;
 }
 
+button {
+    width: 150px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px;
+}
 
+button:hover {
+    opacity: 0.9;
+}
+
+button[type="button"] {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+button[type="button"]:hover {
+    background-color: #c82333;
+}
+
+form .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
