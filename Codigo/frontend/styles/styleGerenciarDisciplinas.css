@@ -1,50 +1,44 @@
-body,
-html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('../images/BGGerenciarProfessores.jpg');
-    /* Certifique-se de ajustar o caminho conforme necessário */
-    background-size: cover;
-    /* Assegura que a imagem de fundo cubra toda a tela */
-    background-position: center;
-    /* Centraliza a imagem de fundo na tela */
-    background-repeat: no-repeat;
-    font-family: 'Poppins', sans-serif;
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../images/BGGerenciarProfessores.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: 'Poppins', sans-serif;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .logo-container {
-    width: 50px;
-    /* Defina a largura desejada */
-    height: auto;
-    /* Isso permite que a altura seja ajustada automaticamente para manter a proporção */
-    margin-top: 3%;
+  width: 50px;
+  height: auto;
+  margin-top: 3%;
 }
 
 .logo-container img {
-    width: 100%;
-    /* Garante que a imagem ocupe toda a largura do contêiner */
-    height: auto;
-    /* Isso permite que a altura seja ajustada automaticamente para manter a proporção */
+  width: 100%;
+  height: auto;
 }
 
 .container1 {
-    text-align: center;
-    
+  text-align: center;
 }
 
 .text-center {
-    margin-top: 50px;
-    /* Espaçamento entre o texto e o botão, ajuste conforme necessário */
+  margin-top: 50px;
+}
+
+.button-container {
+  margin-top: 20px;
 }
 
 .add-button {
@@ -54,25 +48,33 @@ html {
   font-weight: 600;
   border: none;
   border-radius: 5px;
-  cursor: pointer;    
+  cursor: pointer;
   margin-bottom: 10px;
   box-shadow: 2px 3px 0px 0px #046C08;
-  scale: 1;
   transition: .3s;
 }
 
-.add-button:hover{
-  background-color: #09F112;
-  color: #3E3F4A;
-  padding: 10px 70px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;    
-  margin-bottom: 10px;
+.add-button:hover {
   scale: 1.1;
   transition: .3s;
 }
 
+.back-button {
+  background-color: #dc3545;
+  color: #fff;
+  padding: 10px 70px;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  box-shadow: 2px 3px 0px 0px #8b1306;
+  transition: .3s;
+}
+
+.back-button:hover {
+  background-color: #c82333;
+}
 
 .disciplina-item {
   border-radius: 5px;
@@ -80,7 +82,7 @@ html {
   padding: 20px;
   width: 200px;
   height: auto;
-  text-align: center; /* Centraliza o conteúdo dentro do elemento */
+  text-align: center;
 }
 
 .botao-editar,
@@ -90,19 +92,13 @@ html {
   padding: 8px 16px;
   border-radius: 4px;
   cursor: pointer;
-  margin: 5px; /* Adiciona margem entre os botões */
+  margin: 5px;
 }
 
 .botao-excluir {
   background-color: #e74c3c;
   box-shadow: 2px 3px 0px 0px #8b1306;
-  color: #fff;
   border: 1px solid #8b1306;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-left: 8px;     
-  padding: 8px;
 }
 
 .botao-editar {
@@ -110,17 +106,9 @@ html {
   box-shadow: 2px 3px 0px 0px #9b8207;
   color: #000;
   border: 1px solid #9b8207;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-left: 8px;      
-  padding: 8px;
 }
 
-h2{
-  text-align: center;
-}
-p{
+h2, p {
   text-align: center;
 }
 
@@ -129,7 +117,8 @@ p{
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around; /* Distribui os itens igualmente ao longo do eixo horizontal */
-  gap: 20px; /* Espaçamento entre os itens */
+  justify-content: space-around;
+  gap: 20px;
 }
+
 

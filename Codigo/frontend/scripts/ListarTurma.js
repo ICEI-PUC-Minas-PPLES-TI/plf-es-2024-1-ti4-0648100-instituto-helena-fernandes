@@ -59,13 +59,13 @@ function exibirDetalhesTurma(turma, item) {
     document.getElementById('detalhes-card').style.display = 'block';
 
     document.getElementById('botao-editar').addEventListener('click', function() {
-        window.location.href = `./EditarTurma.html?id=${turma.id_turma}&nome=${encodeURIComponent(turma.nome_turma)}&alunos=${encodeURIComponent(JSON.stringify(turma.alunos.map(p => p.nome_aluno)))}&professores=${encodeURIComponent(JSON.stringify(turma.professores.map(d => d.nome_professor)))}&disciplinas=${encodeURIComponent(JSON.stringify(turma.disciplinas.map(d => d.nomeDisciplina)))}`;
+        window.location.href = `./EditarTurma.html?id=${turma.idTurma}&nome=${encodeURIComponent(turma.nome_turma)}&alunos=${encodeURIComponent(JSON.stringify(turma.alunos.map(p => p.nome_aluno)))}&professores=${encodeURIComponent(JSON.stringify(turma.professores.map(d => d.nome_professor)))}&disciplinas=${encodeURIComponent(JSON.stringify(turma.disciplinas.map(d => d.nomeDisciplina)))}`;
     });
     
 
     document.getElementById('botao-excluir').addEventListener('click', function() {
         if (confirm(`Tem certeza de que deseja excluir a turma ${turma.nome_turma}?`)) {
-            fetch(`http://localhost:8080/turma/${turma.id_turma}`, {
+            fetch(`http://localhost:8080/turma/${turma.idTurma}`, {
                 method: 'DELETE'
             })
             .then(response => {

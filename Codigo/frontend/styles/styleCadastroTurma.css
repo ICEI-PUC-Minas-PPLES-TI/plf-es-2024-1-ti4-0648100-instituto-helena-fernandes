@@ -40,32 +40,6 @@ body, html {
 .text-center{
     margin-top: 50px;
 }
-.add-button {
-  background-color: #09F112;
-  color: #3E3F4A;
-  padding: 10px 70px;
-  font-weight: 600;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;    
-  margin-bottom: 10px;
-  box-shadow: 2px 3px 0px 0px #046C08;
-  scale: 1;
-  transition: .3s;
-  margin-top: 10px;
-}
-
-.add-button:hover {
-  background-color: #09F112;
-  color: #3E3F4A;
-  padding: 10px 70px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;    
-  margin-bottom: 10px;
-  scale: 1.1;
-  transition: .3s;
-}
 
 
 .box-name{
@@ -85,3 +59,47 @@ body, html {
     box-sizing: border-box; 
     font-size: 14px;
 }
+
+
+.add-button {
+  background-color: #09F112;
+  color: #3E3F4A;
+  padding: 10px 30px;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;    
+  box-shadow: 2px 3px 0px 0px #046C08;
+  transition: transform .3s;
+  margin-top: 10px;
+}
+
+.add-button:hover {
+  transform: scale(1.1);
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Espaço entre os botões */
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.back-button {
+  background-color: #e74c3c;
+  color: #fff;
+  padding: 10px 30px;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;    
+  box-shadow: 2px 3px 0px 0px #8b1306;
+  transition: transform .3s;
+  margin-top: 10px;
+}
+
+.back-button:hover {
+  transform: scale(1.1);
+}
+

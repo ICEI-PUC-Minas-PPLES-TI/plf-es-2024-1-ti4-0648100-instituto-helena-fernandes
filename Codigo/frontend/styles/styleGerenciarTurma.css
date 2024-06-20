@@ -9,16 +9,18 @@ body, html {
   background-repeat: no-repeat;
   font-family: 'Poppins', sans-serif;
 }
+
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Alinha todos os itens no eixo principal */
-  justify-content: center; /* Alinha todos os itens no eixo cruzado */
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
 }
+
 .logo-container {
-  width: 80px; /* Ajuste conforme necessário */
+  width: 80px;
   height: auto; 
   margin-top: 3%; 
 }
@@ -27,6 +29,7 @@ body, html {
   width: 100%;
   height: auto;
 }
+
 .header {
   text-align: center;
 }
@@ -34,51 +37,52 @@ body, html {
 .container1 {
   text-align: center;
 }
-.professor-item {
-  margin: 10px 0; /* Adiciona margem em cima e embaixo de cada item */
-}
 
+.professor-item {
+  margin: 10px 0;
+}
 
 .text-center {
-  margin-top: 50px; /* Espaçamento entre o texto e o botão, ajuste conforme necessário */
+  margin-top: 50px;
 }
+
 .button-container {
-  text-align: center; /* Centraliza o botão "Adicionar" */
-  margin-top: 20px; /* Espaçamento entre o cabeçalho e o botão */
+  text-align: center;
+  margin-top: 20px;
 }
-/* Estilo para o botão */
-.add-button {
-  background-color: #09F112;
+
+.add-button, .back-button {
   color: #3E3F4A;
   padding: 10px 70px;
   font-weight: 600;
   border: none;
   border-radius: 5px;
-  cursor: pointer;    
+  cursor: pointer;
   margin-bottom: 10px;
-  box-shadow: 2px 3px 0px 0px #046C08;
-  scale: 1;
   transition: .3s;
 }
 
-/* Estilo para o botão quando passa o mouse sobre ele */
-.add-button button:hover {
+.add-button {  
   background-color: #09F112;
-  color: #3E3F4A;
-  padding: 10px 70px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;    
-  margin-bottom: 10px;
+  box-shadow: 2px 3px 0px 0px #046C08;
+}
+
+.back-button {  
+  background-color: #e74c3c;
+  box-shadow: 2px 3px 0px 0px #8b1306;
+  color: #FFF;
+}
+
+
+.add-button:hover, .back-button:hover {
   scale: 1.1;
   transition: .3s;
 }
 
-/* Estilos para o card de professor */
 .card {
-  background-color: #f5f5f5;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   padding: 20px;
   margin: 20px;
   width: 300px;
@@ -99,13 +103,14 @@ body, html {
   z-index: -1;
 }
 
-#lista-professores {
+#lista-turma {
   list-style-type: none;
   padding: 0;
   width: 100%;
-  max-width: 800px; /* Limita a largura total da lista */
-  margin: 0 auto; /* Centraliza a lista de professores */
+  max-width: 800px;
+  margin: 0 auto;
 }
+
 .botao-detalhes {
   background-color: #3498db;
   box-shadow: 2px 3px 0px 0px #094b77;
@@ -118,7 +123,6 @@ body, html {
   margin-left: 8px;     
 }
 
-/* Estilos para o botão de editar */
 .botao-editar {
   background-color: #F2D22E;
   box-shadow: 2px 3px 0px 0px #9b8207;
@@ -131,7 +135,6 @@ body, html {
   padding: 8px;
 }
 
-/* Estilos para o botão de excluir */
 .botao-excluir {
   background-color: #e74c3c;
   box-shadow: 2px 3px 0px 0px #8b1306;
@@ -143,6 +146,7 @@ body, html {
   margin-left: 8px;     
   padding: 8px;
 }
+
 #detalhes-overlay {
   display: none;
   position: fixed;
@@ -150,8 +154,8 @@ body, html {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
-  z-index: 1000; /* Garante que o overlay esteja na frente de todos os outros elementos */
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
 }
 
 #detalhes-card {
@@ -164,7 +168,7 @@ body, html {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  z-index: 1001; /* Garante que o card esteja na frente do overlay */
+  z-index: 1001;
 }
 
 #detalhes-card h2 {

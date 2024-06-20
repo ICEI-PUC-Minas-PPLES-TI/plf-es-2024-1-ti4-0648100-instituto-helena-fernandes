@@ -1,35 +1,35 @@
 body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('../images/BGGerenciarProfessores.jpg'); /* Certifique-se de ajustar o caminho conforme necessário */
-    background-size: cover; /* Assegura que a imagem de fundo cubra toda a tela */
-    background-position: center; /* Centraliza a imagem de fundo na tela */
-    background-repeat: no-repeat;
-    font-family: 'Poppins', sans-serif;
-    overflow: hidden; /* Impede o scroll na página */
-  }
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../images/BGGerenciarProfessores.jpg'); /* Certifique-se de ajustar o caminho conforme necessário */
+  background-size: cover; /* Assegura que a imagem de fundo cubra toda a tela */
+  background-position: center; /* Centraliza a imagem de fundo na tela */
+  background-repeat: no-repeat;
+  font-family: 'Poppins', sans-serif;
+}
 
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .logo-container {
-      width: 50px;
-      height: auto; 
-      margin-top: 3%;
-    }
-    
-    .logo-container img {
-      width: 100%;
-      height: auto; 
-    }
-    /* Estilo para o contêiner do formulário */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.logo-container {
+  width: 50px;
+  height: auto; 
+  margin-top: 3%;
+}
+
+.logo-container img {
+  width: 100%;
+  height: auto; 
+}
+
+/* Estilo para o contêiner do formulário */
 .form-container {
   flex: 1;
   display: flex;
@@ -48,19 +48,18 @@ body, html {
   background-color: rgba(0, 0, 0, 0);
 }
 
-    form {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        gap: 10px; /* Espaço entre os campos do formulário */
-    }
-    
-    label {
-      margin-bottom: 0px;
-      vertical-align: top;
-      font-weight: bold; /* Adiciona negrito */
-    }
-    
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px; /* Espaço entre os campos do formulário */
+}
+
+label {
+  margin-bottom: 0px;
+  vertical-align: top;
+  font-weight: bold; /* Adiciona negrito */
+}
 
 /* Estilo para os inputs */
 input[type="text"],
@@ -77,51 +76,42 @@ select {
 }
 
 /* Estilo para o container do botão */
-.buttonPC {
+.button-group {
   display: flex;
-  flex-direction: column; /* Altera a direção do flex container para coluna */
-  align-items: center; /* Centraliza os itens horizontalmente */
+  justify-content: center;
+  gap: 20px; /* Espaço entre os botões */
+  width: 100%;
+  margin-top: 20px; /* Adiciona margem superior para espaçamento */
 }
 
-/* Estilo para o botão */
-.buttonPC button {
-  background-color: #09F112;
-  color: #3E3F4A;
-  padding: 10px 70px;
-  font-weight: 600;
+.button-group button {
+  width: 150px;
+  padding: 10px;
   border: none;
   border-radius: 5px;
-  cursor: pointer;    
-  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 10px;
+}
+
+.register-button {
+  background-color: #09F112;
+  color: #3E3F4A;
   box-shadow: 2px 3px 0px 0px #046C08;
-  scale: 1;
+  font-weight: 600;
   transition: .3s;
 }
 
-/* Estilo para o botão quando passa o mouse sobre ele */
-.buttonPC button:hover {
-  background-color: #09F112;
-  color: #3E3F4A;
-  padding: 10px 70px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;    
-  margin-bottom: 10px;
+.register-button:hover {
   scale: 1.1;
   transition: .3s;
 }
 
-/* Estilo para o link "Voltar para a página anterior" */
-.linkVoltar {
-  margin-top: 10px; /* Adiciona um espaço entre o botão e o link */
-  font-size: 12px; /* Define o tamanho da fonte como pequeno */
-  color: blue; /* Define a cor do texto como azul */
-  text-decoration: underline; /* Sublinha o texto */
-  cursor: pointer; /* Altera o cursor ao passar sobre o link */
+.back-button {
+  background-color: #dc3545;
+  color: #fff;
 }
 
-/* Estilo para o link quando passa o mouse sobre ele */
-.linkVoltar:hover {
-  color: darkblue; /* Altera a cor do texto quando passa o mouse sobre o link */
+.back-button:hover {
+  background-color: #c82333;
 }
-

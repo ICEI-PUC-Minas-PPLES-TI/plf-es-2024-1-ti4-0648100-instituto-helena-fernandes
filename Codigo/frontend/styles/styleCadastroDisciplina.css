@@ -14,7 +14,11 @@ body, html {
     color: #000000;
   }
 
-  .container {
+.text-center{
+    margin-top: 50px;
+}
+
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,64 +27,99 @@ body, html {
 }
 
 .logo-container {
-    width: 50px;
-    height: auto; 
-    margin-top: 3%;
-  }
-  
-  .logo-container img {
-    width: 100%;
-    height: auto; 
-  }
-  
-  .container1 {
-    text-align: center;
+  width: 50px;
+  height: auto; 
+  margin-top: 3%;
 }
 
-.text-center{
-    margin-top: 50px;
-}
-.add-button {
-    background-color: #09F112;
-    color: #3E3F4A;
-    padding: 10px 70px;
-    font-weight: 600;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;    
-    margin-bottom: 10px;
-    box-shadow: 2px 3px 0px 0px #046C08;
-    scale: 1;
-    transition: .3s;
+.logo-container img {
+  width: 100%;
+  height: auto; 
 }
 
-.add-button:hover{
-  background-color: #09F112;
-  color: #3E3F4A;
-  padding: 10px 70px;
+/* Estilo para o contêiner do formulário */
+.form-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; /* Alinha os itens no início do eixo transversal */
+  background-color: white;
+  padding: 20px;
+  position: absolute;
+  top: 5%;
+  right: 31%;
+  width: 100%;
+  height: 100%;
+  max-width: 500px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px; /* Espaço entre os campos do formulário */
+}
+
+label {
+  margin-bottom: 0px;
+  vertical-align: top;
+  font-weight: bold; /* Adiciona negrito */
+}
+
+/* Estilo para os inputs */
+input[type="text"],
+input[type="email"],
+input[type="date"],
+select {
+  border: 2px solid #7C85FF8F;
+  box-shadow: 0px 0px 8px 0px rgba(124, 133, 255, 0.56) inset;
+  border-radius: 5px;
+  padding: 12px;
+  font-size: 15px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+/* Estilo para o container do botão */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Espaço entre os botões */
+  width: 100%;
+  margin-top: 20px; /* Adiciona margem superior para espaçamento */
+}
+
+.button-group button {
+  width: 150px;
+  padding: 10px;
   border: none;
   border-radius: 5px;
-  cursor: pointer;    
-  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 10px;
+}
+
+.register-button {
+  background-color: #09F112;
+  color: #3E3F4A;
+  box-shadow: 2px 3px 0px 0px #046C08;
+  font-weight: 600;
+  transition: .3s;
+}
+
+.register-button:hover {
   scale: 1.1;
   transition: .3s;
 }
 
-.box-name{
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 24px;
-    text-align: left;
+.back-button {
+  background-color: #dc3545;
+  color: #fff;
 }
 
-.nome_disciplina, .carga_horaria {
-    border: 2px solid #7C85FF8F;
-    box-shadow: 0px 0px 8px 0px rgba(124, 133, 255, 0.56) inset;
-    border-radius: 10px; 
-    padding: 15px; 
-    margin-bottom: 20px; 
-    width: 500px; 
-    box-sizing: border-box; 
-    font-size: 14px;
+.back-button:hover {
+  background-color: #c82333;
 }
-

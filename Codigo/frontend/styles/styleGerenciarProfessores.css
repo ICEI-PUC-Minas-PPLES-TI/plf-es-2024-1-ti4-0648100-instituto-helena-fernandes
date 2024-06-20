@@ -7,7 +7,6 @@ body, html {
     font-family: 'Roboto', sans-serif;
 }
 
-
 .container {
     display: flex;
     flex-direction: column;
@@ -23,13 +22,11 @@ body, html {
 
 .logo-container {
     width: 50px; 
-
 }
 
 .logo-container img {
     width: 50px; /* Adjust as needed */
     margin-left: 380% !important;
-    
 }
 
 .button-container {
@@ -45,11 +42,7 @@ body, html {
     border-radius: 5px;
     cursor: pointer;
     box-shadow: 2px 3px 0px #046C08;
-    transition: 0.3s;
-}
-
-.add-button:hover {
-    transform: scale(1.1);
+    width: 250px !important;
 }
 
 #lista-professores {
@@ -72,13 +65,12 @@ body, html {
     box-sizing: border-box; /* Inclui padding e borda na largura total */
 }
 
-
 .card h2, .card p {
     text-align: center; /* Centraliza o texto */
 }
 
 .card button {
-    background: #ED3239;
+    background: #dc3545;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -145,7 +137,7 @@ body, html {
 }
 
 .botao-excluir {
-    background-color: #e74c3c !important;
+    background-color: #dc3545 !important;
     color: #fff;
     border: none;
 }
@@ -155,9 +147,40 @@ body, html {
 }
 
 botao-vermelho {
-    background-color: #e74c3c; /* Cor vermelha */
+    background-color: #dc3545; /* Cor vermelha */
 }
 
 botao-amarelo {
     background-color: #F2D22E; /* Cor amarela */
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    margin-top: 20px; /* Adicione margem superior para espaçamento */
+}
+
+button {
+    width: 150px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+button[type="button"] {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+button[type="button"]:hover {
+    background-color: #c82333;
 }
