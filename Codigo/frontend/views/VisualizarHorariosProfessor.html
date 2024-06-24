@@ -6,6 +6,9 @@
     <title>Gerenciamento de Disciplinas</title>
     <link rel="stylesheet" href="../styles/VisualizarHorarios.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos CSS podem ser ajustados conforme necessário */
+    </style>
 </head>
 
 <body>
@@ -18,194 +21,210 @@
             <div class="text-center">
                 <h1>Veja seus horários abaixo</h1>
             </div>
-        <form id="notas-form">
-            <section carrousel>
-                <input id="slide-0" name="carrousel" type="radio" checked />
-                <div class="slide">
-                    <label for="slide-4" class="back">◀</label>
-                    <div class="slide-content">
-                        <h1>Segunda-Feira</h1>
-                        <div class="horario">
-                            <div>
-                                <h2>Turma 6A</h2>
-                                <p>Matemática</p>
+            <form id="notas-form">
+                <section carrousel>
+                    <!-- Segunda-Feira -->
+                    <input id="slide-0" name="carrousel" type="radio" checked />
+                    <div class="slide">
+                        <label for="slide-4" class="back">◀</label>
+                        <div class="slide-content">
+                            <h1>Segunda-Feira</h1>
+                            <div class="horario">
+                                <div>
+                                    <h2>Turma 8A</h2>
+                                    <p>Matemática</p>
+                                </div>
+                                <div>
+                                    <h2>Horário: 09:50 - 10:40</h2>
+                                </div>
                             </div>
-                            <div>
-                                <h2>Horário: 07:00 - 08:40</h2>
-                            </div>
-                        </div>
-                        <div class="horario">
-                            <div>
-                                <h2>Turma 6A</h2>
-                                <p>Matemática</p>
-                            </div>
-                            <div>
-                                <h2>Horário: 08:50 - 10:30</h2>
-                            </div>
-                        </div>
-                        <div class="horario">
-                            <div>
-                                <h2>Turma 6A</h2>
-                                <p>Matemática</p>
-                            </div>
-                            <div>
-                                <h2>Horário: 10:40 - 12:20</h2>
+                            <div class="horario">
+                                <div>
+                                    <h2>Turma 9A</h2>
+                                    <p>Matemática</p>
+                                </div>
+                                <div>
+                                    <h2>Horário: 10:40 - 11:30</h2>
+                                </div>
                             </div>
                         </div>
+                        <label for="slide-1" class="forward">▶</label>
                     </div>
-                    <label for="slide-1" class="forward">▶</label>
-                </div>
-            
-                <input id="slide-1" name="carrousel" type="radio" />
-                <div class="slide">
-                    <label for="slide-0" class="back">◀</label>
-                    <div class="slide-content">
-                        <h1>Terça-Feira</h1>
-                        <div class="horario">
-                            <div>
-                                <h2>Turma 6A</h2>
-                                <p>Matemática</p>
+                    
+                    <!-- Terça-Feira -->
+                    <input id="slide-1" name="carrousel" type="radio" />
+                    <div class="slide">
+                        <label for="slide-0" class="back">◀</label>
+                        <div class="slide-content">
+                            <h1>Terça-Feira</h1>
+                            <div class="horario">
+                                <div>
+                                    <h2>Turma 6A</h2>
+                                    <p>Matemática</p>
+                                </div>
+                                <div>
+                                    <h2>Horário: 07:00 - 07:50</h2>
+                                </div>
                             </div>
-                            <div>
-                                <h2>Horário: 07:00 - 08:40</h2>
+                            <div class="horario">
+                                <div>
+                                    <h2>Turma 7A</h2>
+                                    <p>Matemática</p>
+                                </div>
+                                <div>
+                                    <h2>Horário: 07:50 - 08:50</h2>
+                                </div>
+                            </div>
+                            <div class="horario">
+                                <div>
+                                    <h2>Turma 7A</h2>
+                                    <p>Matemática</p>
+                                </div>
+                                <div>
+                                    <h2>Horário: 08:50 - 09:40</h2>
+                                </div>
+                            </div>
+                            <div class="horario">
+                                <div>
+                                    <h2>Turma 8A</h2>
+                                    <p>Matemática</p>
+                                </div>
+                                <div>
+                                    <h2>Horário: 09:50 - 10:40</h2>
+                                </div>
+                            </div>
+                            <div class="horario">
+                                <div>
+                                    <h2>Turma 8A</h2>
+                                    <p>Matemática</p>
+                                </div>
+                                <div>
+                                    <h2>Horário: 10:40 - 11:30</h2>
+                                </div>
                             </div>
                         </div>
-                        <div class="horario">
-                            <div>
-                                <h2>Turma 6A</h2>
-                                <p>Matemática</p>
-                            </div>
-                            <div>
-                                <h2>Horário: 08:50 - 10:30</h2>
-                            </div>
-                        </div>
-                        <div class="horario">
-                            <div>
-                                <h2>Turma 6A</h2>
-                                <p>Matemática</p>
-                            </div>
-                            <div>
-                                <h2>Horário: 10:40 - 12:20</h2>
-                            </div>
-                        </div>
+                        <label for="slide-2" class="forward">▶</label>
                     </div>
-                    <label for="slide-2" class="forward">▶</label>
-                </div>
-            
-                <input id="slide-2" name="carrousel" type="radio" />
-                <div class="slide">
-                    <label for="slide-1" class="back">◀</label>
-                    <div class="slide-content">
-                        <h1>Quarta-Feira</h1>
-                        <div class="horario">
-                            <div>
-                                <h2>Turma 6A</h2>
-                                <p>Matemática</p>
+                    
+                    <!-- Quarta-Feira -->
+                    <input id="slide-2" name="carrousel" type="radio" />
+                    <div class="slide">
+                        <label for="slide-1" class="back">◀</label>
+                        <div class="slide-content">
+                            <h1>Quarta-Feira</h1>
+                            <div class="horario">
+                                <div>
+                                    <h2>Turma 6A</h2>
+                                    <p>Matemática</p>
+                                </div>
+                                <div>
+                                    <h2>Horário: 07:00 - 07:50</h2>
+                                </div>
                             </div>
-                            <div>
-                                <h2>Horário: 07:00 - 08:40</h2>
+                            <div class="horario">
+                                <div>
+                                    <h2>Turma 6A</h2>
+                                    <p>Matemática</p>
+                                </div>
+                                <div>
+                                    <h2>Horário: 07:50 - 08:50</h2>
+                                </div>
+                            </div>
+                            <div class="horario">
+                                <div>
+                                    <h2>Turma 9A</h2>
+                                    <p>Matemática</p>
+                                </div>
+                                <div>
+                                    <h2>Horário: 08:50 - 09:40</h2>
+                                </div>
+                            </div>
+                            <div class="horario">
+                                <div>
+                                    <h2>Turma 9A</h2>
+                                    <p>Matemática</p>
+                                </div>
+                                <div>
+                                    <h2>Horário: 09:50 - 10:40</h2>
+                                </div>
                             </div>
                         </div>
-                        <div class="horario">
-                            <div>
-                                <h2>Turma 6A</h2>
-                                <p>Matemática</p>
-                            </div>
-                            <div>
-                                <h2>Horário: 08:50 - 10:30</h2>
-                            </div>
-                        </div>
-                        <div class="horario">
-                            <div>
-                                <h2>Turma 6A</h2>
-                                <p>Matemática</p>
-                            </div>
-                            <div>
-                                <h2>Horário: 10:40 - 12:20</h2>
-                            </div>
-                        </div>
+                        <label for="slide-3" class="forward">▶</label>
                     </div>
-                    <label for="slide-3" class="forward">▶</label>
-                </div>
-            
-                <input id="slide-3" name="carrousel" type="radio" />
-                <div class="slide">
-                    <label for="slide-2" class="back">◀</label>
-                    <div class="slide-content">
-                        <h1>Quinta-Feira</h1>
-                        <div class="horario">
-                            <div>
-                                <h2>Turma 6A</h2>
-                                <p>Matemática</p>
+                    
+                    <!-- Quinta-Feira -->
+                    <input id="slide-3" name="carrousel" type="radio" />
+                    <div class="slide">
+                        <label for="slide-2" class="back">◀</label>
+                        <div class="slide-content">
+                            <h1>Quinta-Feira</h1>
+                            <div class="horario">
+                                <div>
+                                    <h2>Turma 8A</h2>
+                                    <p>Matemática</p>
+                                </div>
+                                <div>
+                                    <h2>Horário: 07:00 - 07:50</h2>
+                                </div>
                             </div>
-                            <div>
-                                <h2>Horário: 07:00 - 08:40</h2>
+                            <div class="horario">
+                                <div>
+                                    <h2>Turma 9A</h2>
+                                    <p>Matemática</p>
+                                </div>
+                                <div>
+                                    <h2>Horário: 07:50 - 08:50</h2>
+                                </div>
                             </div>
+                               
                         </div>
-                        <div class="horario">
-                            <div>
-                                <h2>Turma 6A</h2>
-                                <p>Matemática</p>
-                            </div>
-                            <div>
-                                <h2>Horário: 08:50 - 10:30</h2>
-                            </div>
-                        </div>
-                        <div class="horario">
-                            <div>
-                                <h2>Turma 6A</h2>
-                                <p>Matemática</p>
-                            </div>
-                            <div>
-                                <h2>Horário: 10:40 - 12:20</h2>
-                            </div>
-                        </div>
+                        <label for="slide-4" class="forward">▶</label>
                     </div>
-                    <label for="slide-4" class="forward">▶</label>
-                </div>
-            
-                <input id="slide-4" name="carrousel" type="radio" />
-                <div class="slide">
-                    <label for="slide-3" class="back">◀</label>
-                    <div class="slide-content">
-                        <h1>Sexta-Feira</h1>
-                        <div class="horario">
-                            <div>
-                                <h2>Turma 6A</h2>
-                                <p>Matemática</p>
+                    
+                    <!-- Sexta-Feira -->
+                    <input id="slide-4" name="carrousel" type="radio" />
+                    <div class="slide">
+                        <label for="slide-3" class="back">◀</label>
+                        <div class="slide-content">
+                            <h1>Sexta-Feira</h1>
+                            <div class="horario">
+                                <div>
+                                    <h2>Turma 6A</h2>
+                                    <p>Matemática</p>
+                                </div>
+                                <div>
+                                    <h2>Horário: 07:00 - 07:50</h2>
+                                </div>
                             </div>
-                            <div>
-                                <h2>Horário: 07:00 - 08:40</h2>
+                            <div class="horario">
+                                <div>
+                                    <h2>Turma 7A</h2>
+                                    <p>Matemática</p>
+                                </div>
+                                <div>
+                                    <h2>Horário: 07:50 - 08:50</h2>
+                                </div>
+                            </div>
+                            <div class="horario">
+                                <div>
+                                    <h2>Turma 7A</h2>
+                                    <p>Matemática</p>
+                                </div>
+                                <div>
+                                    <h2>Horário: 08:50 - 09:40</h2>
+                                </div>
                             </div>
                         </div>
-                        <div class="horario">
-                            <div>
-                                <h2>Turma 6A</h2>
-                                <p>Matemática</p>
-                            </div>
-                            <div>
-                                <h2>Horário: 08:50 - 10:30</h2>
-                            </div>
-                        </div>
-                        <div class="horario">
-                            <div>
-                                <h2>Turma 6A</h2>
-                                <p>Matemática</p>
-                            </div>
-                            <div>
-                                <h2>Horário: 10:40 - 12:20</h2>
-                            </div>
-                        </div>
+                        <label for="slide-0" class="forward">▶</label>
                     </div>
-                    <label for="slide-0" class="forward">▶</label>
+                </section>
+                <div class="button-group">
+                    <button type="button" onclick="window.history.back()">Voltar</button>
                 </div>
-            </section>
-            <div class="button-group">
-                <button type="button" onclick="window.history.back()">Voltar</button>
-            </div>
+            </form>
         </div>
-    </form>
     </div>
+
 </body>
 
 </html>

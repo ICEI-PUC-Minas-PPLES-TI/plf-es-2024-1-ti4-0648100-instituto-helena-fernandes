@@ -40,6 +40,8 @@ body, html {
 
 /* CSS CARROSSEL */
 [carrousel] {
+  margin-top: 50px;  
+  margin-bottom: 50px;
   display: flex;
   position: relative;
   background-color: inherit;

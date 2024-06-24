@@ -30,7 +30,7 @@ CREATE TABLE `administrador` (
   `senha_admin` varchar(100) NOT NULL,
   PRIMARY KEY (`id_administrador`),
   UNIQUE KEY `UK_g0330m0dd5wcxcmv1jpvti0ax` (`email_admin`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `administrador` (
 
 LOCK TABLES `administrador` WRITE;
 /*!40000 ALTER TABLE `administrador` DISABLE KEYS */;
-INSERT INTO `administrador` VALUES (1,'admin','123');
+INSERT INTO `administrador` VALUES (1,'admin1','123'),(2,'admin','123'),(3,'admin3','123');
 /*!40000 ALTER TABLE `administrador` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -69,7 +69,7 @@ CREATE TABLE `aluno` (
   `status_aluno` varchar(1) DEFAULT NULL,
   `telefone_responsavel` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_aluno`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -78,7 +78,7 @@ CREATE TABLE `aluno` (
 
 LOCK TABLES `aluno` WRITE;
 /*!40000 ALTER TABLE `aluno` DISABLE KEYS */;
-INSERT INTO `aluno` VALUES (1,'Nenhuma','Bairro 1','Cidade 1','12345678901','10987654321','2000-01-01','aluno1@example.com','Informações adicionais 1','Aluno 1','Responsável 1','100','Rua 1','senhaAluno1','1º Ano','1','111111111'),(2,'Nenhuma','Bairro 2','Cidade 2','23456789012','21098765432','2001-02-02','aluno2@example.com','Informações adicionais 2','Aluno 2','Responsável 2','200','Rua 2','senhaAluno2','2º Ano','0','222222222'),(3,'Nenhuma','Bairro 3','Cidade 3','34567890123','32109876543','2002-03-03','aluno3@example.com','Informações adicionais 3','Aluno 3','Responsável 3','300','Rua 3','senhaAluno3','3º Ano','2','333333333');
+INSERT INTO `aluno` VALUES (1,'','','','','','','','','','','','','','','',''),(2,'Nenhuma','Bairro 1','Cidade 1','12345678901','10987654321','2000-01-01','aluno1@example.com','Informações adicionais 1','Aluno 1','Responsável 1','100','Rua 1','senhaAluno1','1º Ano','1','111111111'),(3,'Nenhuma','Bairro 2','Cidade 2','23456789012','21098765432','2001-02-02','aluno2@example.com','Informações adicionais 2','Aluno 2','Responsável 2','200','Rua 2','senhaAluno2','2º Ano','0','222222222'),(4,'Nenhuma','Bairro 3','Cidade 3','34567890123','32109876543','2002-03-03','aluno3@example.com','Informações adicionais 3','Aluno 3','Responsável 3','300','Rua 3','senhaAluno3','3º Ano','2','333333333');
 /*!40000 ALTER TABLE `aluno` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -94,7 +94,7 @@ CREATE TABLE `disciplina` (
   `carga_horaria` bigint NOT NULL,
   `nome_disciplina` varchar(100) NOT NULL,
   PRIMARY KEY (`id_disciplina`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,7 +103,7 @@ CREATE TABLE `disciplina` (
 
 LOCK TABLES `disciplina` WRITE;
 /*!40000 ALTER TABLE `disciplina` DISABLE KEYS */;
-INSERT INTO `disciplina` VALUES (1,200,'Matemática'),(2,180,'Português'),(3,160,'Ciências');
+INSERT INTO `disciplina` VALUES (1,180,'Português'),(2,200,'Matemática'),(3,160,'História'),(4,140,'Geografia'),(5,180,'Ciências'),(6,100,'Educação Física'),(7,120,'Inglês'),(8,100,'Artes'),(9,150,'Química'),(10,160,'Biologia'),(11,140,'Filosofia'),(12,130,'Sociologia');
 /*!40000 ALTER TABLE `disciplina` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,7 +130,7 @@ CREATE TABLE `nota_aluno` (
 
 LOCK TABLES `nota_aluno` WRITE;
 /*!40000 ALTER TABLE `nota_aluno` DISABLE KEYS */;
-INSERT INTO `nota_aluno` VALUES (1,1),(2,2),(3,3);
+INSERT INTO `nota_aluno` VALUES (1,2),(2,3),(3,4);
 /*!40000 ALTER TABLE `nota_aluno` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -240,7 +240,7 @@ CREATE TABLE `notas` (
 
 LOCK TABLES `notas` WRITE;
 /*!40000 ALTER TABLE `notas` DISABLE KEYS */;
-INSERT INTO `notas` VALUES (1,8.5,7.2,9.1,8,7.5,8.8),(2,6.4,7.8,6.5,7,6.2,7.4),(3,20,20,20,20,10,10);
+INSERT INTO `notas` VALUES (1,8.5,7.2,9.1,8,7.5,8.8),(2,6.4,7.8,6.5,7,6.2,7.4),(3,9,8.6,9.3,8.7,8.4,9);
 /*!40000 ALTER TABLE `notas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -263,7 +263,7 @@ CREATE TABLE `professor` (
   PRIMARY KEY (`id_professor`),
   KEY `FKf5ikcokyk24ma01pgae9ej80v` (`id_disciplina`),
   CONSTRAINT `FKf5ikcokyk24ma01pgae9ej80v` FOREIGN KEY (`id_disciplina`) REFERENCES `disciplina` (`id_disciplina`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -272,7 +272,7 @@ CREATE TABLE `professor` (
 
 LOCK TABLES `professor` WRITE;
 /*!40000 ALTER TABLE `professor` DISABLE KEYS */;
-INSERT INTO `professor` VALUES (1,'45678901234','1980-01-01','professor1@example.com','Matemática','Professor 1','senhaProfessor1',1),(2,'56789012345','1981-02-02','professor2@example.com','Português','Professor 2','senhaProfessor2',2),(3,'67890123456','1982-03-03','professor3@example.com','Ciências','Professor 3','senhaProfessor3',3);
+INSERT INTO `professor` VALUES (1,'45678901234','1980-01-01','ana@example.com','Português','Ana','senhaAna',1),(2,'56789012345','1981-02-02','carlos@example.com','Matemática','Carlos','senhaCarlos',2),(3,'67890123456','1982-03-03','julia@example.com','História','Júlia','senhaJulia',3),(4,'78901234567','1983-04-04','pedro@example.com','Geografia','Pedro','senhaPedro',4),(5,'89012345678','1984-05-05','mariana@example.com','Ciências','Mariana','senhaMariana',5),(6,'90123456789','1985-06-06','lucas@example.com','Educação Física','Lucas','senhaLucas',6),(7,'01234567890','1986-07-07','paula@example.com','Inglês','Paula','senhaPaula',7),(8,'12345678901','1987-08-08','roberto@example.com','Artes','Roberto','senhaRoberto',8),(9,'23456789012','1988-09-09','fernanda@example.com','Química','Fernanda','senhaFernanda',9),(10,'34567890123','1989-10-10','tatiana@example.com','Biologia','Tatiana','senhaTatiana',10),(11,'45678901234','1990-11-11','claudio@example.com','Filosofia','Cláudio','senhaClaudio',11),(12,'56789012345','1991-12-12','regina@example.com','Sociologia','Regina','senhaRegina',12);
 /*!40000 ALTER TABLE `professor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -287,7 +287,7 @@ CREATE TABLE `turma` (
   `id_turma` bigint NOT NULL AUTO_INCREMENT,
   `nome_turma` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_turma`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -296,7 +296,7 @@ CREATE TABLE `turma` (
 
 LOCK TABLES `turma` WRITE;
 /*!40000 ALTER TABLE `turma` DISABLE KEYS */;
-INSERT INTO `turma` VALUES (1,'Turma A'),(2,'Turma B'),(3,'Turma C');
+INSERT INTO `turma` VALUES (1,'6A'),(2,'6B'),(3,'6C'),(4,'7A'),(5,'7B'),(6,'7C'),(7,'8A'),(8,'8B'),(9,'8C'),(10,'9A'),(11,'9B'),(12,'9C');
 /*!40000 ALTER TABLE `turma` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -323,7 +323,7 @@ CREATE TABLE `turma_aluno` (
 
 LOCK TABLES `turma_aluno` WRITE;
 /*!40000 ALTER TABLE `turma_aluno` DISABLE KEYS */;
-INSERT INTO `turma_aluno` VALUES (1,1),(2,2),(3,3);
+INSERT INTO `turma_aluno` VALUES (1,2),(2,3),(3,4);
 /*!40000 ALTER TABLE `turma_aluno` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -390,4 +390,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-24  9:01:58
+-- Dump completed on 2024-06-24 11:16:56
