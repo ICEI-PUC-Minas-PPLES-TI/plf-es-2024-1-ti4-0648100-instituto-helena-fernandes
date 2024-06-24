@@ -20,12 +20,19 @@ Este trabalho apresenta o desenvolvimento de um projeto de software para o Insti
 ## Passo a Passo
 
 1. Clone este repositório do GitHub e baixe a base de dados localizada `mysql-ihc` na pasta `Codigo/Banco de Dados`. Instale-o no MySQL Workbench.
-2. Dentro do repositório navegue até a pasta `Codigo/backend/sr/main/java/resources` e abra o arquivo de configuração. Altere a senha do banco de dados no campo `spring.datasource.password` para a sua senha do banco de dados.
-3. Navegue até a pasta `Codigo/backend/sr/main/java` e execute o arquivo `DemoApplication.java.` Isso pode ser feito com um IDE como o VsCode, IntelliJ IDEA ou Eclipse. Certifique-se de que o banco de dados está rodando antes de iniciar a aplicação.
-4. Agora, você pode iniciar a interface frontend. Navegue até a pasta `Codigo/frontend/views` e clique com o botão direito sobre o arquivo desejado. Selecione a opção `Open with Live Server`. Isso deve ser feito para cada funcionalidade específica conforme explicado abaixo:
+  
+2. Dentro do repositório navegue até a pasta `Codigo > backend> src > main> java > resources` e abra o arquivo de configuração. Altere a senha do banco de dados no campo `spring.datasource.password` para a sua senha do banco de dados.
+
+3. Navegue até a pasta `Codigo > backend > src > main > java` e execute o arquivo `DemoApplication.java.` Isso pode ser feito com um IDE como o VsCode, IntelliJ IDEA ou Eclipse. Certifique-se de que o banco de dados está rodando antes de iniciar a aplicação.
+
+4. Agora, você pode iniciar a interface frontend. Navegue até a pasta `Codigo > frontend > views` e clique com o botão direito sobre o arquivo desejado. Selecione a opção `Open with Live Server`. Isso deve ser feito para cada funcionalidade específica conforme explicado abaixo:
+
    4.1. Login do Aluno: Para acessar a funcionalidade de login do aluno, abra o arquivo `LoginAluno.java` com o Live Server.
+   
    4.2. Login do Professor: Para acessar a funcionalidade de login do professor, abra o arquivo `LoginProfessor.java` com o Live Server.
+   
    4.3. Login do Administrador: Para acessar a funcionalidade de login do administrador, abra o arquivo `LoginAdministrador.java` com o Live Server.
-   Utilize as seguintes credenciais para funções de administrador:
-    - Email: `admin`
-    - Senha: `123`
+   
+       Utilize as seguintes credenciais para funções de administrador:
+        - Email: `admin`
+        - Senha: `123`
