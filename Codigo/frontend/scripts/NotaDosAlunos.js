@@ -47,30 +47,29 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     for (const nota of notas) {
       const row = document.createElement("tr");
+      const notaTotal = (
+          nota.notaProva1 +
+          nota.notaProva2 +
+          nota.notaProva3 +
+          nota.notaTrabalho1 +
+          nota.notaTrabalho2 +
+          nota.notaTrabalho3
+      ).toFixed(2); // Arredonda para duas casas decimais
+  
       row.innerHTML = `
-                <td>${nota.nomeAluno}</td>
-                <td>${nota.notaProva1}</td>
-                <td>${nota.notaProva2}</td>
-                <td>${nota.notaProva3}</td>
-                <td>${nota.notaTrabalho1}</td>
-                <td>${nota.notaTrabalho2}</td>
-                <td>${nota.notaTrabalho3}</td>
-                        <td>${
-                          nota.notaProva1 +
-                          nota.notaProva2 +
-                          nota.notaProva3 +
-                          nota.notaTrabalho1 +
-                          nota.notaTrabalho2 +
-                          nota.notaTrabalho3
-                        }</td>
-                <td><button type="button" onclick="abrirDetalhes(${
-                  nota.idAluno
-                }, ${idTurma}, ${
-        nota.idNota
-      }, ${idDisciplina})">Detalhes</button></td>
-            `;
+          <td>${nota.nomeAluno}</td>
+          <td>${nota.notaProva1}</td>
+          <td>${nota.notaProva2}</td>
+          <td>${nota.notaProva3}</td>
+          <td>${nota.notaTrabalho1}</td>
+          <td>${nota.notaTrabalho2}</td>
+          <td>${nota.notaTrabalho3}</td>
+          <td>${notaTotal}</td>
+          <td><button type="button" onclick="abrirDetalhes(${nota.idAluno}, ${idTurma}, ${nota.idNota}, ${idDisciplina})">Detalhes</button></td>
+      `;
       listaAlunos.appendChild(row);
-    }
+  }
+  
   } catch (error) {
     console.error("Erro ao carregar notas dos alunos:", error);
     alert(

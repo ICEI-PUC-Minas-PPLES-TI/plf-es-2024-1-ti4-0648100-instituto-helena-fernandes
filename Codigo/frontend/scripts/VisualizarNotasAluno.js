@@ -15,6 +15,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 notasBody.innerHTML = ''; // Limpar qualquer conteúdo anterior
                 notasList.forEach(nota => {
                     const row = document.createElement('tr');
+                    const notaTotal = (
+                        nota.prova1 +
+                        nota.prova2 +
+                        nota.prova3 +
+                        nota.trabalho1 +
+                        nota.trabalho2 +
+                        nota.trabalho3
+                    ).toFixed(2); // Arredonda para duas casas decimais
+
                     row.innerHTML = `
                         <td>${nota.disciplinas.map(d => d.nomeDisciplina).join(', ')}</td>
                         <td>${nota.prova1}</td>
@@ -23,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <td>${nota.trabalho1}</td>
                         <td>${nota.trabalho2}</td>
                         <td>${nota.trabalho3}</td>
-                        <td>${nota.prova1 + nota.prova2 + nota.prova3 + nota.trabalho1 + nota.trabalho2 + nota.trabalho3}</td>
+                        <td>${notaTotal}</td>
                     `;
                     notasBody.appendChild(row);
                 });
