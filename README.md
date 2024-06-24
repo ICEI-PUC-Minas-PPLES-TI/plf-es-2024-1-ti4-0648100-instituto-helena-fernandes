@@ -19,7 +19,7 @@ Este trabalho apresenta o desenvolvimento de um projeto de software para o Insti
 
 ## Passo a Passo
 
-1. Clone este repositório do GitHub e baixe a base de dados localizada `mysql-ihc` na pasta `Codigo/Banco de Dados`. Instale-o no MySQL Workbench.
+1. Clone este repositório do GitHub e baixe a base de dados de nome `mysql-ihc` localizada  na pasta `Codigo/Banco de Dados`. Instale-o no MySQL Workbench.
   
 2. Dentro do repositório navegue até a pasta `Codigo > backend> src > main> java > resources` e abra o arquivo de configuração. Altere a senha do banco de dados no campo `spring.datasource.password` para a sua senha do banco de dados.
 
