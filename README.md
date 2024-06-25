@@ -27,11 +27,11 @@ Este trabalho apresenta o desenvolvimento de um projeto de software para o Insti
 
 4. Agora, você pode iniciar a interface frontend. Navegue até a pasta `Codigo > frontend > views` e clique com o botão direito sobre o arquivo desejado. Selecione a opção `Open with Live Server`. Isso deve ser feito para cada funcionalidade específica conforme explicado abaixo:
 
-   - Login do Aluno: Para acessar a funcionalidade de login do aluno, abra o arquivo `LoginAluno.java` com o Live Server.
+   - Login do Aluno: Para acessar a funcionalidade de login do aluno, abra o arquivo `LoginAluno.html` com o Live Server.
    
-   - Login do Professor: Para acessar a funcionalidade de login do professor, abra o arquivo `LoginProfessor.java` com o Live Server.
+   - Login do Professor: Para acessar a funcionalidade de login do professor, abra o arquivo `LoginProfessor.html` com o Live Server.
    
-   - Login do Administrador: Para acessar a funcionalidade de login do administrador, abra o arquivo `LoginAdministrador.java` com o Live Server.
+   - Login do Administrador: Para acessar a funcionalidade de login do administrador, abra o arquivo `LoginAdministrador.html` com o Live Server.
 
        Utilize as seguintes credenciais para funções de administrador:
         - Email: `admin`
